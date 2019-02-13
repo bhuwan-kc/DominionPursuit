@@ -1,0 +1,26 @@
+GitHub Commands
+------------------------------------------------------------------------------
+
+SETUP
+Create a branch -> git branch yourBranchName
+-----------------------------------------------------------------------------
+
+Every time you start working on the project, make sure you are in your branch
+git branch
+git checkout yourBranchName
+
+git pull origin master 				//Pull all the changes from 
+						//origin repository
+
+
+Make all the changes that you want to
+Then add, commit, and push the changes to your branch 
+git add . 					//adds all the changes to the local repo
+git commit -m "your comments for the changes" 	//commits the changes
+git push origin yourBranchName			//pushes the changes to the online repo
+
+
+git status					//to check the status of your repo
+
+------------------------------------------------------------------------------
+git log -3					//to see last 3 commits made to the repo
