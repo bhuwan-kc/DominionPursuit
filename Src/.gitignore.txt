@@ -4,6 +4,7 @@
 [Ll]ogs/
 [Ll]ibrary/
 [Tt]emp/
+
 Assets/AssetStoreTools*
 
 ![Aa]ssets/**/*.meta
