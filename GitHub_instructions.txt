@@ -1,6 +1,6 @@
 GitHub Commands
 ------------------------------------------------------------------------------
-Yolo
+TEST 
 
 SETUP
 <Watch some tutorial to setup git in your device if you have not done it already>
@@ -8,18 +8,18 @@ SETUP
 Clone the project into your local directory
 git clone https://github.com/ablaze007/BoardGame.git
 
-Create a branch 
+Create a branch
 git branch yourBranchName
 -----------------------------------------------------------------------------
 
-DO THIS EVERYTIME BEFORE YOU START WORKING ON THE PROJECT 
+DO THIS EVERYTIME BEFORE YOU START WORKING ON THE PROJECT
 git branch
 git checkout yourBranchName
 
-git pull origin master				//Pull all the changes from 
+git pull origin master				//Pull all the changes from
 									//the origin repository
-																
-Make all the changes that you want to, 
+
+Make all the changes that you want to,
 Then add, commit, and push the changes to your branch using following commands:
 
 git add . 							//adds all the changes to the local repo
@@ -28,7 +28,7 @@ git push origin yourBranchName		//pushes the changes to the online repo
 
 
 git status							//to check the status of your repo
-									//USE this frequently 
+									//USE this frequently
 
 ------------------------------------------------------------------------------
 git log -3							//to see last 3 commits made to the repo
