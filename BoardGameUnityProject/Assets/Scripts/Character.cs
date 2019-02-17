@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Character : MonoBehaviour
 {
     private int currentTile;
     [SerializeField]
     private float speed = 1.0f;
+
+    public Text currentTileText;
 
     // Start is called before the first frame update
     void Start()
@@ -17,7 +20,7 @@ public class Character : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        currentTileText.text = currentTile + "";
     }
 
     public void updateTile(int steps)
