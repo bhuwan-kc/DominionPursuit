@@ -28,11 +28,14 @@ public class GameManager : MonoBehaviour
     //VARIABLES
     private int totalTiles = 78;
     public GameObject[] tiles = new GameObject[78];
-    public bool canRollDice = true;
+    private bool diceIsRolling = false;
     public bool canSetCharacters = true;
+    [SerializeField]
+    private float diceRollAnimTime = 1.0f;
 
     //GAMEOBJECTS
     public GameObject Dice;
+    public GameObject Dice2;
     public GameObject player1character1;
 
     //METHODS
@@ -49,11 +52,22 @@ public class GameManager : MonoBehaviour
 
     public void RollDice()
     {
-        if(canRollDice)
+        if(!diceIsRolling)
         {
-            canRollDice = false;
+            ChangeDiceRollStatus(true);
             int diceOutput = Dice.GetComponent<Dice>().RollDice();
-            player1character1.GetComponent<Character>().updateTile(diceOutput);
+            int diceOutput2 = Dice2.GetComponent<Dice>().RollDice();
+            StartCoroutine(WaitForDiceRollAnim(diceOutput, diceOutput2));
+        }
+    }
+
+    public void ChangeDiceRollStatus(bool roll)
+    {
+        diceIsRolling = roll;
+        if (roll == true)
+        {
+            Dice.GetComponent<Dice>().DiceRollAnimation();
+            Dice2.GetComponent<Dice>().DiceRollAnimation();
         }
     }
 
@@ -64,5 +78,14 @@ public class GameManager : MonoBehaviour
             //set characters for players
         }
         canSetCharacters = false;
+    }
+
+    IEnumerator WaitForDiceRollAnim(int diceOutput, int diceOutput2)
+    {
+        yield return new WaitForSeconds(diceRollAnimTime);
+        Dice.GetComponent<Dice>().SetDiceFace(diceOutput);
+        Dice2.GetComponent<Dice>().SetDiceFace(diceOutput2);
+        yield return new WaitForSeconds(0.75f);
+        player1character1.GetComponent<Character>().updateTile(diceOutput+diceOutput2);
     }
 }

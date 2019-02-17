@@ -39,7 +39,7 @@ public class Character : MonoBehaviour
             transform.position = targetPosition;
         }
         currentTile += steps;
-        GameManager.Instance.canRollDice = true;
+        GameManager.Instance.ChangeDiceRollStatus(false);
     }
 
 }
