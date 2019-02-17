@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
     private bool diceIsRolling = false;
     public bool canSetCharacters = true;
     [SerializeField]
-    private float diceRollAnimTime = 0.75f;
+    private float diceRollAnimTime = 1.0f;
 
     //GAMEOBJECTS
     public GameObject Dice;
@@ -82,10 +82,9 @@ public class GameManager : MonoBehaviour
 
     IEnumerator WaitForDiceRollAnim(int diceOutput, int diceOutput2)
     {
-        yield return new WaitForSeconds(diceRollAnimTime);
         Dice.GetComponent<Dice>().SetDiceFace(diceOutput);
         Dice2.GetComponent<Dice>().SetDiceFace(diceOutput2);
-        yield return new WaitForSeconds(0.50f);
+        yield return new WaitForSeconds(diceRollAnimTime);
         player1character1.GetComponent<Character>().updateTile(diceOutput+diceOutput2);
     }
 }
