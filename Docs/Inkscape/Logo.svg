@@ -25,9 +25,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.35"
-     inkscape:cx="214.95397"
-     inkscape:cy="1632.055"
+     inkscape:zoom="1.4"
+     inkscape:cx="1678.4661"
+     inkscape:cy="2097.1452"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -44,7 +44,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -65,6 +65,13 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1">
+    <rect
+       style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:3.17499995;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:27.39999962;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.95982139;paint-order:markers fill stroke"
+       id="rect843"
+       width="269.94223"
+       height="125.3494"
+       x="32.072342"
+       y="-313.17633" />
     <g
        id="g1314"
        transform="matrix(1.5570142,0,0,1.6167072,-2335.8319,-216.87612)">
@@ -219,24 +226,30 @@
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:50.79999924px;font-family:Stencil;-inkscape-font-specification:Stencil;stroke-width:1.32291667;fill:#960000;fill-opacity:1;stroke:#000000;stroke-opacity:0.98660713;stroke-miterlimit:4;stroke-dasharray:none">PURSUIT</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333302px;line-height:1.25;font-family:'AR CHRISTY';-inkscape-font-specification:'AR CHRISTY';letter-spacing:0px;word-spacing:0px;fill:#960000;fill-opacity:1;stroke:#000000;stroke-width:1.32291663;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.98660715"
-       x="61.739925"
-       y="-248.0069"
-       id="text1326"><tspan
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333302px;line-height:1.25;font-family:'AR CHRISTY';-inkscape-font-specification:'AR CHRISTY';letter-spacing:0px;word-spacing:0px;fill:#e80000;fill-opacity:1;stroke:none;stroke-width:0.5291667;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.94642861;"
+       x="340.18994"
+       y="-252.16901"
+       id="text1326"
+       inkscape:export-filename="I:\Sem 6 (SP19)\BoardGame\Docs\Inkscape\FinalPng\Logo.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"><tspan
          sodipodi:role="line"
          id="tspan1324"
-         x="61.739925"
-         y="-248.0069"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:50.79999924px;font-family:'Old English Text MT';-inkscape-font-specification:'Old English Text MT';fill:#960000;fill-opacity:1;stroke:#000000;stroke-width:1.32291663;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.98660715">Dominion</tspan></text>
+         x="340.18994"
+         y="-252.16901"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:50.79999924px;font-family:'Old English Text MT';-inkscape-font-specification:'Old English Text MT';fill:#e80000;fill-opacity:1;stroke:none;stroke-width:0.5291667;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.94642861;">Dominion</tspan></text>
     <text
        id="text1330"
-       y="-206.4295"
-       x="91.222069"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333302px;line-height:1.25;font-family:'AR CHRISTY';-inkscape-font-specification:'AR CHRISTY';letter-spacing:0px;word-spacing:0px;fill:#960000;fill-opacity:1;stroke:#000000;stroke-width:1.32291663;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.98660715"
-       xml:space="preserve"><tspan
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:50.79999924px;font-family:'Old English Text MT';-inkscape-font-specification:'Old English Text MT';fill:#960000;fill-opacity:1;stroke:#000000;stroke-width:1.32291663;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.98660715"
-         y="-206.4295"
-         x="91.222069"
+       y="-211.66069"
+       x="367.72314"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333302px;line-height:1.25;font-family:'AR CHRISTY';-inkscape-font-specification:'AR CHRISTY';letter-spacing:0px;word-spacing:0px;fill:#e80000;fill-opacity:1;stroke:none;stroke-width:0.5291667;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.94642861;"
+       xml:space="preserve"
+       inkscape:export-filename="I:\Sem 6 (SP19)\BoardGame\Docs\Inkscape\FinalPng\Logo.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:50.79999924px;font-family:'Old English Text MT';-inkscape-font-specification:'Old English Text MT';fill:#e80000;fill-opacity:1;stroke:none;stroke-width:0.5291667;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.94642861;"
+         y="-211.66069"
+         x="367.72314"
          id="tspan1328"
          sodipodi:role="line">Pursuit</tspan></text>
   </g>
