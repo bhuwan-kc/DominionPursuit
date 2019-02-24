@@ -10,8 +10,6 @@ public class Character : MonoBehaviour
     [SerializeField]
     private float speed = 1.0f;     //the speed with which character moves across tiles
 
-    public Text currentTileText;    //the UI text for currentTile 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +19,6 @@ public class Character : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        currentTileText.text = currentTile + "";
     }
 
     //to move the character by the given steps 
@@ -50,7 +47,9 @@ public class Character : MonoBehaviour
         }
 
         currentTile += steps;       //update the currentTile status of the character
-        GameManager.Instance.ChangeDiceRollStatus(false);   //to set dice to be rollable again
+        UIManager.Instance.UpdateCurrentTileText(currentTile);
+
+        GameManager.Instance.EndTurn();
     }
 
 }
