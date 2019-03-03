@@ -8,7 +8,9 @@ public class Character : MonoBehaviour
 {
     private int currentTile;        //to track the current position of the character
     [SerializeField]
-    private float speed = 1.0f;     //the speed with which character moves across tiles
+    private float  speed = 1.0f;     //the speed with which character moves across tiles
+    [SerializeField]
+    private string character_name;    //for future use
 
     // Start is called before the first frame update
     void Start()
@@ -16,13 +18,8 @@ public class Character : MonoBehaviour
         currentTile = 0;          
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
     //to move the character by the given steps 
-    public void updateTile(int steps)
+    public void UpdateTile(int steps)
     {
         StartCoroutine(TileTransitionRoutine(steps));
     }

@@ -14,10 +14,12 @@ public class Dice : MonoBehaviour
     }
 
     // Update is called once per frame
+    /*
     void Update()
     {
         
     }
+    */
 
     //to generate a random dice output
     public int RollDice()
