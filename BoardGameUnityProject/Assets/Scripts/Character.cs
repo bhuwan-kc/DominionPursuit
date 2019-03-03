@@ -10,16 +10,21 @@ public class Character : MonoBehaviour
     [SerializeField]
     private float  speed = 1.0f;     //the speed with which character moves across tiles
     [SerializeField]
-    private string character_name;    //for future use
+    private string characterName;    //for future use
 
     // Start is called before the first frame update
     void Start()
     {
-        currentTile = 0;          
+       currentTile = 0;          
+    }
+
+    void Update()
+    {
+
     }
 
     //to move the character by the given steps 
-    public void UpdateTile(int steps)
+    public void updateTile(int steps)
     {
         StartCoroutine(TileTransitionRoutine(steps));
     }

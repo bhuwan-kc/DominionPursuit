@@ -116,9 +116,9 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(diceRollAnimTime);
 
         if(currentPlayer == 1)
-            playerCharacter1.GetComponent<Character>().UpdateTile(diceOutput + diceOutput2);
+            playerCharacter1.GetComponent<Character>().updateTile(diceOutput + diceOutput2);
         else if(currentPlayer == 2)
-            computerCharacter1.GetComponent<Character>().UpdateTile(diceOutput + diceOutput2);
+            computerCharacter1.GetComponent<Character>().updateTile(diceOutput + diceOutput2);
     }
 
     IEnumerator WaitForComputerToRollDice()
