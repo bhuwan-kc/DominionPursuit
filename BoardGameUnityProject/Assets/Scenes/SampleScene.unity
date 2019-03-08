@@ -3945,7 +3945,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 6
-  m_Sprite: {fileID: 21300000, guid: 1efb9d431e8c2584a8b706be9a8ef68a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 44d4b76eb0aee42d5ad3ea2012d44357, type: 3}
   m_Color: {r: 0, g: 0.56175375, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3953,7 +3953,7 @@ SpriteRenderer:
   m_Size: {x: 0.5, y: 0.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &700552659
@@ -8971,7 +8971,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 77fd6705938b87f4fa83c17cac05818f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2b83a9cb9cf6f41238a4c904a8da9065, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -15634,7 +15634,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 6
-  m_Sprite: {fileID: 21300000, guid: 1efb9d431e8c2584a8b706be9a8ef68a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 44d4b76eb0aee42d5ad3ea2012d44357, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -15642,7 +15642,7 @@ SpriteRenderer:
   m_Size: {x: 0.5, y: 0.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &2112590850
