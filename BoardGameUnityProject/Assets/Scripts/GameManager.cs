@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private float diceRollAnimTime = 1.0f;
     public int currentPlayer = 1;                      //1 for player, 2 for computer
+    private int diceSum = 0;
 
     //METHODS
 
@@ -92,18 +93,25 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.DisableDice(false);
     }
 
+    //update the tiles
+    public void characterUpdateTile(int number)
+    {
+        if (currentPlayer == 1)
+            ObjectHandler.Instance.player1Characters[number].GetComponent<Character>().updateTile(diceSum);
+        else if (currentPlayer == 2)
+            ObjectHandler.Instance.player2Characters[number].GetComponent<Character>().updateTile(diceSum);
+    }
+
     //to set the dice face and send signal to the character script
     IEnumerator WaitForDiceRollAnim(int diceOutput, int diceOutput2)
     {
         ObjectHandler.Instance.Dice.GetComponent<Dice>().SetDiceFace(diceOutput);
         ObjectHandler.Instance.Dice2.GetComponent<Dice>().SetDiceFace(diceOutput2);
+        diceSum = diceOutput + diceOutput2;
 
         //wait for some seconds and send the sum of the outputs to the character to move
         yield return new WaitForSeconds(diceRollAnimTime);
 
-        if(currentPlayer == 1)
-            ObjectHandler.Instance.playerCharacter1.GetComponent<Character>().updateTile(diceOutput + diceOutput2);
-        else if(currentPlayer == 2)
-            ObjectHandler.Instance.playerCharacter2.GetComponent<Character>().updateTile(diceOutput + diceOutput2);
+        CharacterSelection.Instance.GetCharacter();
     }
 }

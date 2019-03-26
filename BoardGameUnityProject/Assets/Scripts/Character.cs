@@ -12,6 +12,8 @@ public class Character : MonoBehaviour
     [SerializeField]
     private string characterName;    //for future use
 
+    public GameObject Highlighter;
+
     // Start is called before the first frame update
     void Start()
     {

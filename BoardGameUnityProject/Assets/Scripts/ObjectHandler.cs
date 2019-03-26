@@ -16,7 +16,7 @@ public class ObjectHandler : MonoBehaviour
                 return _instance;
             else
             {
-                Debug.Log("GameManager object is null");
+                Debug.Log("ObjectHandler object is null");
                 return null;
             }
         }
@@ -31,8 +31,8 @@ public class ObjectHandler : MonoBehaviour
     //GAMEOBJECTS
     public GameObject Dice;
     public GameObject Dice2;
-    public GameObject playerCharacter1;
-    public GameObject playerCharacter2;
+    public GameObject[] player1Characters = new GameObject[3];
+    public GameObject[] player2Characters = new GameObject[3];
     public GameObject[] tiles = new GameObject[80];     //an array of all the tiles on the board
 
 
