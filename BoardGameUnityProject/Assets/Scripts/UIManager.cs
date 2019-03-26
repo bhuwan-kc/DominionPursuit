@@ -49,7 +49,7 @@ public class UIManager : MonoBehaviour
         if (playerIndex == 1)
             currentTurnText.text = "Player 1";
         else
-            currentTurnText.text = "Computer";
+            currentTurnText.text = "Player 2";
     }
 
     public void DisableDice(bool disable)

@@ -29,17 +29,10 @@ public class GameManager : MonoBehaviour
 
     //VARIABLES
     private int totalTiles = 78;
-    public GameObject[] tiles = new GameObject[78];     //an array of all the tiles on the board
     public bool canSetCharacters = true;
     [SerializeField]
     private float diceRollAnimTime = 1.0f;
     public int currentPlayer = 1;                      //1 for player, 2 for computer
-
-    //GAMEOBJECTS
-    public GameObject Dice;
-    public GameObject Dice2;
-    public GameObject playerCharacter1;
-    public GameObject computerCharacter1;
 
     //METHODS
 
@@ -48,25 +41,23 @@ public class GameManager : MonoBehaviour
     {
         if(index >= 0 && index < totalTiles)
         {
-            return tiles[index].transform;
+            return ObjectHandler.Instance.tiles[index].transform;
         }
 
         //if index out of range 
         Debug.Log("Tile index "+index+" out of range - GetTilePosition - GameManager");
-        return tiles[0].transform;
+        return ObjectHandler.Instance.tiles[0].transform;
     }
 
     //to roll the dice when player clicks on the dice
     public void RollDice()
     {
-        if(currentPlayer == 1)
-            UIManager.Instance.DisableDice(true);
-
+        UIManager.Instance.DisableDice(true);
         StartDiceRollAnimation();       
         
         //to get the random dice output
-        int diceOutput = Dice.GetComponent<Dice>().RollDice();  
-        int diceOutput2 = Dice2.GetComponent<Dice>().RollDice();
+        int diceOutput = ObjectHandler.Instance.Dice.GetComponent<Dice>().RollDice();  
+        int diceOutput2 = ObjectHandler.Instance.Dice2.GetComponent<Dice>().RollDice();
 
         //to wait for dice roll and show a dice face
         StartCoroutine(WaitForDiceRollAnim(diceOutput, diceOutput2));
@@ -76,8 +67,8 @@ public class GameManager : MonoBehaviour
     public void StartDiceRollAnimation()
     {
         //if dice roll is set to true, play the dice roll animation
-        Dice.GetComponent<Dice>().DiceRollAnimation();
-        Dice2.GetComponent<Dice>().DiceRollAnimation();
+        ObjectHandler.Instance.Dice.GetComponent<Dice>().DiceRollAnimation();
+        ObjectHandler.Instance.Dice2.GetComponent<Dice>().DiceRollAnimation();
     }
 
     //for future purpose
@@ -94,36 +85,25 @@ public class GameManager : MonoBehaviour
     public void EndTurn()
     {
         if (currentPlayer == 1)
-        {
             currentPlayer = 2;
-            UIManager.Instance.DisableDice(true);
-            StartCoroutine(WaitForComputerToRollDice());
-        }
         else
-        {
             currentPlayer = 1;
-            UIManager.Instance.DisableDice(false);
-        }
         UIManager.Instance.UpdateCurrentTurnText(currentPlayer);
+        UIManager.Instance.DisableDice(false);
     }
 
     //to set the dice face and send signal to the character script
     IEnumerator WaitForDiceRollAnim(int diceOutput, int diceOutput2)
     {
-        Dice.GetComponent<Dice>().SetDiceFace(diceOutput);
-        Dice2.GetComponent<Dice>().SetDiceFace(diceOutput2);
+        ObjectHandler.Instance.Dice.GetComponent<Dice>().SetDiceFace(diceOutput);
+        ObjectHandler.Instance.Dice2.GetComponent<Dice>().SetDiceFace(diceOutput2);
+
         //wait for some seconds and send the sum of the outputs to the character to move
         yield return new WaitForSeconds(diceRollAnimTime);
 
         if(currentPlayer == 1)
-            playerCharacter1.GetComponent<Character>().updateTile(diceOutput + diceOutput2);
+            ObjectHandler.Instance.playerCharacter1.GetComponent<Character>().updateTile(diceOutput + diceOutput2);
         else if(currentPlayer == 2)
-            computerCharacter1.GetComponent<Character>().updateTile(diceOutput + diceOutput2);
-    }
-
-    IEnumerator WaitForComputerToRollDice()
-    {
-        yield return new WaitForSeconds(0.75f);
-        RollDice();
+            ObjectHandler.Instance.playerCharacter2.GetComponent<Character>().updateTile(diceOutput + diceOutput2);
     }
 }

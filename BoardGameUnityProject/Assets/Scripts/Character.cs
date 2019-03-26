@@ -15,7 +15,7 @@ public class Character : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       currentTile = 0;          
+       currentTile = -1;          
     }
 
     void Update()
@@ -26,6 +26,10 @@ public class Character : MonoBehaviour
     //to move the character by the given steps 
     public void updateTile(int steps)
     {
+        if(currentTile == -1)
+        {
+            transform.position = ObjectHandler.Instance.tiles[0].transform.position;
+        }
         StartCoroutine(TileTransitionRoutine(steps));
     }
 
@@ -33,7 +37,7 @@ public class Character : MonoBehaviour
     IEnumerator TileTransitionRoutine(int steps)
     {
         //move one tile at a time 
-        for (int i = 0; i < steps; i++)
+        for (int i = 1; i <= steps; i++)
         {
             //get the position of next tile as a destination 
             Vector3 targetPosition = GameManager.Instance.GetTilePosition(currentTile + i).position;
