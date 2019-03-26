@@ -28,20 +28,23 @@ public class UIManager : MonoBehaviour
     }
 
     //Handles
-    public Text playerCurrentTileText;    //the UI text for currentTile
-    public Text computerCurrentTileText;
+    public Text[] player1CurrentTileText = new Text[3];    //the UI text for currentTile
+    public Text[] player2CurrentTileText = new Text[3];
     public Text currentTurnText;
+
     public GameObject diceButton;
+    public GameObject[] selectors1 = new GameObject[3];
+    public GameObject[] selectors2 = new GameObject[3];
 
     //METHODS
-    public void UpdateCurrentTileText(int tile)
+    public void UpdateCurrentTileText(int tile, int characterNumber)
     {
         int playerIndex = GameManager.Instance.currentPlayer;
 
         if (playerIndex == 1)
-            playerCurrentTileText.text = tile + "";
-        else
-            computerCurrentTileText.text = tile + "";
+            player1CurrentTileText[characterNumber].text = tile + "";
+        else if(playerIndex == 2)
+            player2CurrentTileText[characterNumber].text = tile + "";
     }
 
     public void UpdateCurrentTurnText(int playerIndex)

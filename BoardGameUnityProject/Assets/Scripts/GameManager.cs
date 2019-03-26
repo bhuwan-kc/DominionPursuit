@@ -97,9 +97,9 @@ public class GameManager : MonoBehaviour
     public void characterUpdateTile(int number)
     {
         if (currentPlayer == 1)
-            ObjectHandler.Instance.player1Characters[number].GetComponent<Character>().updateTile(diceSum);
+            ObjectHandler.Instance.player1Characters[number].GetComponent<Character>().updateTile(diceSum, number);
         else if (currentPlayer == 2)
-            ObjectHandler.Instance.player2Characters[number].GetComponent<Character>().updateTile(diceSum);
+            ObjectHandler.Instance.player2Characters[number].GetComponent<Character>().updateTile(diceSum, number);
     }
 
     //to set the dice face and send signal to the character script

@@ -46,9 +46,15 @@ public class CharacterSelection : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
             if (GameManager.Instance.currentPlayer == 1)
+            {
                 ObjectHandler.Instance.player1Characters[i].GetComponent<Character>().Highlighter.SetActive(show);
+                UIManager.Instance.selectors1[i].SetActive(show);
+            }
             else if (GameManager.Instance.currentPlayer == 2)
+            {
                 ObjectHandler.Instance.player2Characters[i].GetComponent<Character>().Highlighter.SetActive(show);
+                UIManager.Instance.selectors2[i].SetActive(show);
+            }
         }
     }
 

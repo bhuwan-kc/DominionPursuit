@@ -26,17 +26,17 @@ public class Character : MonoBehaviour
     }
 
     //to move the character by the given steps 
-    public void updateTile(int steps)
+    public void updateTile(int steps, int number)
     {
         if(currentTile == -1)
         {
             transform.position = ObjectHandler.Instance.tiles[0].transform.position;
         }
-        StartCoroutine(TileTransitionRoutine(steps));
+        StartCoroutine(TileTransitionRoutine(steps, number));
     }
 
     //moves the character through the tiles
-    IEnumerator TileTransitionRoutine(int steps)
+    IEnumerator TileTransitionRoutine(int steps, int characterNumber)
     {
         //move one tile at a time 
         for (int i = 1; i <= steps; i++)
@@ -55,7 +55,7 @@ public class Character : MonoBehaviour
         }
 
         currentTile += steps;       //update the currentTile status of the character
-        UIManager.Instance.UpdateCurrentTileText(currentTile);
+        UIManager.Instance.UpdateCurrentTileText(currentTile, characterNumber);
 
         GameManager.Instance.EndTurn();
     }
