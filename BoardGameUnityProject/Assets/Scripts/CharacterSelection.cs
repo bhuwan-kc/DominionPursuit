@@ -79,6 +79,6 @@ public class CharacterSelection : MonoBehaviour
         }
         selectedValueSet = false;
         showHighlighter(false);
-        GameManager.Instance.characterUpdateTile(selected);
+        GameManager.Instance.CharacterUpdateTile(selected);
     }
 }

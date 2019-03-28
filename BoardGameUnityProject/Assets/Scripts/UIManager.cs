@@ -40,6 +40,10 @@ public class UIManager : MonoBehaviour
     public Text[] player1HealthText = new Text[3];
     public Text[] player2HealthText = new Text[3];
 
+    //For testing only
+    public GameObject TdiceSum;
+    public Text TdiceSumText;
+
     //METHODS
     public void UpdateCurrentTileText(int tile, int characterNumber)
     {
@@ -79,6 +83,12 @@ public class UIManager : MonoBehaviour
                 return;
             }
         }
+    }
+
+    public void SetDiceSum()
+    {
+        GameManager.Instance.SetDiceSum((int)TdiceSum.GetComponent<Slider>().value);
+        TdiceSumText.text = TdiceSum.GetComponent<Slider>().value + "";
     }
 
     public void DisableDice(bool disable)
