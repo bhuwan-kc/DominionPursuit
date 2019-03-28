@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     private float diceRollAnimTime = 1.0f;
     public int currentPlayer = 1;                      //1 for player, 2 for computer
     private int diceSum = 0;
+    private int presetdiceSum = 1;
 
     //METHODS
 
@@ -60,6 +61,14 @@ public class GameManager : MonoBehaviour
         int diceOutput = ObjectHandler.Instance.Dice.GetComponent<Dice>().RollDice();  
         int diceOutput2 = ObjectHandler.Instance.Dice2.GetComponent<Dice>().RollDice();
 
+        //**************************************
+        //******** FOR TESTING ONLY ************
+        //**************************************
+        if (presetdiceSum != 1)
+        {
+            diceOutput = presetdiceSum - 1;
+            diceOutput2 = 1;
+        }
         //to wait for dice roll and show a dice face
         StartCoroutine(WaitForDiceRollAnim(diceOutput, diceOutput2));
     }
@@ -94,12 +103,17 @@ public class GameManager : MonoBehaviour
     }
 
     //update the tiles
-    public void characterUpdateTile(int number)
+    public void CharacterUpdateTile(int number)
     {
         if (currentPlayer == 1)
-            ObjectHandler.Instance.player1Characters[number].GetComponent<Character>().updateTile(diceSum, number);
+            ObjectHandler.Instance.player1Characters[number].GetComponent<Character>().UpdateTile(diceSum, number);
         else if (currentPlayer == 2)
-            ObjectHandler.Instance.player2Characters[number].GetComponent<Character>().updateTile(diceSum, number);
+            ObjectHandler.Instance.player2Characters[number].GetComponent<Character>().UpdateTile(diceSum, number);
+    }
+
+    public void SetDiceSum(int sum)
+    {
+        presetdiceSum = sum;
     }
 
     //to set the dice face and send signal to the character script

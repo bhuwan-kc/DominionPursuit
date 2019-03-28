@@ -35,6 +35,14 @@ public class UIManager : MonoBehaviour
     public GameObject diceButton;
     public GameObject[] selectors1 = new GameObject[3];
     public GameObject[] selectors2 = new GameObject[3];
+    public GameObject[] player1HealthBars = new GameObject[3];
+    public GameObject[] player2HealthBars = new GameObject[3];
+    public Text[] player1HealthText = new Text[3];
+    public Text[] player2HealthText = new Text[3];
+
+    //For testing only
+    public GameObject TdiceSum;
+    public Text TdiceSumText;
 
     //METHODS
     public void UpdateCurrentTileText(int tile, int characterNumber)
@@ -53,6 +61,34 @@ public class UIManager : MonoBehaviour
             currentTurnText.text = "Player 1";
         else
             currentTurnText.text = "Player 2";
+    }
+
+    public void UpdateHealthBar(string characterName, int health)
+    {
+        for(int i=0; i<3; i++)
+        {
+            if (characterName.Equals(ObjectHandler.Instance.player1Characters[i].GetComponent<Character>().GetName()))
+            {
+                player1HealthBars[i].GetComponent<Slider>().value = health;
+                player1HealthText[i].text = health + "";
+                return;
+            }
+        }
+        for (int i = 0; i < 3; i++)
+        {
+            if (characterName.Equals(ObjectHandler.Instance.player2Characters[i].GetComponent<Character>().GetName()))
+            {
+                player2HealthBars[i].GetComponent<Slider>().value = health;
+                player2HealthText[i].text = health + "";
+                return;
+            }
+        }
+    }
+
+    public void SetDiceSum()
+    {
+        GameManager.Instance.SetDiceSum((int)TdiceSum.GetComponent<Slider>().value);
+        TdiceSumText.text = TdiceSum.GetComponent<Slider>().value + "";
     }
 
     public void DisableDice(bool disable)
