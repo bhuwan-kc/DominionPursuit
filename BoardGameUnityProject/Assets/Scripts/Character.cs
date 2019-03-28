@@ -12,12 +12,14 @@ public class Character : MonoBehaviour
     [SerializeField]
     private string characterName;    //for future use
 
+    public SpriteRenderer _sprite;
     public GameObject Highlighter;
 
     // Start is called before the first frame update
     void Start()
     {
-       currentTile = -1;          
+       currentTile = -1;
+        _sprite = this.GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -38,6 +40,7 @@ public class Character : MonoBehaviour
     //moves the character through the tiles
     IEnumerator TileTransitionRoutine(int steps, int characterNumber)
     {
+        _sprite.sortingOrder = 7;   
         //move one tile at a time 
         for (int i = 1; i <= steps; i++)
         {
@@ -56,6 +59,7 @@ public class Character : MonoBehaviour
 
         currentTile += steps;       //update the currentTile status of the character
         UIManager.Instance.UpdateCurrentTileText(currentTile, characterNumber);
+        _sprite.sortingOrder = 6;
 
         GameManager.Instance.EndTurn();
     }
