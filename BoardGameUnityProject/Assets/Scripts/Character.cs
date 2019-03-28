@@ -11,14 +11,16 @@ public class Character : MonoBehaviour
     private float  speed = 1.0f;     //the speed with which character moves across tiles
     [SerializeField]
     private string characterName;    //for future use
+    private int health;
 
-    public SpriteRenderer _sprite;
+    private SpriteRenderer _sprite;
     public GameObject Highlighter;
 
     // Start is called before the first frame update
     void Start()
     {
-       currentTile = -1;
+        health = 10;
+        currentTile = -1;
         _sprite = this.GetComponent<SpriteRenderer>();
     }
 
@@ -33,14 +35,40 @@ public class Character : MonoBehaviour
         if(currentTile == -1)
         {
             transform.position = ObjectHandler.Instance.tiles[0].transform.position;
+            steps++;
         }
         StartCoroutine(TileTransitionRoutine(steps, number));
+    }
+
+    public void Damage(int x)
+    {
+        health -= x;
+        UIManager.Instance.UpdateHealthBar(characterName, health);
+
+        if(health < 0)
+        {
+            health = 0;
+            //move to start position
+            //wait for some seconds
+            //refill health
+        }
+    }
+
+    public int GetHealth()
+    {
+        return health; 
+    }
+
+    public string GetName()
+    {
+        return characterName;
     }
 
     //moves the character through the tiles
     IEnumerator TileTransitionRoutine(int steps, int characterNumber)
     {
         _sprite.sortingOrder = 7;   
+
         //move one tile at a time 
         for (int i = 1; i <= steps; i++)
         {
@@ -59,6 +87,26 @@ public class Character : MonoBehaviour
 
         currentTile += steps;       //update the currentTile status of the character
         UIManager.Instance.UpdateCurrentTileText(currentTile, characterNumber);
+
+        //check if there was already one of the opponent's character in that tile 
+        if(GameManager.Instance.currentPlayer == 1)
+        {
+            foreach(GameObject x in ObjectHandler.Instance.player2Characters)
+            {
+                if (this.currentTile == x.GetComponent<Character>().currentTile && this != x.GetComponent<Character>())
+                    x.GetComponent<Character>().Damage(5);
+            }
+        }
+        else if(GameManager.Instance.currentPlayer == 2)
+        {
+            foreach (GameObject x in ObjectHandler.Instance.player1Characters)
+            {
+                if (this.currentTile == x.GetComponent<Character>().currentTile && this!=x.GetComponent<Character>())
+                    x.GetComponent<Character>().Damage(5);
+            }
+        }
+
+        
         _sprite.sortingOrder = 6;
 
         GameManager.Instance.EndTurn();
