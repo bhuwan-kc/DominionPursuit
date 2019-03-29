@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//Class that co-ordinates communication between all the game objects in the scene
+//Class that co-ordinates communication between all the game objects in the scene and handles gameplay 
 public class GameManager : MonoBehaviour
 {
     //setting up a static instance of the class 
@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
         _instance = this;
     }
 
-    //VARIABLES
+    //************ VARIABLES *******************
     private int totalTiles = 78;
     public bool canSetCharacters = true;
     [SerializeField]
@@ -36,52 +36,60 @@ public class GameManager : MonoBehaviour
     private int diceSum = 0;
     private int presetdiceSum = 1;
 
-    //METHODS
+	
+    //*********** METHODS **********************
 
-    //returns the transform property of the index tile 
+    //returns the transform property of the index tile
+    //index range: 0 - total tiles 
     public Transform GetTilePosition(int index)
     {
         if(index >= 0 && index < totalTiles)
         {
+			//get the particular tile object from the ObjectHandler and return its transform 
             return ObjectHandler.Instance.tiles[index].transform;
         }
 
         //if index out of range 
-        Debug.Log("Tile index "+index+" out of range - GetTilePosition - GameManager");
+        Debug.Log("Tile index "+index+" out of range - GameManager.cs - GetTilePosition()");
         return ObjectHandler.Instance.tiles[0].transform;
     }
 
-    //to roll the dice when player clicks on the dice
+    //To generate random dice number 1-6 and start dice roll animation 
+	//This method is called when player clicks on the dice 
     public void RollDice()
     {
+		//to allow player to click only once per turn 
         UIManager.Instance.DisableDice(true);
+		
+		//to start the dice rolling animation 
         StartDiceRollAnimation();       
         
-        //to get the random dice output
+        //to get the random dice number 1-6
         int diceOutput = ObjectHandler.Instance.Dice.GetComponent<Dice>().RollDice();  
         int diceOutput2 = ObjectHandler.Instance.Dice2.GetComponent<Dice>().RollDice();
 
         //**************************************
         //******** FOR TESTING ONLY ************
         //**************************************
-        if (presetdiceSum != 1)
+        //to preset the dice output 
+		if (presetdiceSum != 1)
         {
             diceOutput = presetdiceSum - 1;
             diceOutput2 = 1;
         }
+		
         //to wait for dice roll and show a dice face
         StartCoroutine(WaitForDiceRollAnim(diceOutput, diceOutput2));
     }
 
-    //to change the status that tracks if the dice is rollable 
+    //To start the dice roll animation 
     public void StartDiceRollAnimation()
     {
-        //if dice roll is set to true, play the dice roll animation
         ObjectHandler.Instance.Dice.GetComponent<Dice>().DiceRollAnimation();
         ObjectHandler.Instance.Dice2.GetComponent<Dice>().DiceRollAnimation();
     }
 
-    //for future purpose
+    //for FUTURE purpose
     public void SetCharacters()
     {
         if(canSetCharacters)
@@ -116,16 +124,19 @@ public class GameManager : MonoBehaviour
         presetdiceSum = sum;
     }
 
-    //to set the dice face and send signal to the character script
+    //to set the dice face and go to character selection 
     IEnumerator WaitForDiceRollAnim(int diceOutput, int diceOutput2)
     {
+		//set the dice face to the obtained output 
         ObjectHandler.Instance.Dice.GetComponent<Dice>().SetDiceFace(diceOutput);
         ObjectHandler.Instance.Dice2.GetComponent<Dice>().SetDiceFace(diceOutput2);
-        diceSum = diceOutput + diceOutput2;
+        //store the total sum
+		diceSum = diceOutput + diceOutput2;
 
         //wait for some seconds and send the sum of the outputs to the character to move
-        yield return new WaitForSeconds(diceRollAnimTime);
+        yield return new WaitForSeconds(diceRollAnimTime); //TODO - look into this wait time again
 
+		//control flow for character selection 
         CharacterSelection.Instance.GetCharacter();
     }
 }
