@@ -56,12 +56,15 @@ public class AI_attempt : MonoBehaviour
         move = diceRoll1 + diceRoll2;
 
         //testing AI moving more than just character 0
-        move = 3;  
+        //move = 3;  
 
         //see what the weight of where each character moves to would be.
         for (int i = 0; i < 3; i++)
         {
-            if (characterLocations[i] != -3)
+            //if character is at start and all move are neutral, get character out of start safely.
+            if (characterLocations[i] == 0 && ObjectHandler.Instance.tiles[move].GetComponent<Tile>().getTileWeight() == 0)
+                tileWeight[i] = 1;
+            else if (characterLocations[i] != -3)
             {
                 characterLocations[i] += move;
                 //Debug.Log("Final: characterLocation[" + i + "] is " + characterLocations[i]);
