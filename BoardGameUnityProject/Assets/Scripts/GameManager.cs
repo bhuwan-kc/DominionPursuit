@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private float diceRollAnimTime = 1.0f;
     public int currentPlayer = 1;                      //1 for player, 2 for computer
+    public bool vsAI = true;            //if game is vs AI or not.
     private int diceSum = 0;
     private int presetdiceSum = 1;
 
@@ -60,6 +61,9 @@ public class GameManager : MonoBehaviour
         //to get the random dice output
         int diceOutput = ObjectHandler.Instance.Dice.GetComponent<Dice>().RollDice();  
         int diceOutput2 = ObjectHandler.Instance.Dice2.GetComponent<Dice>().RollDice();
+
+        //checking what dice outputs are, as we don't seem to be rolling any 6's.
+        //Debug.Log("diceOutput = " + diceOutput + "diceOutput2 = " + diceOutput2);
 
         //**************************************
         //******** FOR TESTING ONLY ************
@@ -98,7 +102,17 @@ public class GameManager : MonoBehaviour
             currentPlayer = 2;
         else
             currentPlayer = 1;
+        
         UIManager.Instance.UpdateCurrentTurnText(currentPlayer);
+
+        if (vsAI && currentPlayer == 2)
+        {
+            Debug.Log("Ai turn");
+            UIManager.Instance.DisableDice(true);
+            AI_attempt.ai.Comp_turn();
+            UIManager.Instance.UpdateCurrentTurnText(currentPlayer);
+        }
+
         UIManager.Instance.DisableDice(false);
     }
 

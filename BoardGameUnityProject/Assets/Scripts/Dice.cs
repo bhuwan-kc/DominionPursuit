@@ -24,7 +24,7 @@ public class Dice : MonoBehaviour
     //to generate a random dice output
     public int RollDice()
     {
-        int r = Random.Range(1, 6);
+        int r = Random.Range(1, 7);
         return r;
     }
 

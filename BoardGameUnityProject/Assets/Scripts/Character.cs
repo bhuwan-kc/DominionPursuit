@@ -6,7 +6,7 @@ using UnityEngine.UI;
 //Class to handle character behavior
 public class Character : MonoBehaviour
 {
-    private int currentTile;        //to track the current position of the character
+    private int currentTile = -1;        //to track the current position of the character
     [SerializeField]
     private float  speed = 1.0f;     //the speed with which character moves across tiles
     [SerializeField]
@@ -31,6 +31,12 @@ public class Character : MonoBehaviour
             health = 10;
             UIManager.Instance.UpdateHealthBar(characterName, health);
         }
+    }
+
+    //grab current character tile.
+    public int getCurrentTile()
+    {
+        return currentTile;
     }
 
     //to move the character by the given steps 
