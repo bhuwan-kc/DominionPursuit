@@ -6,6 +6,7 @@ public class AI_attempt : MonoBehaviour
 {
     //create static instance of ai_attempt
     private static AI_attempt _ai;
+
     public static AI_attempt ai
     {
         get
@@ -110,7 +111,9 @@ public class AI_attempt : MonoBehaviour
         //Debug.Log("displayDiceRoll was called.");
         //this function plays the animation to roll the dice.
 
-        GameManager.Instance.StartDiceRollAnimation(); //starts animation.
+        //to play the dice roll animation
+        ObjectHandler.Instance.Dice.GetComponent<Dice>().DiceRollAnimation();
+        ObjectHandler.Instance.Dice2.GetComponent<Dice>().DiceRollAnimation();
 
         float waitTime = GameManager.Instance.getDiceRollAnimTime();
         //waitTime += (float) 1;
@@ -141,7 +144,7 @@ public class AI_attempt : MonoBehaviour
         }
 
         //make the move
-        ObjectHandler.Instance.player2Characters[charToMove].GetComponent<Character>().UpdateTile(move, charToMove);
+        ObjectHandler.Instance.player2Characters[charToMove].GetComponent<Character>().UpdateTile(move);
 
         return charToMove;
     }
@@ -149,16 +152,13 @@ public class AI_attempt : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //???
+        //Do not need to be implemented if not used
     }
 
     // Update is called once per frame
     void Update()
     {
-        //???
+        //Do not need to be implemented if not used
     }
-
-    
-
 }
 

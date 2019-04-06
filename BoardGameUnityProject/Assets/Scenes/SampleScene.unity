@@ -1450,6 +1450,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1.25
   characterName: Cavalier
+  maxHealth: 10
   team: 2
   Highlighter: {fileID: 621485007}
 --- !u!212 &158995677
@@ -6757,7 +6758,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1841742180}
-        m_MethodName: SetDiceSum
+        m_MethodName: TSetDiceSum
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -14529,10 +14530,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1d225e9552bed84ca3e780cdd45dd43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canSetCharacters: 1
-  diceRollAnimTime: 1.5
   currentPlayer: 1
-  vsAI: 1
+  vsAI: 0
 --- !u!4 &979862181
 Transform:
   m_ObjectHideFlags: 0
@@ -16868,6 +16867,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1.25
   characterName: Professor C
+  maxHealth: 10
   team: 2
   Highlighter: {fileID: 1481730746}
 --- !u!212 &1190037841
@@ -18303,6 +18303,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1.25
   characterName: Ninja Boy
+  maxHealth: 10
   team: 1
   Highlighter: {fileID: 58669550}
 --- !u!212 &1286760859
@@ -21038,6 +21039,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1.25
   characterName: Eyepatch Pete
+  maxHealth: 10
   team: 2
   Highlighter: {fileID: 461561899}
 --- !u!212 &1643790929
@@ -21703,6 +21705,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1.25
   characterName: The Knight
+  maxHealth: 10
   team: 1
   Highlighter: {fileID: 1006614077}
 --- !u!212 &1660806917
@@ -26785,6 +26788,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1.25
   characterName: Wild Yeti
+  maxHealth: 10
   team: 1
   Highlighter: {fileID: 957180168}
 --- !u!61 &2112590852

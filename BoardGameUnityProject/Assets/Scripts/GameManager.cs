@@ -27,23 +27,35 @@ public class GameManager : MonoBehaviour
         _instance = this;
     }
 
-    //VARIABLES
-    private int totalTiles = 78;
-    public bool canSetCharacters = true;
-    [SerializeField]
-    private float diceRollAnimTime = 1.0f;
-    public int currentPlayer = 1;                      //1 for player, 2 for computer
-    public bool vsAI = true;            //if game is vs AI or not.
-    private int diceSum = 0;
-    private int presetdiceSum = 1;
 
-    //METHODS
 
-    //function to grab dice roll anim time for Comp_turn.
+
+    //***************************************************************
+    //************************* PROPERTIES **************************
+    //***************************************************************
+
+    private int totalTiles = 78;                //total number of tiles on the game board
+    private float diceRollAnimTime = 1.0f;      //time that dice rolls for
+    public int currentPlayer = 1;               //indicates turn --> 1 for player1, 2 for player2
+    public bool vsAI = true;                    //if game is vs AI or not.
+    private int diceSum = 0;                    //sum of numbers from the die
+    private int TpresetdiceSum = 1;              //preset dice sum for next dice roll ***FOR TESTING ONLY***
+
+
+
+
+    //***************************************************************
+    //************************* METHODS *****************************
+    //***************************************************************
+
+    //------------------- GETTERS AND SETTERS -----------------------START
+
     public float getDiceRollAnimTime()
     {
         return diceRollAnimTime;
     }
+
+    //------------------- GETTERS AND SETTERS -----------------------END
 
     //returns the transform property of the index tile 
     public Transform GetTilePosition(int index)
@@ -62,45 +74,26 @@ public class GameManager : MonoBehaviour
     public void RollDice()
     {
         UIManager.Instance.DisableDice(true);
-        StartDiceRollAnimation();       
-        
-        //to get the random dice output
-        int diceOutput = ObjectHandler.Instance.Dice.GetComponent<Dice>().RollDice();  
-        int diceOutput2 = ObjectHandler.Instance.Dice2.GetComponent<Dice>().RollDice();
 
-        
+        //to play the dice roll animation
+        ObjectHandler.Instance.Dice.GetComponent<Dice>().DiceRollAnimation();
+        ObjectHandler.Instance.Dice2.GetComponent<Dice>().DiceRollAnimation();
+
+        //to get the random dice output
+        int diceOutput = ObjectHandler.Instance.Dice.GetComponent<Dice>().RollDice();
+        int diceOutput2 = ObjectHandler.Instance.Dice2.GetComponent<Dice>().RollDice();
 
         //**************************************
         //******** FOR TESTING ONLY ************
         //**************************************
-        if (presetdiceSum != 1)
+        if (TpresetdiceSum != 1)
         {
-            diceOutput = presetdiceSum - 1;
+            diceOutput = TpresetdiceSum - 1;
             diceOutput2 = 1;
         }
-        //checking what dice outputs are, as we don't seem to be rolling any 6's.
-        //Debug.Log("diceOutput = " + diceOutput + "diceOutput2 = " + diceOutput2);
 
         //to wait for dice roll and show a dice face
         StartCoroutine(WaitForDiceRollAnim(diceOutput, diceOutput2));
-    }
-
-    //to change the status that tracks if the dice is rollable 
-    public void StartDiceRollAnimation()
-    {
-        //if dice roll is set to true, play the dice roll animation
-        ObjectHandler.Instance.Dice.GetComponent<Dice>().DiceRollAnimation();
-        ObjectHandler.Instance.Dice2.GetComponent<Dice>().DiceRollAnimation();
-    }
-
-    //for future purpose
-    public void SetCharacters()
-    {
-        if(canSetCharacters)
-        {
-            //set characters for players
-        }
-        canSetCharacters = false;
     }
 
     //to end a turn
@@ -111,34 +104,37 @@ public class GameManager : MonoBehaviour
         else
             currentPlayer = 1;
         
-        UIManager.Instance.UpdateCurrentTurnText(currentPlayer);
+        //Update the current turn text indicator
+        UIManager.Instance.UpdateCurrentTurnText(currentPlayer, vsAI);
 
+        //if playing against AI
         if (vsAI && currentPlayer == 2)
         {
-            Debug.Log("Ai turn");
             UIManager.Instance.DisableDice(true);
             AI_attempt.ai.Comp_turn();
-            UIManager.Instance.UpdateCurrentTurnText(currentPlayer);
         }
-
-        UIManager.Instance.DisableDice(false);
+        else
+            UIManager.Instance.DisableDice(false);
     }
 
-    //update the tiles
-    public void CharacterUpdateTile(int number)
+    //to send signal to the character n about the diceSum 
+    //n is the character number selected by the player for movement
+    public void CharacterUpdateTile(int n)
     {
         if (currentPlayer == 1)
-            ObjectHandler.Instance.player1Characters[number].GetComponent<Character>().UpdateTile(diceSum, number);
+            ObjectHandler.Instance.player1Characters[n].GetComponent<Character>().UpdateTile(diceSum);
         else if (currentPlayer == 2)
-            ObjectHandler.Instance.player2Characters[number].GetComponent<Character>().UpdateTile(diceSum, number);
+            ObjectHandler.Instance.player2Characters[n].GetComponent<Character>().UpdateTile(diceSum);
     }
 
     public void SetDiceSum(int sum)
     {
-        presetdiceSum = sum;
+        TpresetdiceSum = sum;
     }
 
-    //to set the dice face and send signal to the character script
+    //------------------- IENUMERATOR -----------------------START
+
+    //to set the dice face and send signal to allow choosing character for the movement
     IEnumerator WaitForDiceRollAnim(int diceOutput, int diceOutput2)
     {
         ObjectHandler.Instance.Dice.GetComponent<Dice>().SetDiceFace(diceOutput);
@@ -148,6 +144,10 @@ public class GameManager : MonoBehaviour
         //wait for some seconds and send the sum of the outputs to the character to move
         yield return new WaitForSeconds(diceRollAnimTime);
 
+        //passing control to the characterSelection script to let player select a character
+        //for movement, the control is passed back to the CharacterUpdateTile method
         CharacterSelection.Instance.GetCharacter();
     }
+
+    //------------------- IENUMERATOR -----------------------END
 }
