@@ -39,6 +39,12 @@ public class GameManager : MonoBehaviour
 
     //METHODS
 
+    //function to grab dice roll anim time for Comp_turn.
+    public float getDiceRollAnimTime()
+    {
+        return diceRollAnimTime;
+    }
+
     //returns the transform property of the index tile 
     public Transform GetTilePosition(int index)
     {
@@ -62,8 +68,7 @@ public class GameManager : MonoBehaviour
         int diceOutput = ObjectHandler.Instance.Dice.GetComponent<Dice>().RollDice();  
         int diceOutput2 = ObjectHandler.Instance.Dice2.GetComponent<Dice>().RollDice();
 
-        //checking what dice outputs are, as we don't seem to be rolling any 6's.
-        //Debug.Log("diceOutput = " + diceOutput + "diceOutput2 = " + diceOutput2);
+        
 
         //**************************************
         //******** FOR TESTING ONLY ************
@@ -73,6 +78,9 @@ public class GameManager : MonoBehaviour
             diceOutput = presetdiceSum - 1;
             diceOutput2 = 1;
         }
+        //checking what dice outputs are, as we don't seem to be rolling any 6's.
+        //Debug.Log("diceOutput = " + diceOutput + "diceOutput2 = " + diceOutput2);
+
         //to wait for dice roll and show a dice face
         StartCoroutine(WaitForDiceRollAnim(diceOutput, diceOutput2));
     }

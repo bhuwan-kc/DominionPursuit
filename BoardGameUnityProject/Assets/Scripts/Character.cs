@@ -13,6 +13,9 @@ public class Character : MonoBehaviour
     private string characterName;    //for future use
     private int health;
 
+    //variables by C
+    [SerializeField] private int team; //what team a character is on. Need to make a function to set this later.
+
     private SpriteRenderer _sprite;
     public GameObject Highlighter;
 
@@ -34,9 +37,15 @@ public class Character : MonoBehaviour
     }
 
     //grab current character tile.
-    public int getCurrentTile()
+    public int GetCurrentTile()
     {
         return currentTile;
+    }
+
+    //get character team.
+    public int GetTeam()
+    {
+        return team;
     }
 
     //to move the character by the given steps 
@@ -93,7 +102,10 @@ public class Character : MonoBehaviour
     //if targetTile == -1, steps > 0 ---> stepwise tile transition 
     IEnumerator TileTransitionRoutine(int steps, int characterNumber, int targetTile)
     {
-        _sprite.sortingOrder = 10;   
+        _sprite.sortingOrder = 10;
+
+        if (currentTile != -1)
+            ObjectHandler.Instance.tiles[currentTile].GetComponent<Tile>().LeaveTile(); //character leaves tile.
 
         //move one tile at a time 
         for (int i = 1; i <= steps; i++)
@@ -167,6 +179,8 @@ public class Character : MonoBehaviour
 
         
         _sprite.sortingOrder = newSortingOrder;
+
+        ObjectHandler.Instance.tiles[currentTile].GetComponent<Tile>().ArriveOnTile(team); //mark character is on new tile.
 
         GameManager.Instance.EndTurn();
     }

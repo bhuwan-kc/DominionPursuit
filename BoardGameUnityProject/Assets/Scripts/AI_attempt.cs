@@ -25,60 +25,110 @@ public class AI_attempt : MonoBehaviour
         _ai = this;
     }
 
-    //variable dec.
-    private int lastMove = -1; //last move tracks what character was moved last, to help prevent only moving the same char.
+    //class variable decleration
+    int[] tileWeight = new int[3]; //used to save weights of updated characterLocation tiles.
 
-    public int Comp_turn()
+    //computer's turn
+    public void Comp_turn()
     {
-        //This function returns an integer, 0-2, which represents which character to move.
-        //This return value will probabbly be unused.
-
         //variable dec.
         int[] characterLocations = new int[3]; //used only to check where characters will go. does NOT store current location.
-        int[] tileWeight = new int[3]; //used to save weights of updated characterLocation tiles.
         int diceRoll1, diceRoll2; //store dice rolls for rolling animation.
-        int move = 0;
-        int best = -6; //default value that will be overwritten by all other options.
-        int charToMove = 0; //character to move. default is character 1.
+        int move = 0; 
 
         //grab character current location.
         for (int i = 0; i < 3; i++) {
-            characterLocations[i] = ObjectHandler.Instance.player2Characters[i].GetComponent<Character>().getCurrentTile();
+            characterLocations[i] = ObjectHandler.Instance.player2Characters[i].GetComponent<Character>().GetCurrentTile();
             //Debug.Log("Start: characterLocation[" + i + "] is " + characterLocations[i]);
             if (characterLocations[i] >= 78) characterLocations[i] = -3; //-3 means never pick it.
             //-1 is off the board, but isn't really a space. So the AI will look at the space it will actually land on.
             else if (characterLocations[i] == -1) characterLocations[i] = 0;
         }
 
+        //start dice roll
         //generate diceroll for character movement.
         diceRoll1 = ObjectHandler.Instance.Dice.GetComponent<Dice>().RollDice();
         diceRoll2 = ObjectHandler.Instance.Dice.GetComponent<Dice>().RollDice();
         move = diceRoll1 + diceRoll2;
 
-        //testing AI moving more than just character 0
-        //move = 3;  
-
         //see what the weight of where each character moves to would be.
         for (int i = 0; i < 3; i++)
         {
-            //if character is at start and all move are neutral, get character out of start safely.
-            if (characterLocations[i] == 0 && ObjectHandler.Instance.tiles[move].GetComponent<Tile>().getTileWeight() == 0)
-                tileWeight[i] = 1;
-            else if (characterLocations[i] != -3)
-            {
-                characterLocations[i] += move;
-                //Debug.Log("Final: characterLocation[" + i + "] is " + characterLocations[i]);
-                tileWeight[i] = ObjectHandler.Instance.tiles[characterLocations[i]].GetComponent<Tile>().getTileWeight();
-            }
-            else
-            {
-                tileWeight[i] = -6; //character cannot be chosen to move.
-            }
+            tileWeight[i] = FindMoveWeight(characterLocations[i], move);
         }
 
         //output move distance and weights of tiles characters would land on.
         Debug.Log("AI rolled a total of " + move);
         Debug.Log("tileWeight[0] is " + tileWeight[0] + " TileWeight[1] is " + tileWeight[1] + " Tileweight[2] is " + tileWeight[2]);
+
+        StartCoroutine(DisplayDiceRoll(diceRoll1, diceRoll2)); //displays dice roll, then moves the appropriate character.
+
+        return;
+    }
+
+    //find weight of next move. All movement related decision making goes here.
+    private int FindMoveWeight(int location, int move)
+    {
+        int tileWeight = -6;
+
+        //if character is at start and all moves are neutral, get character out of start safely.
+        if (location == 0 && ObjectHandler.Instance.tiles[move].GetComponent<Tile>().GetTileWeight() == 0 &&
+            ObjectHandler.Instance.tiles[location + move].GetComponent<Tile>().CheckFaction() != 1)
+            tileWeight = 1;
+        else if (location == 0 && ObjectHandler.Instance.tiles[move].GetComponent<Tile>().GetTileWeight() == 0 &&
+            ObjectHandler.Instance.tiles[location + move].GetComponent<Tile>().CheckFaction() != 1)
+            tileWeight = 2;
+        else if (location != -3)
+        {
+            location += move;
+            //Debug.Log("Final: characterLocation[" + i + "] is " + characterLocations[i]);
+            tileWeight = ObjectHandler.Instance.tiles[location].GetComponent<Tile>().GetTileWeight();
+
+            //if tile is occupied by an enemy, view it as more important to land on.
+            if (!ObjectHandler.Instance.tiles[location].GetComponent<Tile>().CheckEmpty())
+            {
+                //tile is only viewed as more important if it is a heal or worse, but is not a trap location.
+                if (ObjectHandler.Instance.tiles[location].GetComponent<Tile>().CheckFaction() == 1 &&
+                    tileWeight < 3 && tileWeight > -5)
+                {
+                    tileWeight++;
+                }
+            }
+            //if a character is at full hp, a health tile is neutral.
+            //TODO: make it set to max hp, not 10.
+            if (tileWeight == 2 && ObjectHandler.Instance.GetComponent<Character>().GetHealth() == 10)
+            {
+                tileWeight = 0;
+            }
+        }
+        return tileWeight;
+    }
+
+    //wait for dice roll and then move best character choice.
+    private IEnumerator DisplayDiceRoll(int roll1, int roll2)
+    {
+        //Debug.Log("displayDiceRoll was called.");
+        //this function plays the animation to roll the dice.
+
+        GameManager.Instance.StartDiceRollAnimation(); //starts animation.
+
+        float waitTime = GameManager.Instance.getDiceRollAnimTime();
+        //waitTime += (float) 1;
+        
+
+        //set dice face.
+        ObjectHandler.Instance.Dice.GetComponent<Dice>().SetDiceFace(roll1);
+        ObjectHandler.Instance.Dice2.GetComponent<Dice>().SetDiceFace(roll2);
+        yield return new WaitForSeconds(waitTime);
+        MakeBestMove(roll1 + roll2);
+
+    }
+
+    //find the best move in the array. Returns what character moved, though it's unused.
+    private int MakeBestMove(int move)
+    {
+        int charToMove = 0; //default to moving character 0.
+        int best = -6; //default value that will be overwritten by all other options.
 
         //find best move possible.
         for (int i = 0; i < 3; i++)
@@ -90,21 +140,11 @@ public class AI_attempt : MonoBehaviour
             }
         }
 
-        //code to prevent always moving the same character.
-        if (charToMove == lastMove)
-        {
-            int random = Random.Range(0, 2);
-        }
-
-        lastMove = charToMove;
-
         //make the move
         ObjectHandler.Instance.player2Characters[charToMove].GetComponent<Character>().UpdateTile(move, charToMove);
 
-        return charToMove; //return what character is moved. Unused atm.
+        return charToMove;
     }
-
-    
 
     // Start is called before the first frame update
     void Start()

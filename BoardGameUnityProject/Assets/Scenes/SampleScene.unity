@@ -1450,6 +1450,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1.25
   characterName: Cavalier
+  team: 2
   Highlighter: {fileID: 621485007}
 --- !u!212 &158995677
 SpriteRenderer:
@@ -16867,6 +16868,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1.25
   characterName: Professor C
+  team: 2
   Highlighter: {fileID: 1481730746}
 --- !u!212 &1190037841
 SpriteRenderer:
@@ -18301,6 +18303,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1.25
   characterName: Ninja Boy
+  team: 1
   Highlighter: {fileID: 58669550}
 --- !u!212 &1286760859
 SpriteRenderer:
@@ -21035,6 +21038,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1.25
   characterName: Eyepatch Pete
+  team: 2
   Highlighter: {fileID: 461561899}
 --- !u!212 &1643790929
 SpriteRenderer:
@@ -21699,6 +21703,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1.25
   characterName: The Knight
+  team: 1
   Highlighter: {fileID: 1006614077}
 --- !u!212 &1660806917
 SpriteRenderer:
@@ -26780,6 +26785,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1.25
   characterName: Wild Yeti
+  team: 1
   Highlighter: {fileID: 957180168}
 --- !u!61 &2112590852
 BoxCollider2D:
