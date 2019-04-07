@@ -92,6 +92,7 @@ public class Character : MonoBehaviour
         if (health + x > maxHealth) health = maxHealth;
         else health += x;
 
+        UIManager.Instance.UpdateHealthBar(characterName, health);
         Debug.Log("Healed! Health remaining for " + name + " is " + health);
         return;
     }
