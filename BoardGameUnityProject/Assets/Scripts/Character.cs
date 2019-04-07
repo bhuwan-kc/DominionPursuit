@@ -16,6 +16,8 @@ public class Character : MonoBehaviour
     private int health;
     [SerializeField]
     private int team = 1;               //what team a character is on. Need to make a function to set this later.
+    [SerializeField] private int idNum = 0; //used to uniquely ID a character. Used to ID characters for tile effects, along with team.
+    //TODO: Make more useful character ID numbers. Maybe using their numbers their images are saved as.
 
     private SpriteRenderer _sprite;
     public GameObject Highlighter;
@@ -59,7 +61,7 @@ public class Character : MonoBehaviour
         }
 
         if (currentTile > 0)
-            ObjectHandler.Instance.tiles[currentTile].GetComponent<Tile>().LeaveTile(); //updating current tile as the character leaves
+            ObjectHandler.Instance.tiles[currentTile].GetComponent<Tile>().LeaveTile(team); //updating current tile as the character leaves
 
         StartCoroutine(TileTransitionStepsRoutine(steps));
     }
@@ -79,14 +81,32 @@ public class Character : MonoBehaviour
         }
     }
 
+    public void Heal(int x)
+    {
+        //check if healing would take over max. If so, set health to max health. Otherwise heal.
+        if (health + x > maxHealth) health = maxHealth;
+        else health += x;
+        return;
+    }
+
     public int GetHealth()
     {
         return health; 
     }
 
+    public int GetMaxHealth()
+    {
+        return maxHealth;
+    }
+
     public string GetName()
     {
         return characterName;
+    }
+
+    public int GetID()
+    {
+        return idNum;
     }
 
     public int GetCharacterNumber()
@@ -138,7 +158,7 @@ public class Character : MonoBehaviour
         _sprite.sortingOrder = newSortingOrder;
 
         if(currentTile!=0)
-            ObjectHandler.Instance.tiles[currentTile].GetComponent<Tile>().ArriveOnTile(team); //mark character is on new tile.
+            ObjectHandler.Instance.tiles[currentTile].GetComponent<Tile>().ArriveOnTile(team, idNum); //mark character is on new tile.
     }
 
     //moves the character to the target tile directly

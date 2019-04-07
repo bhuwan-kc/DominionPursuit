@@ -6,6 +6,7 @@ public class AI_attempt : MonoBehaviour
 {
     //create static instance of ai_attempt
     private static AI_attempt _ai;
+    private static bool aggressive; //used to hold if the AI is aggressive or not.
 
     public static AI_attempt ai
     {
@@ -24,6 +25,10 @@ public class AI_attempt : MonoBehaviour
     private void Awake()
     {
         _ai = this;
+        //50% chance of AI being aggressive.
+        if (Random.Range(0, 2) == 0) aggressive = false;
+        else aggressive = true;
+        Debug.Log("AI Aggression is " + aggressive);
     }
 
     //class variable decleration
@@ -73,31 +78,26 @@ public class AI_attempt : MonoBehaviour
         int tileWeight = -6;
 
         //if character is at start and all moves are neutral, get character out of start safely.
-        if (location == 0 && ObjectHandler.Instance.tiles[move].GetComponent<Tile>().GetTileWeight() == 0 &&
-            ObjectHandler.Instance.tiles[location + move].GetComponent<Tile>().CheckFaction() != 1)
+        if (location == 0 && ObjectHandler.Instance.tiles[move].GetComponent<Tile>().GetTileWeight() == 0)
             tileWeight = 1;
-        else if (location == 0 && ObjectHandler.Instance.tiles[move].GetComponent<Tile>().GetTileWeight() == 0 &&
-            ObjectHandler.Instance.tiles[location + move].GetComponent<Tile>().CheckFaction() != 1)
-            tileWeight = 2;
         else if (location != -3)
         {
             location += move;
             //Debug.Log("Final: characterLocation[" + i + "] is " + characterLocations[i]);
             tileWeight = ObjectHandler.Instance.tiles[location].GetComponent<Tile>().GetTileWeight();
 
-            //if tile is occupied by an enemy, view it as more important to land on.
-            if (!ObjectHandler.Instance.tiles[location].GetComponent<Tile>().CheckEmpty())
+            //if tile is occupied by an enemy, view it as more important to land on if it isn't a trap location.
+            if ((ObjectHandler.Instance.tiles[location].GetComponent<Tile>().CheckFaction() == 1 ||
+                ObjectHandler.Instance.tiles[location].GetComponent<Tile>().CheckFaction() == 3) &&
+                    tileWeight > -5)
             {
-                //tile is only viewed as more important if it is a heal or worse, but is not a trap location.
-                if (ObjectHandler.Instance.tiles[location].GetComponent<Tile>().CheckFaction() == 1 &&
-                    tileWeight < 3 && tileWeight > -5)
-                {
-                    tileWeight++;
-                }
+                if (!aggressive) tileWeight++;
+                else tileWeight += 3;
             }
             //if a character is at full hp, a health tile is neutral.
             //TODO: make it set to max hp, not 10.
-            if (tileWeight == 2 && ObjectHandler.Instance.GetComponent<Character>().GetHealth() == 10)
+            if (tileWeight == 2 && ObjectHandler.Instance.GetComponent<Character>().GetHealth() == 
+                ObjectHandler.Instance.GetComponent<Character>().GetMaxHealth())
             {
                 tileWeight = 0;
             }
@@ -141,6 +141,19 @@ public class AI_attempt : MonoBehaviour
                 best = tileWeight[i];
                 charToMove = i;
             }
+        }
+
+        //if characters have identical weights with a move, randomly choose one to move.
+        //this is to encourage the AI not to just move one person across the board at a time.
+        //While effective, that strategy is boring to play against
+        if (tileWeight[0] == tileWeight[1] && tileWeight[1] == tileWeight[2]) charToMove = Random.Range(0, 3);
+        else if (tileWeight[0] == tileWeight[1] && best == tileWeight[0]) charToMove = Random.Range(0, 2);
+        else if (tileWeight[1] == tileWeight[2] && best == tileWeight[1]) charToMove = Random.Range(1, 3);
+        else if (tileWeight[0] == tileWeight[2] && best == tileWeight[0])
+        {
+            int temp = Random.Range(0, 2);
+            if (temp == 0) charToMove = 0;
+            else charToMove = 2;
         }
 
         //make the move
