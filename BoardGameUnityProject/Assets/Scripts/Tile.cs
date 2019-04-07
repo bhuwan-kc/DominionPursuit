@@ -34,6 +34,23 @@ public class Tile : MonoBehaviour
         TileEffect(team, id); //since tileWeight is stored per object, don't need to pass anything to this function?
     }
 
+    public void ArriveOnTileNoEvent(int team) 
+    {
+        //no event call, meant to be used when an event card or tile effect moves a character so they do NOT trigger an event
+        //at the landed upon tile, while still marking their arrival.
+        if (!occupied)
+        {
+            occupied = true;
+            faction = team;
+        }
+        else if (faction != team)
+        {
+            faction = 3;
+        }
+
+        numPeeps++;
+    }
+
     public bool CheckEmpty()
     {
         return occupied;
@@ -44,7 +61,7 @@ public class Tile : MonoBehaviour
         return faction;
     }
 
-    public void LeaveTile(int team)
+    public void LeaveTile(int team, int id)
     {
         numPeeps--;
         if (numPeeps == 0)
@@ -92,17 +109,42 @@ public class Tile : MonoBehaviour
             //code
         }
 
+        //tile that moves a character backwards if they land on it. Do NOT proc events on the tile you land on. 
+        else if (tileWeight == -3)
+        {
+            //code
+        }
+
         //tile that dammages characters that land on it.
-        if (tileWeight == -2)
+        else if (tileWeight == -2)
         {
             if (team == 1) ObjectHandler.Instance.player1Characters[charNum].GetComponent<Character>().Damage(3);
             else ObjectHandler.Instance.player2Characters[charNum].GetComponent<Character>().Damage(3);
         }
 
-        if (tileWeight == 2)
+        //tile that heals characters that land on it.
+        else if (tileWeight == 2)
         {
             if (team == 1) ObjectHandler.Instance.player1Characters[charNum].GetComponent<Character>().Heal(2);
             else ObjectHandler.Instance.player2Characters[charNum].GetComponent<Character>().Heal(2);
+        }
+
+        //tile that moves a character forwards if they land on it. Do NOT proc events on the tile you land on.
+        else if (tileWeight == 3)
+        {
+            //code
+        }
+
+        //tile that gives a player an event card.
+        else if (tileWeight == 4)
+        {
+            //code
+        }
+
+        //portal tile
+        else if (tileWeight == 5)
+        {
+            //code
         }
 
         return 0;

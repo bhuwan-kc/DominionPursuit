@@ -78,7 +78,7 @@ public class AI_attempt : MonoBehaviour
     //find weight of next move. All movement related decision making goes here.
     private int FindMoveWeight(int location, int move, int arrayLocation)
     {
-        int tileWeight = -6;
+        int tileWeight = -10;
 
         //if character is at start and all moves are neutral, get character out of start safely.
         if (location == 0 && ObjectHandler.Instance.tiles[move].GetComponent<Tile>().GetTileWeight() == 0)
@@ -112,7 +112,7 @@ public class AI_attempt : MonoBehaviour
             if (tileWeight == 2 && ObjectHandler.Instance.player2Characters[arrayLocation].GetComponent<Character>().GetHealth() ==
                 ObjectHandler.Instance.player2Characters[arrayLocation].GetComponent<Character>().GetMaxHealth())
             {
-                tileWeight = 0;
+                tileWeight -=2;
             }
         }
         return tileWeight;
@@ -141,7 +141,7 @@ public class AI_attempt : MonoBehaviour
     private int MakeBestMove(int move)
     {
         int charToMove = 0; //default to moving character 0.
-        int best = -6; //default value that will be overwritten by all other options.
+        int best = -10; //default value that will be overwritten by all other options.
 
         //find best move possible.
         for (int i = 0; i < 3; i++)
