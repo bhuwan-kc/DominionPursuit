@@ -46,8 +46,6 @@ public class UIManager : MonoBehaviour
     public Text[] player1HealthText = new Text[3];
     public Text[] player2HealthText = new Text[3];
 
-    public GameObject pauseMenu;
-
     //***FOR TESTING ONLY***
     public GameObject TdiceSum;
     public Text TdiceSumText;
@@ -113,20 +111,4 @@ public class UIManager : MonoBehaviour
         diceButton.GetComponent<Button>().interactable = !disable;
     }
 
-    public void DisplayPauseMenu()
-    {
-        //if pause menu not active, display it
-        if (!pauseMenu.activeInHierarchy)
-        {
-            //pause the game 
-            Time.timeScale = 0f;
-            pauseMenu.SetActive(true);
-        }
-        else
-        {
-            //else pauseMenu is being displayed so hide it instead and resume the game
-            Time.timeScale = 1f;
-            pauseMenu.SetActive(false); 
-        }
-    }
 }

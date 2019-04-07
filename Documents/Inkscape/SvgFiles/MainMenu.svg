@@ -1,0 +1,1339 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   sodipodi:docname="MainMenu.svg">
+  <defs
+     id="defs2">
+    <meshgradient
+       inkscape:collect="always"
+       id="meshgradient961"
+       gradientUnits="userSpaceOnUse"
+       x="15.501631"
+       y="81.143799"
+       gradientTransform="matrix(2.56,0,0,2.56,-24.182544,-300.71323)">
+      <meshrow
+         id="meshrow963">
+        <meshpatch
+           id="meshpatch965">
+          <stop
+             path="c 66.1458,0  132.292,0  198.438,0"
+             style="stop-color:#00004b;stop-opacity:1"
+             id="stop967" />
+          <stop
+             path="c 0,37.207  0,74.4141  0,111.621"
+             style="stop-color:#000031;stop-opacity:1"
+             id="stop969" />
+          <stop
+             path="c -66.1458,0  -132.292,0  -198.438,0"
+             style="stop-color:#0000aa;stop-opacity:1"
+             id="stop971" />
+          <stop
+             path="c 0,-37.207  0,-74.4141  0,-111.621"
+             style="stop-color:#000000;stop-opacity:1"
+             id="stop973" />
+        </meshpatch>
+      </meshrow>
+    </meshgradient>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.7"
+     inkscape:cx="1118.9679"
+     inkscape:cy="829.67297"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1001"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="opacity:1;fill:url(#meshgradient961);fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.8266784;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers fill stroke"
+       id="rect959"
+       width="508"
+       height="285.75"
+       x="15.501631"
+       y="-92.985107"
+       inkscape:export-filename="I:\Sem 6 (SP19)\BoardGame\BoardGameUnityProject\Assets\Sprites\UI\menuBg.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
+    <g
+       id="g1621"
+       transform="translate(5.2916669,-1.0138656)">
+      <text
+         transform="scale(0.97614155,1.0244416)"
+         inkscape:export-ydpi="96"
+         inkscape:export-xdpi="96"
+         inkscape:export-filename="I:\Sem 6 (SP19)\BoardGame\Docs\Inkscape\FinalPng\Logo.png"
+         id="text1326"
+         y="39.411804"
+         x="293.42462"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.67690849px;line-height:1.25;font-family:'AR CHRISTY';-inkscape-font-specification:'AR CHRISTY';letter-spacing:0px;word-spacing:0px;fill:#e80000;fill-opacity:1;stroke:#af0000;stroke-width:0.17151868;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:51.24915695px;font-family:'Old English Text MT';-inkscape-font-specification:'Old English Text MT';fill:#e80000;fill-opacity:1;stroke:#af0000;stroke-width:0.17151868;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           y="39.411804"
+           x="293.42462"
+           id="tspan1324"
+           sodipodi:role="line">Dominion</tspan></text>
+      <text
+         transform="scale(0.97614155,1.0244416)"
+         inkscape:export-ydpi="96"
+         inkscape:export-xdpi="96"
+         inkscape:export-filename="I:\Sem 6 (SP19)\BoardGame\Docs\Inkscape\FinalPng\Logo.png"
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.67690849px;line-height:1.25;font-family:'AR CHRISTY';-inkscape-font-specification:'AR CHRISTY';letter-spacing:0px;word-spacing:0px;fill:#e80000;fill-opacity:1;stroke:#af0000;stroke-width:0.17151868;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         x="314.34048"
+         y="93.019722"
+         id="text1330"><tspan
+           sodipodi:role="line"
+           id="tspan1328"
+           x="314.34048"
+           y="93.019722"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:51.24915695px;font-family:'Old English Text MT';-inkscape-font-specification:'Old English Text MT';fill:#e80000;fill-opacity:1;stroke:#af0000;stroke-width:0.17151868;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">Pursuit</tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.2248888px;line-height:1.25;font-family:'Franklin Gothic Heavy';-inkscape-font-specification:'Franklin Gothic Heavy, ';letter-spacing:0px;word-spacing:0px;fill:#0000ff;fill-opacity:1;stroke:none;stroke-width:0.50800002;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.1875"
+       x="59.939865"
+       y="-8.1640329"
+       id="text4545"><tspan
+         sodipodi:role="line"
+         id="tspan4543"
+         x="59.939865"
+         y="-8.1640329"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25.28711128px;font-family:'AR CHRISTY';-inkscape-font-specification:'AR CHRISTY';fill:#0000ff;stroke:none;stroke-width:0.50800002;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.1875">NEW GAME</tspan></text>
+    <text
+       id="text4549"
+       y="35.018097"
+       x="66.666237"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.2248888px;line-height:1.25;font-family:'Franklin Gothic Heavy';-inkscape-font-specification:'Franklin Gothic Heavy, ';letter-spacing:0px;word-spacing:0px;fill:#0000ff;fill-opacity:1;stroke:none;stroke-width:0.6773333"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25.28711128px;font-family:'AR CHRISTY';-inkscape-font-specification:'AR CHRISTY';fill:#0000ff;stroke-width:0.6773333"
+         y="35.018097"
+         x="66.666237"
+         id="tspan4547"
+         sodipodi:role="line">SETTINGS</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.2248888px;line-height:1.25;font-family:'Franklin Gothic Heavy';-inkscape-font-specification:'Franklin Gothic Heavy, ';letter-spacing:0px;word-spacing:0px;fill:#0000ff;fill-opacity:1;stroke:none;stroke-width:0.6773333"
+       x="60.470894"
+       y="121.53411"
+       id="text4553"><tspan
+         sodipodi:role="line"
+         id="tspan4551"
+         x="60.470894"
+         y="121.53411"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25.28711128px;font-family:'AR CHRISTY';-inkscape-font-specification:'AR CHRISTY';fill:#0000ff;stroke-width:0.6773333">EXIT GAME</tspan></text>
+    <text
+       id="text4557"
+       y="78.250832"
+       x="60.572044"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.2248888px;line-height:1.25;font-family:'Franklin Gothic Heavy';-inkscape-font-specification:'Franklin Gothic Heavy, ';letter-spacing:0px;word-spacing:0px;fill:#0000ff;fill-opacity:1;stroke:none;stroke-width:0.6773333"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25.28711128px;font-family:'AR CHRISTY';-inkscape-font-specification:'AR CHRISTY';fill:#0000ff;stroke-width:0.6773333"
+         y="78.250832"
+         x="60.572044"
+         id="tspan4555"
+         sodipodi:role="line">CREDITS</tspan></text>
+    <text
+       id="text4587"
+       y="17.309614"
+       x="-98.094452"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.82222223px;line-height:1.25;font-family:'Franklin Gothic Heavy';-inkscape-font-specification:'Franklin Gothic Heavy, ';letter-spacing:0px;word-spacing:0px;fill:#0000ff;fill-opacity:1;stroke:none;stroke-width:0.1984375;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.1875"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.87777805px;font-family:'AR CHRISTY';-inkscape-font-specification:'AR CHRISTY';fill:#0000ff;stroke:none;stroke-width:0.1984375;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.1875"
+         y="17.309614"
+         x="-98.094452"
+         id="tspan4585"
+         sodipodi:role="line">NEW GAME</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.82222223px;line-height:1.25;font-family:'Franklin Gothic Heavy';-inkscape-font-specification:'Franklin Gothic Heavy, ';letter-spacing:0px;word-spacing:0px;fill:#0000ff;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="-96.600891"
+       y="33.352928"
+       id="text4591"><tspan
+         sodipodi:role="line"
+         id="tspan4589"
+         x="-96.600891"
+         y="33.352928"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.87777805px;font-family:'AR CHRISTY';-inkscape-font-specification:'AR CHRISTY';fill:#0000ff;stroke-width:0.26458332">SETTINGS</tspan></text>
+    <text
+       id="text4595"
+       y="64.364815"
+       x="-97.320053"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.82222223px;line-height:1.25;font-family:'Franklin Gothic Heavy';-inkscape-font-specification:'Franklin Gothic Heavy, ';letter-spacing:0px;word-spacing:0px;fill:#0000ff;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.87777805px;font-family:'AR CHRISTY';-inkscape-font-specification:'AR CHRISTY';fill:#0000ff;stroke-width:0.26458332"
+         y="64.364815"
+         x="-97.320053"
+         id="tspan4593"
+         sodipodi:role="line">EXIT GAME</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.82222223px;line-height:1.25;font-family:'Franklin Gothic Heavy';-inkscape-font-specification:'Franklin Gothic Heavy, ';letter-spacing:0px;word-spacing:0px;fill:#0000ff;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="-98.036499"
+       y="49.982918"
+       id="text4599"><tspan
+         sodipodi:role="line"
+         id="tspan4597"
+         x="-98.036499"
+         y="49.982918"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.87777805px;font-family:'AR CHRISTY';-inkscape-font-specification:'AR CHRISTY';fill:#0000ff;stroke-width:0.26458332">CREDITS</tspan></text>
+    <rect
+       y="7.5630555"
+       x="-104.4123"
+       height="12.222936"
+       width="65.139603"
+       id="rect4601"
+       style="opacity:1;fill:none;fill-opacity:1;fill-rule:nonzero;stroke:#0000ff;stroke-width:1.00623071;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers fill stroke" />
+    <rect
+       style="opacity:1;fill:none;fill-opacity:1;fill-rule:nonzero;stroke:#0000ff;stroke-width:1.00623071;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers fill stroke"
+       id="rect4603"
+       width="65.139603"
+       height="12.222936"
+       x="-104.8132"
+       y="24.000128" />
+    <rect
+       y="40.036308"
+       x="-104.94684"
+       height="12.222936"
+       width="65.139603"
+       id="rect4605"
+       style="opacity:1;fill:none;fill-opacity:1;fill-rule:nonzero;stroke:#0000ff;stroke-width:1.00623071;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers fill stroke" />
+    <rect
+       style="opacity:1;fill:none;fill-opacity:1;fill-rule:nonzero;stroke:#0000ff;stroke-width:1.00623071;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers fill stroke"
+       id="rect4607"
+       width="65.139603"
+       height="12.222936"
+       x="-104.8132"
+       y="55.137032" />
+    <g
+       id="g1615"
+       transform="translate(-252.12572,-3.8300181)"
+       inkscape:export-filename="I:\Sem 6 (SP19)\BoardGame\BoardGameUnityProject\Assets\Sprites\UI\menuTiles.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96">
+      <g
+         inkscape:export-filename="I:\Sem 6 (SP19)\BoardGame\BoardGameUnityProject\Assets\Sprites\Tiles\Background\tile.png"
+         inkscape:export-ydpi="96"
+         inkscape:export-xdpi="96"
+         id="g12270"
+         transform="matrix(0.16790441,0,0,0.16790353,22.605061,169.54022)"
+         style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294">
+        <g
+           transform="translate(139.51469,-67.351921)"
+           id="g12260"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294" />
+        <g
+           id="g12262"
+           transform="matrix(-1,0,0,1,813.56571,-67.351921)"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294" />
+        <g
+           id="g12264"
+           transform="matrix(1,0,0,-1,139.51469,264.45532)"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294" />
+        <g
+           transform="rotate(-180,406.78286,132.22766)"
+           id="g12268"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294">
+          <path
+             inkscape:connector-curvature="0"
+             style="opacity:1;fill:#283c50;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:2.11296225;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.88235294;paint-order:normal"
+             d="m 576.16406,407.32617 -9.01172,9.01172 -3.48828,3.48828 v 12.5 12.5 l 3.48828,3.48828 9.01172,9.01172 h 12.5 12.5 l 9.01367,-9.01172 3.48633,-3.48828 v -12.5 -12.5 l -3.48633,-3.48828 -9.01367,-9.01172 h -12.5 z"
+             transform="matrix(-1.0583338,0,0,-1.0583328,960.02959,623.44898)"
+             id="path12266" />
+        </g>
+      </g>
+      <g
+         style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+         transform="matrix(0.16790441,0,0,0.16790353,15.941352,176.20389)"
+         id="g4827"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96"
+         inkscape:export-filename="I:\Sem 6 (SP19)\BoardGame\BoardGameUnityProject\Assets\Sprites\Tiles\Background\tile.png">
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           id="g4817"
+           transform="translate(139.51469,-67.351921)" />
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           transform="matrix(-1,0,0,1,813.56571,-67.351921)"
+           id="g4819" />
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           transform="matrix(1,0,0,-1,139.51469,264.45532)"
+           id="g4821" />
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           id="g4825"
+           transform="rotate(-180,406.78286,132.22766)">
+          <path
+             id="path4823"
+             transform="matrix(-1.0583338,0,0,-1.0583328,960.02959,623.44898)"
+             d="m 576.16406,407.32617 -9.01172,9.01172 -3.48828,3.48828 v 12.5 12.5 l 3.48828,3.48828 9.01172,9.01172 h 12.5 12.5 l 9.01367,-9.01172 3.48633,-3.48828 v -12.5 -12.5 l -3.48633,-3.48828 -9.01367,-9.01172 h -12.5 z"
+             style="opacity:1;fill:#283c50;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:2.11296225;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.88235294;paint-order:normal"
+             inkscape:connector-curvature="0" />
+        </g>
+      </g>
+      <g
+         style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+         transform="matrix(0.16790441,0,0,0.16790353,22.605061,156.21288)"
+         id="g995"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96"
+         inkscape:export-filename="I:\Sem 6 (SP19)\BoardGame\BoardGameUnityProject\Assets\Sprites\Tiles\Background\tile.png">
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           id="g985"
+           transform="translate(139.51469,-67.351921)" />
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           transform="matrix(-1,0,0,1,813.56571,-67.351921)"
+           id="g987" />
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           transform="matrix(1,0,0,-1,139.51469,264.45532)"
+           id="g989" />
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           id="g993"
+           transform="rotate(-180,406.78286,132.22766)">
+          <path
+             id="path991"
+             transform="matrix(-1.0583338,0,0,-1.0583328,960.02959,623.44898)"
+             d="m 576.16406,407.32617 -9.01172,9.01172 -3.48828,3.48828 v 12.5 12.5 l 3.48828,3.48828 9.01172,9.01172 h 12.5 12.5 l 9.01367,-9.01172 3.48633,-3.48828 v -12.5 -12.5 l -3.48633,-3.48828 -9.01367,-9.01172 h -12.5 z"
+             style="opacity:1;fill:#283c50;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:2.11296225;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.88235294;paint-order:normal"
+             inkscape:connector-curvature="0" />
+        </g>
+      </g>
+      <g
+         inkscape:export-filename="I:\Sem 6 (SP19)\BoardGame\BoardGameUnityProject\Assets\Sprites\Tiles\Background\tile.png"
+         inkscape:export-ydpi="96"
+         inkscape:export-xdpi="96"
+         id="g1007"
+         transform="matrix(0.16790441,0,0,0.16790353,29.26877,162.87655)"
+         style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294">
+        <g
+           transform="translate(139.51469,-67.351921)"
+           id="g997"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294" />
+        <g
+           id="g999"
+           transform="matrix(-1,0,0,1,813.56571,-67.351921)"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294" />
+        <g
+           id="g1001"
+           transform="matrix(1,0,0,-1,139.51469,264.45532)"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294" />
+        <g
+           transform="rotate(-180,406.78286,132.22766)"
+           id="g1005"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294">
+          <path
+             inkscape:connector-curvature="0"
+             style="opacity:1;fill:#283c50;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:2.11296225;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.88235294;paint-order:normal"
+             d="m 576.16406,407.32617 -9.01172,9.01172 -3.48828,3.48828 v 12.5 12.5 l 3.48828,3.48828 9.01172,9.01172 h 12.5 12.5 l 9.01367,-9.01172 3.48633,-3.48828 v -12.5 -12.5 l -3.48633,-3.48828 -9.01367,-9.01172 h -12.5 z"
+             transform="matrix(-1.0583338,0,0,-1.0583328,960.02959,623.44898)"
+             id="path1003" />
+        </g>
+      </g>
+      <g
+         style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+         transform="matrix(0.16790441,0,0,0.16790353,15.941352,140.66432)"
+         id="g1019"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96"
+         inkscape:export-filename="I:\Sem 6 (SP19)\BoardGame\BoardGameUnityProject\Assets\Sprites\Tiles\Background\tile.png">
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           id="g1009"
+           transform="translate(139.51469,-67.351921)" />
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           transform="matrix(-1,0,0,1,813.56571,-67.351921)"
+           id="g1011" />
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           transform="matrix(1,0,0,-1,139.51469,264.45532)"
+           id="g1013" />
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           id="g1017"
+           transform="rotate(-180,406.78286,132.22766)">
+          <path
+             id="path1015"
+             transform="matrix(-1.0583338,0,0,-1.0583328,960.02959,623.44898)"
+             d="m 576.16406,407.32617 -9.01172,9.01172 -3.48828,3.48828 v 12.5 12.5 l 3.48828,3.48828 9.01172,9.01172 h 12.5 12.5 l 9.01367,-9.01172 3.48633,-3.48828 v -12.5 -12.5 l -3.48633,-3.48828 -9.01367,-9.01172 h -12.5 z"
+             style="opacity:1;fill:#283c50;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:2.11296225;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.88235294;paint-order:normal"
+             inkscape:connector-curvature="0" />
+        </g>
+      </g>
+      <g
+         inkscape:export-filename="I:\Sem 6 (SP19)\BoardGame\BoardGameUnityProject\Assets\Sprites\Tiles\Background\tile.png"
+         inkscape:export-ydpi="96"
+         inkscape:export-xdpi="96"
+         id="g1031"
+         transform="matrix(0.16790441,0,0,0.16790353,22.605061,147.32799)"
+         style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294">
+        <g
+           transform="translate(139.51469,-67.351921)"
+           id="g1021"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294" />
+        <g
+           id="g1023"
+           transform="matrix(-1,0,0,1,813.56571,-67.351921)"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294" />
+        <g
+           id="g1025"
+           transform="matrix(1,0,0,-1,139.51469,264.45532)"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294" />
+        <g
+           transform="rotate(-180,406.78286,132.22766)"
+           id="g1029"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294">
+          <path
+             inkscape:connector-curvature="0"
+             style="opacity:1;fill:#283c50;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:2.11296225;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.88235294;paint-order:normal"
+             d="m 576.16406,407.32617 -9.01172,9.01172 -3.48828,3.48828 v 12.5 12.5 l 3.48828,3.48828 9.01172,9.01172 h 12.5 12.5 l 9.01367,-9.01172 3.48633,-3.48828 v -12.5 -12.5 l -3.48633,-3.48828 -9.01367,-9.01172 h -12.5 z"
+             transform="matrix(-1.0583338,0,0,-1.0583328,960.02959,623.44898)"
+             id="path1027" />
+        </g>
+      </g>
+      <g
+         style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+         transform="matrix(0.16790441,0,0,0.16790353,29.26877,127.33698)"
+         id="g1067"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96"
+         inkscape:export-filename="I:\Sem 6 (SP19)\BoardGame\BoardGameUnityProject\Assets\Sprites\Tiles\Background\tile.png">
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           id="g1057"
+           transform="translate(139.51469,-67.351921)" />
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           transform="matrix(-1,0,0,1,813.56571,-67.351921)"
+           id="g1059" />
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           transform="matrix(1,0,0,-1,139.51469,264.45532)"
+           id="g1061" />
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           id="g1065"
+           transform="rotate(-180,406.78286,132.22766)">
+          <path
+             id="path1063"
+             transform="matrix(-1.0583338,0,0,-1.0583328,960.02959,623.44898)"
+             d="m 576.16406,407.32617 -9.01172,9.01172 -3.48828,3.48828 v 12.5 12.5 l 3.48828,3.48828 9.01172,9.01172 h 12.5 12.5 l 9.01367,-9.01172 3.48633,-3.48828 v -12.5 -12.5 l -3.48633,-3.48828 -9.01367,-9.01172 h -12.5 z"
+             style="opacity:1;fill:#283c50;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:2.11296225;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.88235294;paint-order:normal"
+             inkscape:connector-curvature="0" />
+        </g>
+      </g>
+      <g
+         inkscape:export-filename="I:\Sem 6 (SP19)\BoardGame\BoardGameUnityProject\Assets\Sprites\Tiles\Background\tile.png"
+         inkscape:export-ydpi="96"
+         inkscape:export-xdpi="96"
+         id="g1079"
+         transform="matrix(0.16790441,0,0,0.16790353,22.605061,134.00065)"
+         style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294">
+        <g
+           transform="translate(139.51469,-67.351921)"
+           id="g1069"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294" />
+        <g
+           id="g1071"
+           transform="matrix(-1,0,0,1,813.56571,-67.351921)"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294" />
+        <g
+           id="g1073"
+           transform="matrix(1,0,0,-1,139.51469,264.45532)"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294" />
+        <g
+           transform="rotate(-180,406.78286,132.22766)"
+           id="g1077"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294">
+          <path
+             inkscape:connector-curvature="0"
+             style="opacity:1;fill:#283c50;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:2.11296225;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.88235294;paint-order:normal"
+             d="m 576.16406,407.32617 -9.01172,9.01172 -3.48828,3.48828 v 12.5 12.5 l 3.48828,3.48828 9.01172,9.01172 h 12.5 12.5 l 9.01367,-9.01172 3.48633,-3.48828 v -12.5 -12.5 l -3.48633,-3.48828 -9.01367,-9.01172 h -12.5 z"
+             transform="matrix(-1.0583338,0,0,-1.0583328,960.02959,623.44898)"
+             id="path1075" />
+        </g>
+      </g>
+      <g
+         inkscape:export-filename="I:\Sem 6 (SP19)\BoardGame\BoardGameUnityProject\Assets\Sprites\Tiles\Background\tile.png"
+         inkscape:export-ydpi="96"
+         inkscape:export-xdpi="96"
+         id="g1091"
+         transform="matrix(0.16790441,0,0,0.16790353,15.941352,114.00964)"
+         style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294">
+        <g
+           transform="translate(139.51469,-67.351921)"
+           id="g1081"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294" />
+        <g
+           id="g1083"
+           transform="matrix(-1,0,0,1,813.56571,-67.351921)"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294" />
+        <g
+           id="g1085"
+           transform="matrix(1,0,0,-1,139.51469,264.45532)"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294" />
+        <g
+           transform="rotate(-180,406.78286,132.22766)"
+           id="g1089"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294">
+          <path
+             inkscape:connector-curvature="0"
+             style="opacity:1;fill:#283c50;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:2.11296225;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.88235294;paint-order:normal"
+             d="m 576.16406,407.32617 -9.01172,9.01172 -3.48828,3.48828 v 12.5 12.5 l 3.48828,3.48828 9.01172,9.01172 h 12.5 12.5 l 9.01367,-9.01172 3.48633,-3.48828 v -12.5 -12.5 l -3.48633,-3.48828 -9.01367,-9.01172 h -12.5 z"
+             transform="matrix(-1.0583338,0,0,-1.0583328,960.02959,623.44898)"
+             id="path1087" />
+        </g>
+      </g>
+      <g
+         style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+         transform="matrix(0.16790441,0,0,0.16790353,22.605061,120.67331)"
+         id="g1103"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96"
+         inkscape:export-filename="I:\Sem 6 (SP19)\BoardGame\BoardGameUnityProject\Assets\Sprites\Tiles\Background\tile.png">
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           id="g1093"
+           transform="translate(139.51469,-67.351921)" />
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           transform="matrix(-1,0,0,1,813.56571,-67.351921)"
+           id="g1095" />
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           transform="matrix(1,0,0,-1,139.51469,264.45532)"
+           id="g1097" />
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           id="g1101"
+           transform="rotate(-180,406.78286,132.22766)">
+          <path
+             id="path1099"
+             transform="matrix(-1.0583338,0,0,-1.0583328,960.02959,623.44898)"
+             d="m 576.16406,407.32617 -9.01172,9.01172 -3.48828,3.48828 v 12.5 12.5 l 3.48828,3.48828 9.01172,9.01172 h 12.5 12.5 l 9.01367,-9.01172 3.48633,-3.48828 v -12.5 -12.5 l -3.48633,-3.48828 -9.01367,-9.01172 h -12.5 z"
+             style="opacity:1;fill:#283c50;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:2.11296225;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.88235294;paint-order:normal"
+             inkscape:connector-curvature="0" />
+        </g>
+      </g>
+      <g
+         inkscape:export-filename="I:\Sem 6 (SP19)\BoardGame\BoardGameUnityProject\Assets\Sprites\Tiles\Background\tile.png"
+         inkscape:export-ydpi="96"
+         inkscape:export-xdpi="96"
+         id="g1115"
+         transform="matrix(0.16790441,0,0,0.16790353,22.605061,98.461082)"
+         style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294">
+        <g
+           transform="translate(139.51469,-67.351921)"
+           id="g1105"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294" />
+        <g
+           id="g1107"
+           transform="matrix(-1,0,0,1,813.56571,-67.351921)"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294" />
+        <g
+           id="g1109"
+           transform="matrix(1,0,0,-1,139.51469,264.45532)"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294" />
+        <g
+           transform="rotate(-180,406.78286,132.22766)"
+           id="g1113"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294">
+          <path
+             inkscape:connector-curvature="0"
+             style="opacity:1;fill:#283c50;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:2.11296225;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.88235294;paint-order:normal"
+             d="m 576.16406,407.32617 -9.01172,9.01172 -3.48828,3.48828 v 12.5 12.5 l 3.48828,3.48828 9.01172,9.01172 h 12.5 12.5 l 9.01367,-9.01172 3.48633,-3.48828 v -12.5 -12.5 l -3.48633,-3.48828 -9.01367,-9.01172 h -12.5 z"
+             transform="matrix(-1.0583338,0,0,-1.0583328,960.02959,623.44898)"
+             id="path1111" />
+        </g>
+      </g>
+      <g
+         style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+         transform="matrix(0.16790441,0,0,0.16790353,15.941352,105.12475)"
+         id="g1127"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96"
+         inkscape:export-filename="I:\Sem 6 (SP19)\BoardGame\BoardGameUnityProject\Assets\Sprites\Tiles\Background\tile.png">
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           id="g1117"
+           transform="translate(139.51469,-67.351921)" />
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           transform="matrix(-1,0,0,1,813.56571,-67.351921)"
+           id="g1119" />
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           transform="matrix(1,0,0,-1,139.51469,264.45532)"
+           id="g1121" />
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           id="g1125"
+           transform="rotate(-180,406.78286,132.22766)">
+          <path
+             id="path1123"
+             transform="matrix(-1.0583338,0,0,-1.0583328,960.02959,623.44898)"
+             d="m 576.16406,407.32617 -9.01172,9.01172 -3.48828,3.48828 v 12.5 12.5 l 3.48828,3.48828 9.01172,9.01172 h 12.5 12.5 l 9.01367,-9.01172 3.48633,-3.48828 v -12.5 -12.5 l -3.48633,-3.48828 -9.01367,-9.01172 h -12.5 z"
+             style="opacity:1;fill:#283c50;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:2.11296225;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.88235294;paint-order:normal"
+             inkscape:connector-curvature="0" />
+        </g>
+      </g>
+      <g
+         style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+         transform="matrix(0.16790441,0,0,0.16790353,22.605061,85.133746)"
+         id="g1139"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96"
+         inkscape:export-filename="I:\Sem 6 (SP19)\BoardGame\BoardGameUnityProject\Assets\Sprites\Tiles\Background\tile.png">
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           id="g1129"
+           transform="translate(139.51469,-67.351921)" />
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           transform="matrix(-1,0,0,1,813.56571,-67.351921)"
+           id="g1131" />
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           transform="matrix(1,0,0,-1,139.51469,264.45532)"
+           id="g1133" />
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           id="g1137"
+           transform="rotate(-180,406.78286,132.22766)">
+          <path
+             id="path1135"
+             transform="matrix(-1.0583338,0,0,-1.0583328,960.02959,623.44898)"
+             d="m 576.16406,407.32617 -9.01172,9.01172 -3.48828,3.48828 v 12.5 12.5 l 3.48828,3.48828 9.01172,9.01172 h 12.5 12.5 l 9.01367,-9.01172 3.48633,-3.48828 v -12.5 -12.5 l -3.48633,-3.48828 -9.01367,-9.01172 h -12.5 z"
+             style="opacity:1;fill:#283c50;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:2.11296225;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.88235294;paint-order:normal"
+             inkscape:connector-curvature="0" />
+        </g>
+      </g>
+      <g
+         inkscape:export-filename="I:\Sem 6 (SP19)\BoardGame\BoardGameUnityProject\Assets\Sprites\Tiles\Background\tile.png"
+         inkscape:export-ydpi="96"
+         inkscape:export-xdpi="96"
+         id="g1151"
+         transform="matrix(0.16790441,0,0,0.16790353,29.26877,91.797414)"
+         style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294">
+        <g
+           transform="translate(139.51469,-67.351921)"
+           id="g1141"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294" />
+        <g
+           id="g1143"
+           transform="matrix(-1,0,0,1,813.56571,-67.351921)"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294" />
+        <g
+           id="g1145"
+           transform="matrix(1,0,0,-1,139.51469,264.45532)"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294" />
+        <g
+           transform="rotate(-180,406.78286,132.22766)"
+           id="g1149"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294">
+          <path
+             inkscape:connector-curvature="0"
+             style="opacity:1;fill:#283c50;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:2.11296225;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.88235294;paint-order:normal"
+             d="m 576.16406,407.32617 -9.01172,9.01172 -3.48828,3.48828 v 12.5 12.5 l 3.48828,3.48828 9.01172,9.01172 h 12.5 12.5 l 9.01367,-9.01172 3.48633,-3.48828 v -12.5 -12.5 l -3.48633,-3.48828 -9.01367,-9.01172 h -12.5 z"
+             transform="matrix(-1.0583338,0,0,-1.0583328,960.02959,623.44898)"
+             id="path1147" />
+        </g>
+      </g>
+      <g
+         inkscape:export-filename="I:\Sem 6 (SP19)\BoardGame\BoardGameUnityProject\Assets\Sprites\Tiles\Background\tile.png"
+         inkscape:export-ydpi="96"
+         inkscape:export-xdpi="96"
+         id="g1163"
+         transform="matrix(0.16790441,0,0,0.16790353,22.605061,76.248855)"
+         style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294">
+        <g
+           transform="translate(139.51469,-67.351921)"
+           id="g1153"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294" />
+        <g
+           id="g1155"
+           transform="matrix(-1,0,0,1,813.56571,-67.351921)"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294" />
+        <g
+           id="g1157"
+           transform="matrix(1,0,0,-1,139.51469,264.45532)"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294" />
+        <g
+           transform="rotate(-180,406.78286,132.22766)"
+           id="g1161"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294">
+          <path
+             inkscape:connector-curvature="0"
+             style="opacity:1;fill:#283c50;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:2.11296225;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.88235294;paint-order:normal"
+             d="m 576.16406,407.32617 -9.01172,9.01172 -3.48828,3.48828 v 12.5 12.5 l 3.48828,3.48828 9.01172,9.01172 h 12.5 12.5 l 9.01367,-9.01172 3.48633,-3.48828 v -12.5 -12.5 l -3.48633,-3.48828 -9.01367,-9.01172 h -12.5 z"
+             transform="matrix(-1.0583338,0,0,-1.0583328,960.02959,623.44898)"
+             id="path1159" />
+        </g>
+      </g>
+      <g
+         style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+         transform="matrix(0.16790441,0,0,0.16790353,15.941352,69.585187)"
+         id="g1175"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96"
+         inkscape:export-filename="I:\Sem 6 (SP19)\BoardGame\BoardGameUnityProject\Assets\Sprites\Tiles\Background\tile.png">
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           id="g1165"
+           transform="translate(139.51469,-67.351921)" />
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           transform="matrix(-1,0,0,1,813.56571,-67.351921)"
+           id="g1167" />
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           transform="matrix(1,0,0,-1,139.51469,264.45532)"
+           id="g1169" />
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           id="g1173"
+           transform="rotate(-180,406.78286,132.22766)">
+          <path
+             id="path1171"
+             transform="matrix(-1.0583338,0,0,-1.0583328,960.02959,623.44898)"
+             d="m 576.16406,407.32617 -9.01172,9.01172 -3.48828,3.48828 v 12.5 12.5 l 3.48828,3.48828 9.01172,9.01172 h 12.5 12.5 l 9.01367,-9.01172 3.48633,-3.48828 v -12.5 -12.5 l -3.48633,-3.48828 -9.01367,-9.01172 h -12.5 z"
+             style="opacity:1;fill:#283c50;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:2.11296225;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.88235294;paint-order:normal"
+             inkscape:connector-curvature="0" />
+        </g>
+      </g>
+      <g
+         inkscape:export-filename="I:\Sem 6 (SP19)\BoardGame\BoardGameUnityProject\Assets\Sprites\Tiles\Background\tile.png"
+         inkscape:export-ydpi="96"
+         inkscape:export-xdpi="96"
+         id="g1187"
+         transform="matrix(0.16790441,0,0,0.16790353,22.605061,62.921519)"
+         style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294">
+        <g
+           transform="translate(139.51469,-67.351921)"
+           id="g1177"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294" />
+        <g
+           id="g1179"
+           transform="matrix(-1,0,0,1,813.56571,-67.351921)"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294" />
+        <g
+           id="g1181"
+           transform="matrix(1,0,0,-1,139.51469,264.45532)"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294" />
+        <g
+           transform="rotate(-180,406.78286,132.22766)"
+           id="g1185"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294">
+          <path
+             inkscape:connector-curvature="0"
+             style="opacity:1;fill:#283c50;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:2.11296225;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.88235294;paint-order:normal"
+             d="m 576.16406,407.32617 -9.01172,9.01172 -3.48828,3.48828 v 12.5 12.5 l 3.48828,3.48828 9.01172,9.01172 h 12.5 12.5 l 9.01367,-9.01172 3.48633,-3.48828 v -12.5 -12.5 l -3.48633,-3.48828 -9.01367,-9.01172 h -12.5 z"
+             transform="matrix(-1.0583338,0,0,-1.0583328,960.02959,623.44898)"
+             id="path1183" />
+        </g>
+      </g>
+      <g
+         style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+         transform="matrix(0.16790441,0,0,0.16790353,29.26877,56.257851)"
+         id="g1199"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96"
+         inkscape:export-filename="I:\Sem 6 (SP19)\BoardGame\BoardGameUnityProject\Assets\Sprites\Tiles\Background\tile.png">
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           id="g1189"
+           transform="translate(139.51469,-67.351921)" />
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           transform="matrix(-1,0,0,1,813.56571,-67.351921)"
+           id="g1191" />
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           transform="matrix(1,0,0,-1,139.51469,264.45532)"
+           id="g1193" />
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           id="g1197"
+           transform="rotate(-180,406.78286,132.22766)">
+          <path
+             id="path1195"
+             transform="matrix(-1.0583338,0,0,-1.0583328,960.02959,623.44898)"
+             d="m 576.16406,407.32617 -9.01172,9.01172 -3.48828,3.48828 v 12.5 12.5 l 3.48828,3.48828 9.01172,9.01172 h 12.5 12.5 l 9.01367,-9.01172 3.48633,-3.48828 v -12.5 -12.5 l -3.48633,-3.48828 -9.01367,-9.01172 h -12.5 z"
+             style="opacity:1;fill:#283c50;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:2.11296225;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.88235294;paint-order:normal"
+             inkscape:connector-curvature="0" />
+        </g>
+      </g>
+      <g
+         inkscape:export-filename="I:\Sem 6 (SP19)\BoardGame\BoardGameUnityProject\Assets\Sprites\Tiles\Background\tile.png"
+         inkscape:export-ydpi="96"
+         inkscape:export-xdpi="96"
+         id="g1211"
+         transform="matrix(0.16790441,0,0,0.16790353,22.605061,49.594183)"
+         style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294">
+        <g
+           transform="translate(139.51469,-67.351921)"
+           id="g1201"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294" />
+        <g
+           id="g1203"
+           transform="matrix(-1,0,0,1,813.56571,-67.351921)"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294" />
+        <g
+           id="g1205"
+           transform="matrix(1,0,0,-1,139.51469,264.45532)"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294" />
+        <g
+           transform="rotate(-180,406.78286,132.22766)"
+           id="g1209"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294">
+          <path
+             inkscape:connector-curvature="0"
+             style="opacity:1;fill:#283c50;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:2.11296225;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.88235294;paint-order:normal"
+             d="m 576.16406,407.32617 -9.01172,9.01172 -3.48828,3.48828 v 12.5 12.5 l 3.48828,3.48828 9.01172,9.01172 h 12.5 12.5 l 9.01367,-9.01172 3.48633,-3.48828 v -12.5 -12.5 l -3.48633,-3.48828 -9.01367,-9.01172 h -12.5 z"
+             transform="matrix(-1.0583338,0,0,-1.0583328,960.02959,623.44898)"
+             id="path1207" />
+        </g>
+      </g>
+      <g
+         style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+         transform="matrix(0.16790441,0,0,0.16790353,15.941352,42.930515)"
+         id="g1223"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96"
+         inkscape:export-filename="I:\Sem 6 (SP19)\BoardGame\BoardGameUnityProject\Assets\Sprites\Tiles\Background\tile.png">
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           id="g1213"
+           transform="translate(139.51469,-67.351921)" />
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           transform="matrix(-1,0,0,1,813.56571,-67.351921)"
+           id="g1215" />
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           transform="matrix(1,0,0,-1,139.51469,264.45532)"
+           id="g1217" />
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           id="g1221"
+           transform="rotate(-180,406.78286,132.22766)">
+          <path
+             id="path1219"
+             transform="matrix(-1.0583338,0,0,-1.0583328,960.02959,623.44898)"
+             d="m 576.16406,407.32617 -9.01172,9.01172 -3.48828,3.48828 v 12.5 12.5 l 3.48828,3.48828 9.01172,9.01172 h 12.5 12.5 l 9.01367,-9.01172 3.48633,-3.48828 v -12.5 -12.5 l -3.48633,-3.48828 -9.01367,-9.01172 h -12.5 z"
+             style="opacity:1;fill:#283c50;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:2.11296225;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.88235294;paint-order:normal"
+             inkscape:connector-curvature="0" />
+        </g>
+      </g>
+      <g
+         inkscape:export-filename="I:\Sem 6 (SP19)\BoardGame\BoardGameUnityProject\Assets\Sprites\Tiles\Background\tile.png"
+         inkscape:export-ydpi="96"
+         inkscape:export-xdpi="96"
+         id="g1235"
+         transform="matrix(0.16790441,0,0,0.16790353,22.605061,36.266847)"
+         style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294">
+        <g
+           transform="translate(139.51469,-67.351921)"
+           id="g1225"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294" />
+        <g
+           id="g1227"
+           transform="matrix(-1,0,0,1,813.56571,-67.351921)"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294" />
+        <g
+           id="g1229"
+           transform="matrix(1,0,0,-1,139.51469,264.45532)"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294" />
+        <g
+           transform="rotate(-180,406.78286,132.22766)"
+           id="g1233"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294">
+          <path
+             inkscape:connector-curvature="0"
+             style="opacity:1;fill:#283c50;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:2.11296225;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.88235294;paint-order:normal"
+             d="m 576.16406,407.32617 -9.01172,9.01172 -3.48828,3.48828 v 12.5 12.5 l 3.48828,3.48828 9.01172,9.01172 h 12.5 12.5 l 9.01367,-9.01172 3.48633,-3.48828 v -12.5 -12.5 l -3.48633,-3.48828 -9.01367,-9.01172 h -12.5 z"
+             transform="matrix(-1.0583338,0,0,-1.0583328,960.02959,623.44898)"
+             id="path1231" />
+        </g>
+      </g>
+      <g
+         style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+         transform="matrix(0.16790441,0,0,0.16790353,22.605061,27.381956)"
+         id="g1247"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96"
+         inkscape:export-filename="I:\Sem 6 (SP19)\BoardGame\BoardGameUnityProject\Assets\Sprites\Tiles\Background\tile.png">
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           id="g1237"
+           transform="translate(139.51469,-67.351921)" />
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           transform="matrix(-1,0,0,1,813.56571,-67.351921)"
+           id="g1239" />
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           transform="matrix(1,0,0,-1,139.51469,264.45532)"
+           id="g1241" />
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           id="g1245"
+           transform="rotate(-180,406.78286,132.22766)">
+          <path
+             id="path1243"
+             transform="matrix(-1.0583338,0,0,-1.0583328,960.02959,623.44898)"
+             d="m 576.16406,407.32617 -9.01172,9.01172 -3.48828,3.48828 v 12.5 12.5 l 3.48828,3.48828 9.01172,9.01172 h 12.5 12.5 l 9.01367,-9.01172 3.48633,-3.48828 v -12.5 -12.5 l -3.48633,-3.48828 -9.01367,-9.01172 h -12.5 z"
+             style="opacity:1;fill:#283c50;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:2.11296225;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.88235294;paint-order:normal"
+             inkscape:connector-curvature="0" />
+        </g>
+      </g>
+      <g
+         inkscape:export-filename="I:\Sem 6 (SP19)\BoardGame\BoardGameUnityProject\Assets\Sprites\Tiles\Background\tile.png"
+         inkscape:export-ydpi="96"
+         inkscape:export-xdpi="96"
+         id="g1259"
+         transform="matrix(0.16790441,0,0,0.16790353,22.605061,18.497065)"
+         style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294">
+        <g
+           transform="translate(139.51469,-67.351921)"
+           id="g1249"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294" />
+        <g
+           id="g1251"
+           transform="matrix(-1,0,0,1,813.56571,-67.351921)"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294" />
+        <g
+           id="g1253"
+           transform="matrix(1,0,0,-1,139.51469,264.45532)"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294" />
+        <g
+           transform="rotate(-180,406.78286,132.22766)"
+           id="g1257"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294">
+          <path
+             inkscape:connector-curvature="0"
+             style="opacity:1;fill:#283c50;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:2.11296225;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.88235294;paint-order:normal"
+             d="m 576.16406,407.32617 -9.01172,9.01172 -3.48828,3.48828 v 12.5 12.5 l 3.48828,3.48828 9.01172,9.01172 h 12.5 12.5 l 9.01367,-9.01172 3.48633,-3.48828 v -12.5 -12.5 l -3.48633,-3.48828 -9.01367,-9.01172 h -12.5 z"
+             transform="matrix(-1.0583338,0,0,-1.0583328,960.02959,623.44898)"
+             id="path1255" />
+        </g>
+      </g>
+      <g
+         style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+         transform="matrix(0.16790441,0,0,0.16790353,29.26877,11.833397)"
+         id="g1271"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96"
+         inkscape:export-filename="I:\Sem 6 (SP19)\BoardGame\BoardGameUnityProject\Assets\Sprites\Tiles\Background\tile.png">
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           id="g1261"
+           transform="translate(139.51469,-67.351921)" />
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           transform="matrix(-1,0,0,1,813.56571,-67.351921)"
+           id="g1263" />
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           transform="matrix(1,0,0,-1,139.51469,264.45532)"
+           id="g1265" />
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           id="g1269"
+           transform="rotate(-180,406.78286,132.22766)">
+          <path
+             id="path1267"
+             transform="matrix(-1.0583338,0,0,-1.0583328,960.02959,623.44898)"
+             d="m 576.16406,407.32617 -9.01172,9.01172 -3.48828,3.48828 v 12.5 12.5 l 3.48828,3.48828 9.01172,9.01172 h 12.5 12.5 l 9.01367,-9.01172 3.48633,-3.48828 v -12.5 -12.5 l -3.48633,-3.48828 -9.01367,-9.01172 h -12.5 z"
+             style="opacity:1;fill:#283c50;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:2.11296225;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.88235294;paint-order:normal"
+             inkscape:connector-curvature="0" />
+        </g>
+      </g>
+      <g
+         inkscape:export-filename="I:\Sem 6 (SP19)\BoardGame\BoardGameUnityProject\Assets\Sprites\Tiles\Background\tile.png"
+         inkscape:export-ydpi="96"
+         inkscape:export-xdpi="96"
+         id="g1283"
+         transform="matrix(0.16790441,0,0,0.16790353,29.26877,2.9485063)"
+         style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294">
+        <g
+           transform="translate(139.51469,-67.351921)"
+           id="g1273"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294" />
+        <g
+           id="g1275"
+           transform="matrix(-1,0,0,1,813.56571,-67.351921)"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294" />
+        <g
+           id="g1277"
+           transform="matrix(1,0,0,-1,139.51469,264.45532)"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294" />
+        <g
+           transform="rotate(-180,406.78286,132.22766)"
+           id="g1281"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294">
+          <path
+             inkscape:connector-curvature="0"
+             style="opacity:1;fill:#283c50;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:2.11296225;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.88235294;paint-order:normal"
+             d="m 576.16406,407.32617 -9.01172,9.01172 -3.48828,3.48828 v 12.5 12.5 l 3.48828,3.48828 9.01172,9.01172 h 12.5 12.5 l 9.01367,-9.01172 3.48633,-3.48828 v -12.5 -12.5 l -3.48633,-3.48828 -9.01367,-9.01172 h -12.5 z"
+             transform="matrix(-1.0583338,0,0,-1.0583328,960.02959,623.44898)"
+             id="path1279" />
+        </g>
+      </g>
+      <g
+         style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+         transform="matrix(0.16790441,0,0,0.16790353,22.605061,-3.7151617)"
+         id="g1295"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96"
+         inkscape:export-filename="I:\Sem 6 (SP19)\BoardGame\BoardGameUnityProject\Assets\Sprites\Tiles\Background\tile.png">
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           id="g1285"
+           transform="translate(139.51469,-67.351921)" />
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           transform="matrix(-1,0,0,1,813.56571,-67.351921)"
+           id="g1287" />
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           transform="matrix(1,0,0,-1,139.51469,264.45532)"
+           id="g1289" />
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           id="g1293"
+           transform="rotate(-180,406.78286,132.22766)">
+          <path
+             id="path1291"
+             transform="matrix(-1.0583338,0,0,-1.0583328,960.02959,623.44898)"
+             d="m 576.16406,407.32617 -9.01172,9.01172 -3.48828,3.48828 v 12.5 12.5 l 3.48828,3.48828 9.01172,9.01172 h 12.5 12.5 l 9.01367,-9.01172 3.48633,-3.48828 v -12.5 -12.5 l -3.48633,-3.48828 -9.01367,-9.01172 h -12.5 z"
+             style="opacity:1;fill:#283c50;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:2.11296225;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.88235294;paint-order:normal"
+             inkscape:connector-curvature="0" />
+        </g>
+      </g>
+      <g
+         inkscape:export-filename="I:\Sem 6 (SP19)\BoardGame\BoardGameUnityProject\Assets\Sprites\Tiles\Background\tile.png"
+         inkscape:export-ydpi="96"
+         inkscape:export-xdpi="96"
+         id="g1307"
+         transform="matrix(0.16790441,0,0,0.16790353,22.605061,-12.600052)"
+         style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294">
+        <g
+           transform="translate(139.51469,-67.351921)"
+           id="g1297"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294" />
+        <g
+           id="g1299"
+           transform="matrix(-1,0,0,1,813.56571,-67.351921)"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294" />
+        <g
+           id="g1301"
+           transform="matrix(1,0,0,-1,139.51469,264.45532)"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294" />
+        <g
+           transform="rotate(-180,406.78286,132.22766)"
+           id="g1305"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294">
+          <path
+             inkscape:connector-curvature="0"
+             style="opacity:1;fill:#283c50;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:2.11296225;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.88235294;paint-order:normal"
+             d="m 576.16406,407.32617 -9.01172,9.01172 -3.48828,3.48828 v 12.5 12.5 l 3.48828,3.48828 9.01172,9.01172 h 12.5 12.5 l 9.01367,-9.01172 3.48633,-3.48828 v -12.5 -12.5 l -3.48633,-3.48828 -9.01367,-9.01172 h -12.5 z"
+             transform="matrix(-1.0583338,0,0,-1.0583328,960.02959,623.44898)"
+             id="path1303" />
+        </g>
+      </g>
+      <g
+         style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+         transform="matrix(0.16790441,0,0,0.16790353,15.941352,-19.26372)"
+         id="g1319"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96"
+         inkscape:export-filename="I:\Sem 6 (SP19)\BoardGame\BoardGameUnityProject\Assets\Sprites\Tiles\Background\tile.png">
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           id="g1309"
+           transform="translate(139.51469,-67.351921)" />
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           transform="matrix(-1,0,0,1,813.56571,-67.351921)"
+           id="g1311" />
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           transform="matrix(1,0,0,-1,139.51469,264.45532)"
+           id="g1313" />
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           id="g1317"
+           transform="rotate(-180,406.78286,132.22766)">
+          <path
+             id="path1315"
+             transform="matrix(-1.0583338,0,0,-1.0583328,960.02959,623.44898)"
+             d="m 576.16406,407.32617 -9.01172,9.01172 -3.48828,3.48828 v 12.5 12.5 l 3.48828,3.48828 9.01172,9.01172 h 12.5 12.5 l 9.01367,-9.01172 3.48633,-3.48828 v -12.5 -12.5 l -3.48633,-3.48828 -9.01367,-9.01172 h -12.5 z"
+             style="opacity:1;fill:#283c50;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:2.11296225;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.88235294;paint-order:normal"
+             inkscape:connector-curvature="0" />
+        </g>
+      </g>
+      <g
+         inkscape:export-filename="I:\Sem 6 (SP19)\BoardGame\BoardGameUnityProject\Assets\Sprites\Tiles\Background\tile.png"
+         inkscape:export-ydpi="96"
+         inkscape:export-xdpi="96"
+         id="g1331"
+         transform="matrix(0.16790441,0,0,0.16790353,22.605061,-25.927388)"
+         style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294">
+        <g
+           transform="translate(139.51469,-67.351921)"
+           id="g1321"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294" />
+        <g
+           id="g1323"
+           transform="matrix(-1,0,0,1,813.56571,-67.351921)"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294" />
+        <g
+           id="g1325"
+           transform="matrix(1,0,0,-1,139.51469,264.45532)"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294" />
+        <g
+           transform="rotate(-180,406.78286,132.22766)"
+           id="g1329"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294">
+          <path
+             inkscape:connector-curvature="0"
+             style="opacity:1;fill:#283c50;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:2.11296225;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.88235294;paint-order:normal"
+             d="m 576.16406,407.32617 -9.01172,9.01172 -3.48828,3.48828 v 12.5 12.5 l 3.48828,3.48828 9.01172,9.01172 h 12.5 12.5 l 9.01367,-9.01172 3.48633,-3.48828 v -12.5 -12.5 l -3.48633,-3.48828 -9.01367,-9.01172 h -12.5 z"
+             transform="matrix(-1.0583338,0,0,-1.0583328,960.02959,623.44898)"
+             id="path1327" />
+        </g>
+      </g>
+      <g
+         style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+         transform="matrix(0.16790441,0,0,0.16790353,29.26877,-32.591056)"
+         id="g1343"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96"
+         inkscape:export-filename="I:\Sem 6 (SP19)\BoardGame\BoardGameUnityProject\Assets\Sprites\Tiles\Background\tile.png">
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           id="g1333"
+           transform="translate(139.51469,-67.351921)" />
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           transform="matrix(-1,0,0,1,813.56571,-67.351921)"
+           id="g1335" />
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           transform="matrix(1,0,0,-1,139.51469,264.45532)"
+           id="g1337" />
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           id="g1341"
+           transform="rotate(-180,406.78286,132.22766)">
+          <path
+             id="path1339"
+             transform="matrix(-1.0583338,0,0,-1.0583328,960.02959,623.44898)"
+             d="m 576.16406,407.32617 -9.01172,9.01172 -3.48828,3.48828 v 12.5 12.5 l 3.48828,3.48828 9.01172,9.01172 h 12.5 12.5 l 9.01367,-9.01172 3.48633,-3.48828 v -12.5 -12.5 l -3.48633,-3.48828 -9.01367,-9.01172 h -12.5 z"
+             style="opacity:1;fill:#283c50;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:2.11296225;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.88235294;paint-order:normal"
+             inkscape:connector-curvature="0" />
+        </g>
+      </g>
+      <g
+         inkscape:export-filename="I:\Sem 6 (SP19)\BoardGame\BoardGameUnityProject\Assets\Sprites\Tiles\Background\tile.png"
+         inkscape:export-ydpi="96"
+         inkscape:export-xdpi="96"
+         id="g1355"
+         transform="matrix(0.16790441,0,0,0.16790353,22.605061,-39.254724)"
+         style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294">
+        <g
+           transform="translate(139.51469,-67.351921)"
+           id="g1345"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294" />
+        <g
+           id="g1347"
+           transform="matrix(-1,0,0,1,813.56571,-67.351921)"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294" />
+        <g
+           id="g1349"
+           transform="matrix(1,0,0,-1,139.51469,264.45532)"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294" />
+        <g
+           transform="rotate(-180,406.78286,132.22766)"
+           id="g1353"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294">
+          <path
+             inkscape:connector-curvature="0"
+             style="opacity:1;fill:#283c50;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:2.11296225;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.88235294;paint-order:normal"
+             d="m 576.16406,407.32617 -9.01172,9.01172 -3.48828,3.48828 v 12.5 12.5 l 3.48828,3.48828 9.01172,9.01172 h 12.5 12.5 l 9.01367,-9.01172 3.48633,-3.48828 v -12.5 -12.5 l -3.48633,-3.48828 -9.01367,-9.01172 h -12.5 z"
+             transform="matrix(-1.0583338,0,0,-1.0583328,960.02959,623.44898)"
+             id="path1351" />
+        </g>
+      </g>
+      <g
+         inkscape:export-filename="I:\Sem 6 (SP19)\BoardGame\BoardGameUnityProject\Assets\Sprites\Tiles\Background\tile.png"
+         inkscape:export-ydpi="96"
+         inkscape:export-xdpi="96"
+         id="g1367"
+         transform="matrix(0.16790441,0,0,0.16790353,22.605061,182.86756)"
+         style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294">
+        <g
+           transform="translate(139.51469,-67.351921)"
+           id="g1357"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294" />
+        <g
+           id="g1359"
+           transform="matrix(-1,0,0,1,813.56571,-67.351921)"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294" />
+        <g
+           id="g1361"
+           transform="matrix(1,0,0,-1,139.51469,264.45532)"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294" />
+        <g
+           transform="rotate(-180,406.78286,132.22766)"
+           id="g1365"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294">
+          <path
+             inkscape:connector-curvature="0"
+             style="opacity:1;fill:#283c50;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:2.11296225;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.88235294;paint-order:normal"
+             d="m 576.16406,407.32617 -9.01172,9.01172 -3.48828,3.48828 v 12.5 12.5 l 3.48828,3.48828 9.01172,9.01172 h 12.5 12.5 l 9.01367,-9.01172 3.48633,-3.48828 v -12.5 -12.5 l -3.48633,-3.48828 -9.01367,-9.01172 h -12.5 z"
+             transform="matrix(-1.0583338,0,0,-1.0583328,960.02959,623.44898)"
+             id="path1363" />
+        </g>
+      </g>
+      <g
+         style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+         transform="matrix(0.16790441,0,0,0.16790353,22.605061,191.75245)"
+         id="g1379"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96"
+         inkscape:export-filename="I:\Sem 6 (SP19)\BoardGame\BoardGameUnityProject\Assets\Sprites\Tiles\Background\tile.png">
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           id="g1369"
+           transform="translate(139.51469,-67.351921)" />
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           transform="matrix(-1,0,0,1,813.56571,-67.351921)"
+           id="g1371" />
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           transform="matrix(1,0,0,-1,139.51469,264.45532)"
+           id="g1373" />
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           id="g1377"
+           transform="rotate(-180,406.78286,132.22766)">
+          <path
+             id="path1375"
+             transform="matrix(-1.0583338,0,0,-1.0583328,960.02959,623.44898)"
+             d="m 576.16406,407.32617 -9.01172,9.01172 -3.48828,3.48828 v 12.5 12.5 l 3.48828,3.48828 9.01172,9.01172 h 12.5 12.5 l 9.01367,-9.01172 3.48633,-3.48828 v -12.5 -12.5 l -3.48633,-3.48828 -9.01367,-9.01172 h -12.5 z"
+             style="opacity:1;fill:#283c50;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:2.11296225;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.88235294;paint-order:normal"
+             inkscape:connector-curvature="0" />
+        </g>
+      </g>
+      <g
+         inkscape:export-filename="I:\Sem 6 (SP19)\BoardGame\BoardGameUnityProject\Assets\Sprites\Tiles\Background\tile.png"
+         inkscape:export-ydpi="96"
+         inkscape:export-xdpi="96"
+         id="g1391"
+         transform="matrix(0.16790441,0,0,0.16790353,22.605061,200.63734)"
+         style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294">
+        <g
+           transform="translate(139.51469,-67.351921)"
+           id="g1381"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294" />
+        <g
+           id="g1383"
+           transform="matrix(-1,0,0,1,813.56571,-67.351921)"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294" />
+        <g
+           id="g1385"
+           transform="matrix(1,0,0,-1,139.51469,264.45532)"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294" />
+        <g
+           transform="rotate(-180,406.78286,132.22766)"
+           id="g1389"
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294">
+          <path
+             inkscape:connector-curvature="0"
+             style="opacity:1;fill:#283c50;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:2.11296225;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.88235294;paint-order:normal"
+             d="m 576.16406,407.32617 -9.01172,9.01172 -3.48828,3.48828 v 12.5 12.5 l 3.48828,3.48828 9.01172,9.01172 h 12.5 12.5 l 9.01367,-9.01172 3.48633,-3.48828 v -12.5 -12.5 l -3.48633,-3.48828 -9.01367,-9.01172 h -12.5 z"
+             transform="matrix(-1.0583338,0,0,-1.0583328,960.02959,623.44898)"
+             id="path1387" />
+        </g>
+      </g>
+      <g
+         style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+         transform="matrix(0.16790441,0,0,0.16790353,22.605061,-48.139615)"
+         id="g1403"
+         inkscape:export-xdpi="96"
+         inkscape:export-ydpi="96"
+         inkscape:export-filename="I:\Sem 6 (SP19)\BoardGame\BoardGameUnityProject\Assets\Sprites\Tiles\Background\tile.png">
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           id="g1393"
+           transform="translate(139.51469,-67.351921)" />
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           transform="matrix(-1,0,0,1,813.56571,-67.351921)"
+           id="g1395" />
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           transform="matrix(1,0,0,-1,139.51469,264.45532)"
+           id="g1397" />
+        <g
+           style="fill:#283c50;fill-opacity:1;stroke:#ffffff;stroke-opacity:0.88235294"
+           id="g1401"
+           transform="rotate(-180,406.78286,132.22766)">
+          <path
+             id="path1399"
+             transform="matrix(-1.0583338,0,0,-1.0583328,960.02959,623.44898)"
+             d="m 576.16406,407.32617 -9.01172,9.01172 -3.48828,3.48828 v 12.5 12.5 l 3.48828,3.48828 9.01172,9.01172 h 12.5 12.5 l 9.01367,-9.01172 3.48633,-3.48828 v -12.5 -12.5 l -3.48633,-3.48828 -9.01367,-9.01172 h -12.5 z"
+             style="opacity:1;fill:#283c50;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:2.11296225;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.88235294;paint-order:normal"
+             inkscape:connector-curvature="0" />
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
