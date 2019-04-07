@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//A class to manage the game UI
 public class UIManager : MonoBehaviour
 {
     //setting up a static instance of the class 
@@ -27,7 +28,12 @@ public class UIManager : MonoBehaviour
         _instance = this;
     }
 
-    //Handles
+
+
+    //***************************************************************
+    //************************** HANDLES ****************************
+    //***************************************************************
+
     public Text[] player1CurrentTileText = new Text[3];    //the UI text for currentTile
     public Text[] player2CurrentTileText = new Text[3];
     public Text currentTurnText;
@@ -42,11 +48,18 @@ public class UIManager : MonoBehaviour
 
     public GameObject pauseMenu;
 
-    //For testing only
+    //***FOR TESTING ONLY***
     public GameObject TdiceSum;
     public Text TdiceSumText;
 
-    //METHODS
+
+
+
+    //***************************************************************
+    //************************** METHODS ****************************
+    //***************************************************************
+
+    //updates the current tile indicator for the given character
     public void UpdateCurrentTileText(int tile, int characterNumber)
     {
         int playerIndex = GameManager.Instance.currentPlayer;
@@ -57,10 +70,12 @@ public class UIManager : MonoBehaviour
             player2CurrentTileText[characterNumber].text = tile + "";
     }
 
-    public void UpdateCurrentTurnText(int playerIndex)
+    public void UpdateCurrentTurnText(int playerIndex, bool vsAI)
     {
         if (playerIndex == 1)
             currentTurnText.text = "Player 1";
+        else if (vsAI)
+            currentTurnText.text = "Computer";
         else
             currentTurnText.text = "Player 2";
     }
@@ -87,7 +102,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void SetDiceSum()
+    public void TSetDiceSum()
     {
         GameManager.Instance.SetDiceSum((int)TdiceSum.GetComponent<Slider>().value);
         TdiceSumText.text = TdiceSum.GetComponent<Slider>().value + "";

@@ -6,7 +6,8 @@ public class Tile : MonoBehaviour
 {
     //Used to weight each tile for the AI based on how positive it is.
     //-5 is awful, 0 is neutral, 5 is great.
-    [SerializeField] private int tileWeight;
+    [SerializeField]
+    private int tileWeight = 0;
     private bool occupied = false;  //by default, a tile has no one on it.
     private int numPeeps = 0;       //by default, a tile has no one on it.
     private int faction = 0;        //0: no one. 1: team 1. 2: team 2. 3: both teams present.
@@ -57,18 +58,5 @@ public class Tile : MonoBehaviour
     {
         //tile effect will go here. Use weight as an ID for event?
         return 0;
-    }
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        //???
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //????
     }
 }

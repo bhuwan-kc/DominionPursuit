@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//A collection of game objects handlers
+//A class that acts as a collection of game objects handlers
 public class ObjectHandler : MonoBehaviour
 {
     //setting up a static instance of the class 
@@ -28,25 +28,14 @@ public class ObjectHandler : MonoBehaviour
     }
 
 
-    //GAMEOBJECTS
+    //***************************************************************
+    //************************ GAMEOBJECTS **************************
+    //***************************************************************
+
     public GameObject Dice;
     public GameObject Dice2;
     public GameObject[] player1Characters = new GameObject[3];
     public GameObject[] player2Characters = new GameObject[3];
     public GameObject[] tiles = new GameObject[80];     //an array of all the tiles on the board
     
-
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

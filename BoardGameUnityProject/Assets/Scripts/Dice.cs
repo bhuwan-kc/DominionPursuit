@@ -13,14 +13,6 @@ public class Dice : MonoBehaviour
         diceAnim = this.GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    /*
-    void Update()
-    {
-        
-    }
-    */
-
     //to generate a random dice output
     public int RollDice()
     {
