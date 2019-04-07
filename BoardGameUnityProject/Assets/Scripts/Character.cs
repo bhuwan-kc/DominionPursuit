@@ -61,7 +61,7 @@ public class Character : MonoBehaviour
         }
 
         if (currentTile > 0)
-            ObjectHandler.Instance.tiles[currentTile].GetComponent<Tile>().LeaveTile(team); //updating current tile as the character leaves
+            ObjectHandler.Instance.tiles[currentTile].GetComponent<Tile>().LeaveTile(team, idNum); //updating current tile as the character leaves
 
         StartCoroutine(TileTransitionStepsRoutine(steps));
     }
