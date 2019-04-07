@@ -82,7 +82,15 @@ public class AI_attempt : MonoBehaviour
 
         //if character is at start and all moves are neutral, get character out of start safely.
         if (location == 0 && ObjectHandler.Instance.tiles[move].GetComponent<Tile>().GetTileWeight() == 0)
+        {
             tileWeight = 1;
+            //if tile is occupied it'll favor moving a character to that location.
+            if (ObjectHandler.Instance.tiles[move].GetComponent<Tile>().CheckFaction() == 1 || ObjectHandler.Instance.tiles[move].GetComponent<Tile>().CheckFaction() == 3)
+            {
+                tileWeight = 2;
+                if (aggressive) tileWeight = 3;
+            }
+        }
         else if (location != -3)
         {
             location += move;
@@ -101,7 +109,7 @@ public class AI_attempt : MonoBehaviour
                 else tileWeight += 3;
             }
             //if a character is at full hp, a health tile is neutral.
-            if (tileWeight == 2 && ObjectHandler.Instance.player2Characters[arrayLocation].GetComponent<Character>().GetHealth() == 
+            if (tileWeight == 2 && ObjectHandler.Instance.player2Characters[arrayLocation].GetComponent<Character>().GetHealth() ==
                 ObjectHandler.Instance.player2Characters[arrayLocation].GetComponent<Character>().GetMaxHealth())
             {
                 tileWeight = 0;
