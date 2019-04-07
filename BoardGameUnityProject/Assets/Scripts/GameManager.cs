@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
     private int totalTiles = 78;                //total number of tiles on the game board
     private float diceRollAnimTime = 1.0f;      //time that dice rolls for
     public int currentPlayer = 1;               //indicates turn --> 1 for player1, 2 for player2
-    public bool vsAI = true;                    //if game is vs AI or not.
+    [SerializeField] private bool vsAI = true;                    //if game is vs AI or not.
     private int diceSum = 0;                    //sum of numbers from the die
     private int TpresetdiceSum = 1;              //preset dice sum for next dice roll ***FOR TESTING ONLY***
 
@@ -140,6 +140,9 @@ public class GameManager : MonoBehaviour
         ObjectHandler.Instance.Dice.GetComponent<Dice>().SetDiceFace(diceOutput);
         ObjectHandler.Instance.Dice2.GetComponent<Dice>().SetDiceFace(diceOutput2);
         diceSum = diceOutput + diceOutput2;
+
+        //log diceroll
+        Debug.Log("Dicesum is " + diceSum);
 
         //wait for some seconds and send the sum of the outputs to the character to move
         yield return new WaitForSeconds(diceRollAnimTime);
