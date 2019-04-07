@@ -69,12 +69,17 @@ public class Character : MonoBehaviour
     public void Damage(int x)
     {
         health -= x;
+        Debug.Log("Damaged! Health remaining for " + name + " is " + health);
         UIManager.Instance.UpdateHealthBar(characterName, health);
 
         if(health <= 0)
         {
             health = 0;
-            StartCoroutine(TileTransitionDirectRoutine(0));
+            //move to start if dead and have not reached checkpoint.
+            if (currentTile < 38)
+                StartCoroutine(TileTransitionDirectRoutine(0));
+            else
+                StartCoroutine(TileTransitionDirectRoutine(38));
             //move to start position
             //wait for some seconds
             //refill health
@@ -86,6 +91,8 @@ public class Character : MonoBehaviour
         //check if healing would take over max. If so, set health to max health. Otherwise heal.
         if (health + x > maxHealth) health = maxHealth;
         else health += x;
+
+        Debug.Log("Healed! Health remaining for " + name + " is " + health);
         return;
     }
 

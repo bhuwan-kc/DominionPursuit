@@ -28,6 +28,10 @@ public class AI_attempt : MonoBehaviour
         //50% chance of AI being aggressive.
         if (Random.Range(0, 2) == 0) aggressive = false;
         else aggressive = true;
+
+        //-------- TESTING ---------
+        //aggressive always is true for testing... for now.
+        aggressive = true;
         Debug.Log("AI Aggression is " + aggressive);
     }
 
@@ -45,7 +49,6 @@ public class AI_attempt : MonoBehaviour
         //grab character current location.
         for (int i = 0; i < 3; i++) {
             characterLocations[i] = ObjectHandler.Instance.player2Characters[i].GetComponent<Character>().GetCurrentTile();
-            //Debug.Log("Start: characterLocation[" + i + "] is " + characterLocations[i]);
             if (characterLocations[i] >= 78) characterLocations[i] = -3; //-3 means never pick it.
             //-1 is off the board, but isn't really a space. So the AI will look at the space it will actually land on.
             else if (characterLocations[i] == -1) characterLocations[i] = 0;
@@ -60,7 +63,7 @@ public class AI_attempt : MonoBehaviour
         //see what the weight of where each character moves to would be.
         for (int i = 0; i < 3; i++)
         {
-            tileWeight[i] = FindMoveWeight(characterLocations[i], move);
+            tileWeight[i] = FindMoveWeight(characterLocations[i], move, i);
         }
 
         //output move distance and weights of tiles characters would land on.
@@ -73,7 +76,7 @@ public class AI_attempt : MonoBehaviour
     }
 
     //find weight of next move. All movement related decision making goes here.
-    private int FindMoveWeight(int location, int move)
+    private int FindMoveWeight(int location, int move, int arrayLocation)
     {
         int tileWeight = -6;
 
@@ -83,8 +86,11 @@ public class AI_attempt : MonoBehaviour
         else if (location != -3)
         {
             location += move;
-            //Debug.Log("Final: characterLocation[" + i + "] is " + characterLocations[i]);
             tileWeight = ObjectHandler.Instance.tiles[location].GetComponent<Tile>().GetTileWeight();
+
+            //if a character would die from landing on the space, heavily discourage the move.
+            if (tileWeight == -2 && ObjectHandler.Instance.player2Characters[arrayLocation].GetComponent<Character>().GetHealth() <= 3)
+                tileWeight -= 4;
 
             //if tile is occupied by an enemy, view it as more important to land on if it isn't a trap location.
             if ((ObjectHandler.Instance.tiles[location].GetComponent<Tile>().CheckFaction() == 1 ||
@@ -95,9 +101,8 @@ public class AI_attempt : MonoBehaviour
                 else tileWeight += 3;
             }
             //if a character is at full hp, a health tile is neutral.
-            //TODO: make it set to max hp, not 10.
-            if (tileWeight == 2 && ObjectHandler.Instance.GetComponent<Character>().GetHealth() == 
-                ObjectHandler.Instance.GetComponent<Character>().GetMaxHealth())
+            if (tileWeight == 2 && ObjectHandler.Instance.player2Characters[arrayLocation].GetComponent<Character>().GetHealth() == 
+                ObjectHandler.Instance.player2Characters[arrayLocation].GetComponent<Character>().GetMaxHealth())
             {
                 tileWeight = 0;
             }
@@ -108,7 +113,6 @@ public class AI_attempt : MonoBehaviour
     //wait for dice roll and then move best character choice.
     private IEnumerator DisplayDiceRoll(int roll1, int roll2)
     {
-        //Debug.Log("displayDiceRoll was called.");
         //this function plays the animation to roll the dice.
 
         //to play the dice roll animation
@@ -116,8 +120,6 @@ public class AI_attempt : MonoBehaviour
         ObjectHandler.Instance.Dice2.GetComponent<Dice>().DiceRollAnimation();
 
         float waitTime = GameManager.Instance.getDiceRollAnimTime();
-        //waitTime += (float) 1;
-        
 
         //set dice face.
         ObjectHandler.Instance.Dice.GetComponent<Dice>().SetDiceFace(roll1);
