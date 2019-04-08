@@ -181,7 +181,7 @@ public class Character : MonoBehaviour
         //move the character towards the targetPosition
         while (Vector3.Distance(transform.position, targetPosition) > 0.01f)
         {
-            transform.position = Vector3.MoveTowards(transform.position, targetPosition, (speed) * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, (speed+2.5f) * Time.deltaTime);
             yield return new WaitForEndOfFrame();
         }
 
