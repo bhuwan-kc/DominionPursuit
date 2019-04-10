@@ -165,7 +165,7 @@ public class Character : MonoBehaviour
         //move the character to the top of the stack
         _sprite.sortingOrder = newSortingOrder;
 
-        if(currentTile!=0)
+        if(currentTile>0)
             ObjectHandler.Instance.tiles[currentTile].GetComponent<Tile>().ArriveOnTile(team, idNum); //mark character is on new tile.
     }
 
