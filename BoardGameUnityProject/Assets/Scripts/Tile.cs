@@ -131,7 +131,7 @@ public class Tile : MonoBehaviour
 
             case 5:     //portal tile
                 {
-                    //code
+                    StartCoroutine(PortalTransitionRoutine(currentCharacter));
                 }break;
 
             default:
@@ -143,5 +143,16 @@ public class Tile : MonoBehaviour
         //otherwise, the turn will end from the character script after the movement
         if (tileWeight != -3 && tileWeight != 3)
             GameManager.Instance.EndTurn();
+    }
+
+    IEnumerator PortalTransitionRoutine(GameObject character)
+    {
+        yield return new WaitForSeconds(0.75f);
+        character.SetActive(false);
+        character.transform.position = ObjectHandler.Instance.tiles[45].transform.position;
+        character.GetComponent<Character>().SetCurrentTile(45);
+        yield return new WaitForSeconds(1.0f);
+        character.SetActive(true);
+        yield return new WaitForSeconds(0.75f);
     }
 }

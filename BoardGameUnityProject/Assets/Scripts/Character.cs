@@ -44,6 +44,11 @@ public class Character : MonoBehaviour
         return currentTile;
     }
 
+    public void SetCurrentTile(int tile)
+    {
+        currentTile = tile;
+    }
+
     //get character team.
     public int GetTeam()
     {
@@ -70,7 +75,6 @@ public class Character : MonoBehaviour
     {
         health -= x;
         Debug.Log("Damaged! Health remaining for " + name + " is " + health);
-        UIManager.Instance.UpdateHealthBar(characterName, health);
 
         if(health <= 0)
         {
@@ -81,6 +85,8 @@ public class Character : MonoBehaviour
             else
                 StartCoroutine(TileTransitionDirectRoutine(38, false));
         }
+
+        UIManager.Instance.UpdateHealthBar(characterName, health);
     }
 
     public void Heal(int x)
