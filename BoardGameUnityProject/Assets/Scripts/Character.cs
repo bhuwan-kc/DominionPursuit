@@ -51,7 +51,7 @@ public class Character : MonoBehaviour
     }
 
     //to move the character by the given steps 
-    public void UpdateTile(int steps)
+    public void UpdateTile(int steps, bool activateTileEffect)
     {
         //taking the character from it's starting position to tile 0
         if(currentTile == -1)
@@ -63,7 +63,7 @@ public class Character : MonoBehaviour
         if (currentTile > 0)
             ObjectHandler.Instance.tiles[currentTile].GetComponent<Tile>().LeaveTile(team, idNum); //updating current tile as the character leaves
 
-        StartCoroutine(TileTransitionStepsRoutine(steps));
+        StartCoroutine(TileTransitionStepsRoutine(steps, activateTileEffect));  //!waitForTileEffect == do not end the turn
     }
 
     public void Damage(int x)
@@ -77,20 +77,19 @@ public class Character : MonoBehaviour
             health = 0;
             //move to start if dead and have not reached checkpoint.
             if (currentTile < 38)
-                StartCoroutine(TileTransitionDirectRoutine(0));
+                StartCoroutine(TileTransitionDirectRoutine(0, false));
             else
-                StartCoroutine(TileTransitionDirectRoutine(38));
-            //move to start position
-            //wait for some seconds
-            //refill health
+                StartCoroutine(TileTransitionDirectRoutine(38, false));
         }
     }
 
     public void Heal(int x)
     {
         //check if healing would take over max. If so, set health to max health. Otherwise heal.
-        if (health + x > maxHealth) health = maxHealth;
-        else health += x;
+        if (health + x > maxHealth)
+            health = maxHealth;
+        else
+            health += x;
 
         UIManager.Instance.UpdateHealthBar(characterName, health);
         Debug.Log("Healed! Health remaining for " + name + " is " + health);
@@ -164,13 +163,10 @@ public class Character : MonoBehaviour
         }
         //move the character to the top of the stack
         _sprite.sortingOrder = newSortingOrder;
-
-        if(currentTile>0)
-            ObjectHandler.Instance.tiles[currentTile].GetComponent<Tile>().ArriveOnTile(team, idNum); //mark character is on new tile.
     }
 
     //moves the character to the target tile directly
-    IEnumerator TileTransitionDirectRoutine(int targetTile)
+    IEnumerator TileTransitionDirectRoutine(int targetTile, bool endTurn)
     {
         //bring the character to the top layer
         _sprite.sortingOrder = 10;
@@ -191,21 +187,29 @@ public class Character : MonoBehaviour
         //position the character properly on the new tile
         StackCharacterOnTile();
 
+        if (currentTile > 0)
+            ObjectHandler.Instance.tiles[currentTile].GetComponent<Tile>().ArriveOnTile(team, idNum, !endTurn); //mark character is on new tile.
+
         //end the player's turn
-        GameManager.Instance.EndTurn();
+        if (endTurn)
+            GameManager.Instance.EndTurn();
     }
 
     //moves the character through the tiles by given steps
-    IEnumerator TileTransitionStepsRoutine(int steps)
+    IEnumerator TileTransitionStepsRoutine(int steps, bool activateTileEffect)
     {
         //bring the character to the top layer
         _sprite.sortingOrder = 10;
 
         //move one tile at a time 
-        for (int i = 1; i <= steps; i++)
+        for (int i = 1; i <= Mathf.Abs(steps); i++)
         {
             //get the position of next tile as a destination 
-            Vector3 targetPosition = GameManager.Instance.GetTilePosition(currentTile + i).position;
+            Vector3 targetPosition;
+            if(steps >= 0)
+                targetPosition = GameManager.Instance.GetTilePosition(currentTile + i).position;
+            else    //if moving backwards 
+                targetPosition = GameManager.Instance.GetTilePosition(currentTile - i).position;
 
             //move the character towards the targetPosition
             while (Vector3.Distance(transform.position, targetPosition) > 0.01f)
@@ -220,9 +224,13 @@ public class Character : MonoBehaviour
 
         //position the character properly on the new tile
         StackCharacterOnTile();
-        
+
+        if (currentTile > 0)
+            ObjectHandler.Instance.tiles[currentTile].GetComponent<Tile>().ArriveOnTile(team, idNum, activateTileEffect); //mark character is on new tile.
+
         //end the player's turn
-        GameManager.Instance.EndTurn();
+        if (!activateTileEffect)
+            GameManager.Instance.EndTurn();
     }
 
 }

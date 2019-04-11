@@ -167,7 +167,7 @@ public class AI_attempt : MonoBehaviour
         }
 
         //make the move
-        ObjectHandler.Instance.player2Characters[charToMove].GetComponent<Character>().UpdateTile(move);
+        ObjectHandler.Instance.player2Characters[charToMove].GetComponent<Character>().UpdateTile(move, true);
 
         return charToMove;
     }

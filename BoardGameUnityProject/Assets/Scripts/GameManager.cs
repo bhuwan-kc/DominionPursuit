@@ -122,9 +122,9 @@ public class GameManager : MonoBehaviour
     public void CharacterUpdateTile(int n)
     {
         if (currentPlayer == 1)
-            ObjectHandler.Instance.player1Characters[n].GetComponent<Character>().UpdateTile(diceSum);
+            ObjectHandler.Instance.player1Characters[n].GetComponent<Character>().UpdateTile(diceSum, true);
         else if (currentPlayer == 2)
-            ObjectHandler.Instance.player2Characters[n].GetComponent<Character>().UpdateTile(diceSum);
+            ObjectHandler.Instance.player2Characters[n].GetComponent<Character>().UpdateTile(diceSum, true);
     }
 
     public void SetDiceSum(int sum)

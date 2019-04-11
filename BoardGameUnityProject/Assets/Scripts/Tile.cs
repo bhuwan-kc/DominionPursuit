@@ -18,26 +18,8 @@ public class Tile : MonoBehaviour
         return tileWeight;
     }
 
-    public void ArriveOnTile(int team, int id)
+    public void ArriveOnTile(int team, int id, bool activateTileEffect)
     {
-        if (!occupied) {
-            occupied = true;
-            faction = team;
-        }
-        else if (faction != team)
-        {
-            faction = 3;
-        }
-
-        numPeeps++;
-
-        TileEffect(team, id); //since tileWeight is stored per object, don't need to pass anything to this function?
-    }
-
-    public void ArriveOnTileNoEvent(int team) 
-    {
-        //no event call, meant to be used when an event card or tile effect moves a character so they do NOT trigger an event
-        //at the landed upon tile, while still marking their arrival.
         if (!occupied)
         {
             occupied = true;
@@ -49,6 +31,9 @@ public class Tile : MonoBehaviour
         }
 
         numPeeps++;
+
+        if(activateTileEffect)
+            TileEffect(team, id); //since tileWeight is stored per object, don't need to pass anything to this function?
     }
 
     public bool CheckEmpty()
@@ -74,79 +59,89 @@ public class Tile : MonoBehaviour
     }
 
     //tile effects. Weight is used as an ID for what happens.
-    public int TileEffect(int team, int id)
+    public void TileEffect(int team, int id)
     {
         //find character that landed on the tile.
-        //TODO: make a better way to do this that is less time intensive.
-        int charNum = -1; //used to store character location in array.
+            
+        GameObject currentCharacter = null;
+
         if (team == 1)
         {
             for (int i = 0; i < 3; i++)
             {
-                if (ObjectHandler.Instance.player1Characters[i].GetComponent<Character>().GetID() == id) charNum = i;
+                if (ObjectHandler.Instance.player1Characters[i].GetComponent<Character>().GetID() == id)
+                    currentCharacter = ObjectHandler.Instance.player1Characters[i];
             }
         }
         else
         {
             for (int i = 0; i < 3; i++)
             {
-                if (ObjectHandler.Instance.player2Characters[i].GetComponent<Character>().GetID() == id) charNum = i;
+                if (ObjectHandler.Instance.player2Characters[i].GetComponent<Character>().GetID() == id)
+                    currentCharacter = ObjectHandler.Instance.player2Characters[i];
             }
         }
-        if (charNum == -1)
+        if (currentCharacter == null)
         {
             Debug.Log("ERROR: Could not ID character in TileEffect function. Abandoning...");
-            return 0;
+            return;
         }
-
 
         //--------- tile effects below --------------------
         //in increasing order.
 
-        //tile that traps a character until a turn is "sacrificed" on them with a dice roll of 7+
-        if (tileWeight == -5)
+        switch(tileWeight)
         {
-            //code
+            case -5:    //tile that traps a character until a turn is "sacrificed" on them with a dice roll of 7+
+                {
+                    //code
+                }break;
+
+            case -3:    //tile that moves a character backwards if they land on it. Do NOT proc events on the tile you land on. 
+                {
+                    //regenerating random steps 
+                    int steps = Random.Range(-2, -8);
+                    Debug.Log("Moving back " + steps + " tiles!");
+                    currentCharacter.GetComponent<Character>().UpdateTile(steps, false);
+                }break;
+
+            case -2:    //tile that dammages characters that land on it.
+                {
+                    currentCharacter.GetComponent<Character>().Damage(3);
+                }break;
+
+            case 2:     //tile that heals characters that land on it.
+                {
+                    currentCharacter.GetComponent<Character>().Heal(5);
+                }break;
+
+            case 3:     //tile that moves a character forwards if they land on it. Do NOT proc events on the tile you land on.
+                {
+                    //regenerating random steps 
+                    int steps = Random.Range(2, 8);
+                    Debug.Log("Moving forward " + steps + " tiles!");
+                    currentCharacter.GetComponent<Character>().UpdateTile(steps, false);
+                }
+                break;
+
+            case 4:     //tile that gives a player an event card.
+                {
+                    //code
+                }break;
+
+            case 5:     //portal tile
+                {
+                    //code
+                }break;
+
+            default:
+                Debug.Log("No tile effect on this tile");
+                break;
         }
 
-        //tile that moves a character backwards if they land on it. Do NOT proc events on the tile you land on. 
-        else if (tileWeight == -3)
-        {
-            //code
-        }
-
-        //tile that dammages characters that land on it.
-        else if (tileWeight == -2)
-        {
-            if (team == 1) ObjectHandler.Instance.player1Characters[charNum].GetComponent<Character>().Damage(3);
-            else ObjectHandler.Instance.player2Characters[charNum].GetComponent<Character>().Damage(3);
-        }
-
-        //tile that heals characters that land on it.
-        else if (tileWeight == 2)
-        {
-            if (team == 1) ObjectHandler.Instance.player1Characters[charNum].GetComponent<Character>().Heal(2);
-            else ObjectHandler.Instance.player2Characters[charNum].GetComponent<Character>().Heal(2);
-        }
-
-        //tile that moves a character forwards if they land on it. Do NOT proc events on the tile you land on.
-        else if (tileWeight == 3)
-        {
-            //code
-        }
-
-        //tile that gives a player an event card.
-        else if (tileWeight == 4)
-        {
-            //code
-        }
-
-        //portal tile
-        else if (tileWeight == 5)
-        {
-            //code
-        }
-
-        return 0;
+        //if no effects related to character movement, then end the turn
+        //otherwise, the turn will end from the character script after the movement
+        if (tileWeight != -3 && tileWeight != 3)
+            GameManager.Instance.EndTurn();
     }
 }
