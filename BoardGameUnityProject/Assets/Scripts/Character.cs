@@ -74,7 +74,6 @@ public class Character : MonoBehaviour
     public void Damage(int x)
     {
         health -= x;
-        Debug.Log("Damaged! Health remaining for " + name + " is " + health);
 
         if(health <= 0)
         {
@@ -98,7 +97,6 @@ public class Character : MonoBehaviour
             health += x;
 
         UIManager.Instance.UpdateHealthBar(characterName, health);
-        Debug.Log("Healed! Health remaining for " + name + " is " + health);
         return;
     }
 
