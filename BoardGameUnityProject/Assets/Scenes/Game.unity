@@ -16213,7 +16213,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentPlayer: 1
-  vsAI: 0
+  vsAI: 1
 --- !u!4 &979862181
 Transform:
   m_ObjectHideFlags: 0
