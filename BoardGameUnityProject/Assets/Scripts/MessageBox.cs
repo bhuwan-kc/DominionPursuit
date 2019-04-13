@@ -73,6 +73,7 @@ public class MessageBox : MonoBehaviour
     public void DisplayButtons()
     {
         DisplayButtons("YES", "NO");
+        DisplayButtons(true);
     }
 
     //hide or display buttons
@@ -80,6 +81,8 @@ public class MessageBox : MonoBehaviour
     {
         Button1.SetActive(display);
         Button2.SetActive(display);
+        if(display)
+            StartCoroutine(WaitForButtonClick());
     }
 
     //buttons were clicked
@@ -87,12 +90,6 @@ public class MessageBox : MonoBehaviour
     {
         buttonClicked = button;
         buttonWasClicked = true;
-    }
-
-    //reset buttons
-    public void ResetButtonStatus()
-    {
-        buttonWasClicked = false;
     }
 
     IEnumerator EraseMessageRoutine(string msg, float time)
@@ -109,5 +106,17 @@ public class MessageBox : MonoBehaviour
             MessageTextBox.text = msg;
             yield return new WaitForSeconds(2.0f);
         }
+    }
+
+    IEnumerator WaitForButtonClick()
+    {
+        buttonWasClicked = false;
+        while(!buttonWasClicked)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+
+        MessageTextBox.text = " ";
+        DisplayButtons(false);
     }
 }

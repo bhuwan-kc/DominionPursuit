@@ -208,11 +208,21 @@ public class Character : MonoBehaviour
         //move one tile at a time 
         for (int i = 1; i <= Mathf.Abs(steps); i++)
         {
-            //division - give player an option to choose the path
-            if(currentTile+i == 47)
+            if(currentTile+i == 54)
             {
-                ObjectHandler.Instance.messageBox.GetComponent<MessageBox>().DisplayMessage("Which path do you want to move through?");
-                ObjectHandler.Instance.messageBox.GetComponent<MessageBox>().DisplayButtons("47","54");
+                currentTile = 61-i;
+            }
+            //division - give player an option to choose the path
+            else if(currentTile+i == 47)
+            {
+                MessageBox msg = ObjectHandler.Instance.messageBox.GetComponent<MessageBox>();
+                msg.DisplayMessage("Which path do you want to move through?");
+                msg.DisplayButtons("47","54");
+                while (!msg.buttonWasClicked)
+                    yield return new WaitForEndOfFrame();
+                //if second route was selected
+                if (msg.buttonClicked == 2)
+                    currentTile = 54-i;
             }
 
             //get the position of next tile as a destination 
