@@ -100,7 +100,7 @@ public class Tile : MonoBehaviour
             case -3:    //tile that moves a character backwards if they land on it. Do NOT proc events on the tile you land on. 
                 {
                     //regenerating random steps 
-                    int steps = Random.Range(-2, -8);
+                    int steps = Random.Range(-1, -7);
                     Debug.Log("Moving back " + steps + " tiles!");
                     currentCharacter.GetComponent<Character>().UpdateTile(steps, false);
                 }break;
@@ -118,7 +118,7 @@ public class Tile : MonoBehaviour
             case 3:     //tile that moves a character forwards if they land on it. Do NOT proc events on the tile you land on.
                 {
                     //regenerating random steps 
-                    int steps = Random.Range(2, 8);
+                    int steps = Random.Range(1, 7);
                     Debug.Log("Moving forward " + steps + " tiles!");
                     currentCharacter.GetComponent<Character>().UpdateTile(steps, false);
                 }
@@ -139,9 +139,8 @@ public class Tile : MonoBehaviour
                 break;
         }
 
-        //if no effects related to character movement, then end the turn
-        //otherwise, the turn will end from the character script after the movement
-        if (tileWeight != -3 && tileWeight != 3)
+        //tile effects -3, 3, 5 call their own endturn 
+        if (tileWeight != -3 && tileWeight != 3 && tileWeight != 5)
             GameManager.Instance.EndTurn();
     }
 
@@ -154,5 +153,6 @@ public class Tile : MonoBehaviour
         yield return new WaitForSeconds(1.0f);
         character.SetActive(true);
         yield return new WaitForSeconds(0.75f);
+        GameManager.Instance.EndTurn();
     }
 }

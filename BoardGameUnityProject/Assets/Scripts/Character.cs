@@ -31,7 +31,7 @@ public class Character : MonoBehaviour
 
     void Update()
     {
-        if (health == 0 && currentTile == 0)
+        if (health == 0 && (currentTile == 0 || currentTile == 38))
         {
             health = maxHealth;
             UIManager.Instance.UpdateHealthBar(characterName, health);
@@ -47,6 +47,7 @@ public class Character : MonoBehaviour
     public void SetCurrentTile(int tile)
     {
         currentTile = tile;
+        UIManager.Instance.UpdateCurrentTileText(currentTile, GetCharacterNumber());
     }
 
     //get character team.
@@ -135,8 +136,6 @@ public class Character : MonoBehaviour
 
     public void StackCharacterOnTile()
     {
-        UIManager.Instance.UpdateCurrentTileText(currentTile, GetCharacterNumber());
-
         //bring the character back to the ground level
         int newSortingOrder = 6;
         
@@ -186,7 +185,7 @@ public class Character : MonoBehaviour
         }
 
         transform.position = targetPosition;    //for better alignment
-        currentTile = targetTile;   //update the currentTile counter of the character
+        SetCurrentTile(targetTile);             //update the currentTile counter of the character
 
         //position the character properly on the new tile
         StackCharacterOnTile();
@@ -224,12 +223,12 @@ public class Character : MonoBehaviour
 
             transform.position = targetPosition;    //to better position the character on the tile
         }
-        currentTile += steps;       //update the currentTile status of the character
+        SetCurrentTile(currentTile + steps);       //update the currentTile status of the character
 
         //position the character properly on the new tile
         StackCharacterOnTile();
 
-        if (currentTile > 0)
+        if (currentTile > 0 && currentTile < 78)
             ObjectHandler.Instance.tiles[currentTile].GetComponent<Tile>().ArriveOnTile(team, idNum, activateTileEffect); //mark character is on new tile.
 
         //end the player's turn
