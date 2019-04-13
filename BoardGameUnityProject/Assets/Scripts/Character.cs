@@ -6,6 +6,7 @@ using UnityEngine.UI;
 //Class to handle character behavior
 public class Character : MonoBehaviour
 {
+    [SerializeField]
     private int currentTile = -1;       //to track the current position of the character
     [SerializeField]
     private float  speed = 1.25f;       //the speed with which character moves across tiles
@@ -207,6 +208,13 @@ public class Character : MonoBehaviour
         //move one tile at a time 
         for (int i = 1; i <= Mathf.Abs(steps); i++)
         {
+            //division - give player an option to choose the path
+            if(currentTile+i == 47)
+            {
+                ObjectHandler.Instance.messageBox.GetComponent<MessageBox>().DisplayMessage("Which path do you want to move through?");
+                ObjectHandler.Instance.messageBox.GetComponent<MessageBox>().DisplayButtons("47","54");
+            }
+
             //get the position of next tile as a destination 
             Vector3 targetPosition;
             if(steps >= 0)

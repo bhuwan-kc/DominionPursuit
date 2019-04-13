@@ -1544,6 +1544,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b57a2651bcf9a9046af3f7f181b12ce4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentTile: -1
   speed: 1.25
   characterName: Cavalier
   maxHealth: 10
@@ -3845,7 +3846,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: a0da694e970c1ab44ad972284bd979fc, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.19607843, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -18944,6 +18945,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b57a2651bcf9a9046af3f7f181b12ce4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentTile: -1
   speed: 1.25
   characterName: Professor C
   maxHealth: 10
@@ -20480,6 +20482,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b57a2651bcf9a9046af3f7f181b12ce4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentTile: -1
   speed: 1.25
   characterName: Ninja Boy
   maxHealth: 10
@@ -23910,6 +23913,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b57a2651bcf9a9046af3f7f181b12ce4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentTile: -1
   speed: 1.25
   characterName: Eyepatch Pete
   maxHealth: 10
@@ -24577,6 +24581,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b57a2651bcf9a9046af3f7f181b12ce4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentTile: -1
   speed: 1.25
   characterName: The Knight
   maxHealth: 10
@@ -30535,6 +30540,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b57a2651bcf9a9046af3f7f181b12ce4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentTile: -1
   speed: 1.25
   characterName: Wild Yeti
   maxHealth: 10
@@ -30660,7 +30666,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: a0da694e970c1ab44ad972284bd979fc, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.19607843, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

@@ -62,7 +62,7 @@ public class MessageBox : MonoBehaviour
     }
 
     //display custom buttons
-    public void SetAndDisplayButtons(string button1String, string button2String)
+    public void DisplayButtons(string button1String, string button2String)
     {
         Button1Text.text = button1String;
         Button2Text.text = button2String;
@@ -70,9 +70,9 @@ public class MessageBox : MonoBehaviour
     }
 
     //display yes/no buttons
-    public void SetAndDisplayButtons()
+    public void DisplayButtons()
     {
-        SetAndDisplayButtons("YES", "NO");
+        DisplayButtons("YES", "NO");
     }
 
     //hide or display buttons
