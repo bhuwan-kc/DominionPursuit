@@ -8,8 +8,9 @@ public class MessageBox : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        leftPanelBg.SetActive(true);        /*** TEMP ***/
         DisplayButtons(false);
-        DisplayMessages(new string[] { "WELCOME!", "Please roll the dice to start the game..." });
+        DisplayMessage(new string[] { "WELCOME!", "Please roll the dice to start the game..." });
     }
 
     // Update is called once per frame
@@ -26,6 +27,9 @@ public class MessageBox : MonoBehaviour
     public GameObject Button2;
     public Text Button1Text;
     public Text Button2Text;
+    public GameObject boardCover;
+    public GameObject leftPanelBg;      /*** TEMP ***/
+
     public int buttonClicked = 1;
     public bool buttonWasClicked = false;
 
@@ -36,14 +40,14 @@ public class MessageBox : MonoBehaviour
     //***************************************************************
 
     //to display message for default short time (2 secs)
-    public void DisplayMessageOnce(string msg)
+    public void DisplayMessage(string msg)
     {
         MessageTextBox.text = msg;
         StartCoroutine(EraseMessageRoutine(msg, 2.0f));
     }
 
     //to display message until it is replaced by another
-    public void DisplayMessage(string msg)
+    public void DisplayMessageContinued(string msg)
     {
         MessageTextBox.text = msg;
     }
@@ -56,7 +60,7 @@ public class MessageBox : MonoBehaviour
     }
 
     //to display series of messages
-    public void DisplayMessages(string[] messages)
+    public void DisplayMessage(string[] messages)
     {
         StartCoroutine(DisplayMessagesRoutine(messages));
     }
@@ -111,11 +115,13 @@ public class MessageBox : MonoBehaviour
     IEnumerator WaitForButtonClick()
     {
         buttonWasClicked = false;
+        boardCover.SetActive(true);
         while(!buttonWasClicked)
         {
             yield return new WaitForEndOfFrame();
         }
 
+        boardCover.SetActive(false);
         MessageTextBox.text = " ";
         DisplayButtons(false);
     }

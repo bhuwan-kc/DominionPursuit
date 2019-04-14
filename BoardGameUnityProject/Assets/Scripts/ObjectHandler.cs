@@ -38,5 +38,11 @@ public class ObjectHandler : MonoBehaviour
     public GameObject[] player2Characters = new GameObject[3];
     public GameObject[] tiles = new GameObject[80];     //an array of all the tiles on the board
     public GameObject pauseMenu;
-    public GameObject messageBox;
+    public GameObject messageBoxObj;
+    public GameObject eventCards;
+
+    public MessageBox GetMessageBox()
+    {
+        return messageBoxObj.GetComponent<MessageBox>();
+    }
 }

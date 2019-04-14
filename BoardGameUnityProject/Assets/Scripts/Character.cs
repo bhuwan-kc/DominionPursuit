@@ -47,6 +47,11 @@ public class Character : MonoBehaviour
 
     public void SetCurrentTile(int tile)
     {
+        if (tile < 0)
+            tile = 0;
+        else if (tile > 78)
+            tile = 78;
+
         currentTile = tile;
         UIManager.Instance.UpdateCurrentTileText(currentTile, GetCharacterNumber());
     }
@@ -208,14 +213,16 @@ public class Character : MonoBehaviour
         //move one tile at a time 
         for (int i = 1; i <= Mathf.Abs(steps); i++)
         {
+            //to connect tile 53 with 61
             if(currentTile+i == 54)
             {
                 currentTile = 61-i;
             }
+
             //division - give player an option to choose the path
             else if(currentTile+i == 47)
             {
-                MessageBox msg = ObjectHandler.Instance.messageBox.GetComponent<MessageBox>();
+                MessageBox msg = ObjectHandler.Instance.GetMessageBox();
                 msg.DisplayMessage("Which path do you want to move through?");
                 msg.DisplayButtons("47","54");
                 while (!msg.buttonWasClicked)
@@ -227,11 +234,18 @@ public class Character : MonoBehaviour
 
             //get the position of next tile as a destination 
             Vector3 targetPosition;
-            if(steps >= 0)
+            if (steps >= 0)
+            {
+                if (currentTile + i > 78)
+                    break;
                 targetPosition = GameManager.Instance.GetTilePosition(currentTile + i).position;
+            }
             else    //if moving backwards 
+            {
+                if (currentTile - i < 1)
+                    break;
                 targetPosition = GameManager.Instance.GetTilePosition(currentTile - i).position;
-
+            }
             //move the character towards the targetPosition
             while (Vector3.Distance(transform.position, targetPosition) > 0.01f)
             {
@@ -245,6 +259,9 @@ public class Character : MonoBehaviour
 
         //position the character properly on the new tile
         StackCharacterOnTile();
+
+        //wait before the tile effect and end turn
+        yield return new WaitForSeconds(0.5f);
 
         if (currentTile > 0 && currentTile < 78)
             ObjectHandler.Instance.tiles[currentTile].GetComponent<Tile>().ArriveOnTile(team, idNum, activateTileEffect); //mark character is on new tile.

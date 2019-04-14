@@ -90,6 +90,8 @@ public class Tile : MonoBehaviour
         //--------- tile effects below --------------------
         //in increasing order.
 
+        bool callsEndTurn = false;  //to indicate if that tile effect has its own call to end turn method
+
         switch(tileWeight)
         {
             case -5:    //tile that traps a character until a turn is "sacrificed" on them with a dice roll of 7+
@@ -103,6 +105,7 @@ public class Tile : MonoBehaviour
                     int steps = Random.Range(-1, -7);
                     Debug.Log("Moving back " + steps + " tiles!");
                     currentCharacter.GetComponent<Character>().UpdateTile(steps, false);
+                    callsEndTurn = true;
                 }break;
 
             case -2:    //tile that dammages characters that land on it.
@@ -121,17 +124,23 @@ public class Tile : MonoBehaviour
                     int steps = Random.Range(1, 7);
                     Debug.Log("Moving forward " + steps + " tiles!");
                     currentCharacter.GetComponent<Character>().UpdateTile(steps, false);
+                    callsEndTurn = true;
                 }
                 break;
 
             case 4:     //tile that gives a player an event card.
                 {
-                    //code
+                    if (!GameManager.Instance.vsAI || GameManager.Instance.currentPlayer != 2)
+                    {
+                        StartCoroutine(EventCardCollectionRoutine(team));
+                        callsEndTurn = true;
+                    }
                 }break;
 
             case 5:     //portal tile
                 {
                     StartCoroutine(PortalTransitionRoutine(currentCharacter));
+                    callsEndTurn = true;
                 }break;
 
             default:
@@ -139,10 +148,10 @@ public class Tile : MonoBehaviour
                 break;
         }
 
-        //tile effects -3, 3, 5 call their own endturn 
-        if (tileWeight != -3 && tileWeight != 3 && tileWeight != 5)
+        //tile effects -3, 3, 4, 5 call their own endturn 
+        if (!callsEndTurn)
             GameManager.Instance.EndTurn();
-    }
+    }     
 
     IEnumerator PortalTransitionRoutine(GameObject character)
     {
@@ -153,6 +162,25 @@ public class Tile : MonoBehaviour
         yield return new WaitForSeconds(1.0f);
         character.SetActive(true);
         yield return new WaitForSeconds(0.75f);
+        GameManager.Instance.EndTurn();
+    }
+
+    IEnumerator EventCardCollectionRoutine(int team)
+    {
+        ObjectHandler.Instance.GetMessageBox().DisplayMessageContinued("Event Cards Wizard has a gift for you...");
+        yield return new WaitForSeconds(1.75f);
+        for(int i=0; i<30; i++)
+        {
+            ObjectHandler.Instance.GetMessageBox().DisplayMessageContinued(ObjectHandler.Instance.eventCards.GetComponent<EventCards>().eventCardNames[i%4]);
+            if (i < 25)
+                yield return new WaitForSeconds(0.05f);
+            else
+                yield return new WaitForSeconds(0.25f);
+        }
+        int eventCard = Random.Range(0, 4);
+        ObjectHandler.Instance.GetMessageBox().DisplayMessageContinued(ObjectHandler.Instance.eventCards.GetComponent<EventCards>().eventCardNames[eventCard]);
+        yield return new WaitForSeconds(1f);
+        ObjectHandler.Instance.eventCards.GetComponent<EventCards>().UpdateEventCardCount(team, eventCard, true);
         GameManager.Instance.EndTurn();
     }
 }

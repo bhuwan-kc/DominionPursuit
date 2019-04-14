@@ -32,8 +32,8 @@ public class CharacterSelection : MonoBehaviour
     //************************* PROPERTIES **************************
     //***************************************************************
 
-    private int selected = 0;               //the character number that was selected
-    private bool selectedValueSet = false;  //to detect when the player select a character
+    public int selected = 0;               //the character number that was selected
+    public bool selectedValueSet = false;  //to detect when the player select a character
 
 
 
@@ -43,18 +43,18 @@ public class CharacterSelection : MonoBehaviour
     //***************************************************************
 
     //to display the character highlighter in the game
-    private void showHighlighter(bool show)
+    private void showHighlighter(bool show, int player)
     {
         for (int i = 0; i < 3; i++)
         {
-            if (GameManager.Instance.currentPlayer == 1)
+            if (player == 1)
             {
                 //highlighter on the game board
                 ObjectHandler.Instance.player1Characters[i].GetComponent<Character>().Highlighter.SetActive(show);
                 //highlighter on the profile tab
                 UIManager.Instance.selectors1[i].SetActive(show);
             }
-            else if (GameManager.Instance.currentPlayer == 2)
+            else if (player == 2)
             {
                 ObjectHandler.Instance.player2Characters[i].GetComponent<Character>().Highlighter.SetActive(show);
                 UIManager.Instance.selectors2[i].SetActive(show);
@@ -70,27 +70,25 @@ public class CharacterSelection : MonoBehaviour
         selectedValueSet = true;
     }
 
-    public void GetCharacter()
+    public void GetCharacter(int player)
     {
         //turn on the highlighter
-        showHighlighter(true);
-        StartCoroutine(CharacterSelectionRoutine());
+        showHighlighter(true, player);
+        selectedValueSet = false;
+        StartCoroutine(CharacterSelectionRoutine(player));
     }
 
     //------------------- IENUMERATOR -----------------------START
 
     //to wait for player selection and then return selected character
-    IEnumerator CharacterSelectionRoutine()
+    IEnumerator CharacterSelectionRoutine(int player)
     {
-        while(!selectedValueSet)
+        while (!selectedValueSet)
         {
             yield return new WaitForEndOfFrame();
         }
-        selectedValueSet = false;
         //hide highlighters
-        showHighlighter(false);
-        //return the selected character number to the GameManager
-        GameManager.Instance.CharacterUpdateTile(selected);
+        showHighlighter(false, player);
     }
 
     //------------------- IENUMERATOR -----------------------END

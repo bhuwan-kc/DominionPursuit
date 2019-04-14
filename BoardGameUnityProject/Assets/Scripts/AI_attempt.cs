@@ -4,25 +4,10 @@ using UnityEngine;
 
 public class AI_attempt : MonoBehaviour
 {
-    //create static instance of ai_attempt
     private static AI_attempt _ai;
     private static bool aggressive; //used to hold if the AI is aggressive or not.
 
-    public static AI_attempt ai
-    {
-        get
-        {
-            if (_ai != null)
-                return _ai;
-            else
-            {
-                Debug.Log("ai object is null");
-                return null;
-            }
-        }
-    }
-
-    private void Awake()
+    private void Start()
     {
         _ai = this;
         //50% chance of AI being aggressive.
@@ -170,18 +155,6 @@ public class AI_attempt : MonoBehaviour
         ObjectHandler.Instance.player2Characters[charToMove].GetComponent<Character>().UpdateTile(move, true);
 
         return charToMove;
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        //Do not need to be implemented if not used
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //Do not need to be implemented if not used
     }
 }
 

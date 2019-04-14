@@ -37,11 +37,13 @@ public class GameManager : MonoBehaviour
     private int totalTiles = 78;                //total number of tiles on the game board
     private float diceRollAnimTime = 1.0f;      //time that dice rolls for
     public int currentPlayer = 1;               //indicates turn --> 1 for player1, 2 for player2
-    [SerializeField] private bool vsAI = true;                    //if game is vs AI or not.
+    public bool vsAI = true;                    //if game is vs AI or not.
     private int diceSum = 0;                    //sum of numbers from the die
-    private int TpresetdiceSum = 1;              //preset dice sum for next dice roll ***FOR TESTING ONLY***
+    private int TpresetdiceSum = 1;             //preset dice sum for next dice roll ***FOR TESTING ONLY***
+    public bool canActivateEventCard = true;
+    public int bonusSteps = 0;                  //Used for shortcut event card
 
-
+    public GameObject AI;
 
 
     //***************************************************************
@@ -74,6 +76,7 @@ public class GameManager : MonoBehaviour
     public void RollDice()
     {
         UIManager.Instance.DisableDice(true);
+        canActivateEventCard = false;
 
         //to play the dice roll animation
         ObjectHandler.Instance.Dice.GetComponent<Dice>().DiceRollAnimation();
@@ -111,10 +114,13 @@ public class GameManager : MonoBehaviour
         if (vsAI && currentPlayer == 2)
         {
             UIManager.Instance.DisableDice(true);
-            AI_attempt.ai.Comp_turn();
+            AI.GetComponent<AI_attempt>().Comp_turn();
         }
         else
+        {
             UIManager.Instance.DisableDice(false);
+            canActivateEventCard = true;
+        }
     }
 
     //to send signal to the character n about the diceSum 
@@ -139,7 +145,8 @@ public class GameManager : MonoBehaviour
     {
         ObjectHandler.Instance.Dice.GetComponent<Dice>().SetDiceFace(diceOutput);
         ObjectHandler.Instance.Dice2.GetComponent<Dice>().SetDiceFace(diceOutput2);
-        diceSum = diceOutput + diceOutput2;
+        diceSum = diceOutput + diceOutput2 + bonusSteps;    //adding bonusSteps, non zero when shortcut event card was played
+        bonusSteps = 0;                                     //reseting the bonusSteps 
 
         //log diceroll
         Debug.Log("Dicesum is " + diceSum);
@@ -149,7 +156,12 @@ public class GameManager : MonoBehaviour
 
         //passing control to the characterSelection script to let player select a character
         //for movement, the control is passed back to the CharacterUpdateTile method
-        CharacterSelection.Instance.GetCharacter();
+        CharacterSelection.Instance.GetCharacter(currentPlayer);
+        while(!CharacterSelection.Instance.selectedValueSet)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+        CharacterUpdateTile(CharacterSelection.Instance.selected);
     }
 
     //------------------- IENUMERATOR -----------------------END
