@@ -148,11 +148,19 @@ public class GameManager : MonoBehaviour
         diceSum = diceOutput + diceOutput2 + bonusSteps;    //adding bonusSteps, non zero when shortcut event card was played
         bonusSteps = 0;                                     //reseting the bonusSteps 
 
-        //log diceroll
-        Debug.Log("Dicesum is " + diceSum);
-
         //wait for some seconds and send the sum of the outputs to the character to move
         yield return new WaitForSeconds(diceRollAnimTime);
+
+        //display the new tile number for each character
+        GameObject[] characters = new GameObject[3];
+        if (currentPlayer == 1)
+            characters = ObjectHandler.Instance.player1Characters;
+        else
+            characters = ObjectHandler.Instance.player2Characters;
+        string msg = "Dice roll : "+diceSum+"\n\n";
+        foreach (GameObject x in characters)
+            msg += x.GetComponent<Character>().GetName() + " -> " + (x.GetComponent<Character>().GetCurrentTile()+diceSum)+"\n";   //TODO: replace target tile calculation with better method
+        ObjectHandler.Instance.GetMessageBox().DisplayMessageContinued(msg);
 
         //passing control to the characterSelection script to let player select a character
         //for movement, the control is passed back to the CharacterUpdateTile method

@@ -42,6 +42,8 @@ public class Character : MonoBehaviour
     //grab current character tile.
     public int GetCurrentTile()
     {
+        if (currentTile < 0)
+            return 0;
         return currentTile;
     }
 
