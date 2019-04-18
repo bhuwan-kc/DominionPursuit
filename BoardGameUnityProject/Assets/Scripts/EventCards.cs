@@ -90,10 +90,18 @@ public class EventCards : MonoBehaviour
         }
         int characterNum = CharacterSelection.Instance.selected;
 
-        if(GameManager.Instance.currentPlayer == 1)
+        if (GameManager.Instance.currentPlayer == 1)
+        {
             ObjectHandler.Instance.player1Characters[characterNum].GetComponent<Character>().Heal(3);
+            ObjectHandler.Instance.messageBoxObj.GetComponent<MessageBox>().DisplayMessage(ObjectHandler.Instance.player1Characters[characterNum].GetComponent<Character>().GetName() +
+                " heals and now has " + ObjectHandler.Instance.player1Characters[characterNum].GetComponent<Character>().GetHealth() + " hp.");
+        }
         else
+        {
             ObjectHandler.Instance.player2Characters[characterNum].GetComponent<Character>().Heal(3);
+            ObjectHandler.Instance.messageBoxObj.GetComponent<MessageBox>().DisplayMessage(ObjectHandler.Instance.player2Characters[characterNum].GetComponent<Character>().GetName() +
+                " heals and now has " + ObjectHandler.Instance.player2Characters[characterNum].GetComponent<Character>().GetHealth() + " hp.");
+        }
 
         yield return new WaitForSeconds(0.75f);
         UIManager.Instance.DisableDice(false);
@@ -118,9 +126,17 @@ public class EventCards : MonoBehaviour
         int characterNum = CharacterSelection.Instance.selected;
 
         if (opponent == 1)
+        {
             ObjectHandler.Instance.player1Characters[characterNum].GetComponent<Character>().Damage(4);
+            ObjectHandler.Instance.messageBoxObj.GetComponent<MessageBox>().DisplayMessage(ObjectHandler.Instance.player1Characters[characterNum].GetComponent<Character>().GetName() +
+                " suffers 4 damage and now has " + ObjectHandler.Instance.player1Characters[characterNum].GetComponent<Character>().GetHealth() + " hp.");
+        }
         else
+        {
             ObjectHandler.Instance.player2Characters[characterNum].GetComponent<Character>().Damage(4);
+            ObjectHandler.Instance.messageBoxObj.GetComponent<MessageBox>().DisplayMessage(ObjectHandler.Instance.player2Characters[characterNum].GetComponent<Character>().GetName() +
+                " suffers 4 damage and now has " + ObjectHandler.Instance.player2Characters[characterNum].GetComponent<Character>().GetHealth() + " hp.");
+        }
 
         yield return new WaitForSeconds(0.75f);
         UIManager.Instance.DisableDice(false);
@@ -153,9 +169,17 @@ public class EventCards : MonoBehaviour
         int characterNum = CharacterSelection.Instance.selected;
 
         if (opponent == 1)
+        {
             ObjectHandler.Instance.player1Characters[characterNum].GetComponent<Character>().UpdateTile(-5, false);
+            ObjectHandler.Instance.messageBoxObj.GetComponent<MessageBox>().DisplayMessage(ObjectHandler.Instance.player1Characters[characterNum].GetComponent<Character>().GetName() +
+                        " Is moving backwards 5 tiles.", 3f);
+        }
         else
+        {
             ObjectHandler.Instance.player2Characters[characterNum].GetComponent<Character>().UpdateTile(-5, false);
+            ObjectHandler.Instance.messageBoxObj.GetComponent<MessageBox>().DisplayMessage(ObjectHandler.Instance.player2Characters[characterNum].GetComponent<Character>().GetName() +
+                        " Is moving backwards 5 tiles.", 3f);
+        }
 
         yield return new WaitForSeconds(0.75f);
         UIManager.Instance.DisableDice(false);

@@ -17,7 +17,7 @@ public class AI_attempt : MonoBehaviour
         //-------- TESTING ---------
         //aggressive always is true for testing... for now.
         aggressive = true;
-        //Debug.Log("AI Aggression is " + aggressive);
+        Debug.Log("AI Aggression is " + aggressive);
     }
 
     //class variable decleration
@@ -26,6 +26,10 @@ public class AI_attempt : MonoBehaviour
     //computer's turn
     public void Comp_turn()
     {
+        //declare to the player it is the AI's turn.
+        ObjectHandler.Instance.messageBoxObj.GetComponent<MessageBox>().DisplayMessageContinued("Computer Turn.");
+
+
         //variable dec.
         int[] characterLocations = new int[3]; //used only to check where characters will go. does NOT store current location.
         int diceRoll1, diceRoll2; //store dice rolls for rolling animation.
@@ -41,7 +45,6 @@ public class AI_attempt : MonoBehaviour
 
         //start dice roll
         //generate diceroll for character movement.
-        SoundManagerScript.PlaySound(SoundManagerScript.Sound.rollDice);
         diceRoll1 = ObjectHandler.Instance.Dice.GetComponent<Dice>().RollDice();
         diceRoll2 = ObjectHandler.Instance.Dice.GetComponent<Dice>().RollDice();
         move = diceRoll1 + diceRoll2;
@@ -54,7 +57,7 @@ public class AI_attempt : MonoBehaviour
 
         //output move distance and weights of tiles characters would land on.
         //Debug.Log("AI rolled a total of " + move);
-        //Debug.Log("tileWeight[0] is " + tileWeight[0] + " TileWeight[1] is " + tileWeight[1] + " Tileweight[2] is " + tileWeight[2]);
+        Debug.Log("tileWeight[0] is " + tileWeight[0] + " TileWeight[1] is " + tileWeight[1] + " Tileweight[2] is " + tileWeight[2]);
 
         StartCoroutine(DisplayDiceRoll(diceRoll1, diceRoll2)); //displays dice roll, then moves the appropriate character.
 
@@ -73,8 +76,8 @@ public class AI_attempt : MonoBehaviour
             //if tile is occupied it'll favor moving a character to that location.
             if (ObjectHandler.Instance.tiles[move].GetComponent<Tile>().CheckFaction() == 1 || ObjectHandler.Instance.tiles[move].GetComponent<Tile>().CheckFaction() == 3)
             {
-                tileWeight = 2;
-                if (aggressive) tileWeight = 3;
+                tileWeight += 2;
+                if (aggressive) tileWeight += 3;
             }
         }
         else if (location != -3)
@@ -91,7 +94,7 @@ public class AI_attempt : MonoBehaviour
                 ObjectHandler.Instance.tiles[location].GetComponent<Tile>().CheckFaction() == 3) &&
                     tileWeight > -5)
             {
-                if (!aggressive) tileWeight++;
+                if (!aggressive) tileWeight += 1;
                 else tileWeight += 3;
             }
             //if a character is at full hp, a health tile is neutral.
@@ -100,6 +103,9 @@ public class AI_attempt : MonoBehaviour
             {
                 tileWeight -=2;
             }
+            //if a character is moving from before the checkpoint to after, weight it higher.
+            //have to subtract move from initial location due to move being added in earlier. Easier to read than function call.
+            if (location - move < 38 && location > 38) tileWeight += 5;
         }
         return tileWeight;
     }
@@ -109,7 +115,8 @@ public class AI_attempt : MonoBehaviour
     {
         //this function plays the animation to roll the dice.
 
-        //to play the dice roll animation
+        //to play the dice roll animation + sound
+        SoundManagerScript.PlaySound(SoundManagerScript.Sound.rollDice);
         ObjectHandler.Instance.Dice.GetComponent<Dice>().DiceRollAnimation();
         ObjectHandler.Instance.Dice2.GetComponent<Dice>().DiceRollAnimation();
 
@@ -154,6 +161,8 @@ public class AI_attempt : MonoBehaviour
 
         //make the move
         ObjectHandler.Instance.player2Characters[charToMove].GetComponent<Character>().UpdateTile(move, true);
+        ObjectHandler.Instance.messageBoxObj.GetComponent<MessageBox>().DisplayMessage("Computer moved " + 
+            ObjectHandler.Instance.player2Characters[charToMove].GetComponent<Character>().GetName() + " " + move + " spaces.", 4.5f);
 
         return charToMove;
     }

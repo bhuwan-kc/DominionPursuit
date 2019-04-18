@@ -108,7 +108,7 @@ public class GameManager : MonoBehaviour
 
     public void EndTurn()
     {
-        EndTurn(0.25f);
+        EndTurn(0.5f);
     }
 
     //to send signal to the character n about the diceSum 
@@ -170,17 +170,19 @@ public class GameManager : MonoBehaviour
         else
             currentPlayer = 1;
 
-        //Update the current turn text indicator
+        //Update the current turn text indicator and inform the player whose turn it is.
         UIManager.Instance.UpdateCurrentTurnText(currentPlayer, vsAI);
 
         //if playing against AI
         if (vsAI && currentPlayer == 2)
         {
             UIManager.Instance.DisableDice(true);
+            canActivateEventCard = false;
             AI.GetComponent<AI_attempt>().Comp_turn();
         }
         else
         {
+            ObjectHandler.Instance.messageBoxObj.GetComponent<MessageBox>().DisplayMessageContinued("Player " + currentPlayer + "'s turn! Use an event card or roll the dice!");
             UIManager.Instance.DisableDice(false);
             canActivateEventCard = true;
         }

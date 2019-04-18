@@ -33,7 +33,7 @@ public class Tile : MonoBehaviour
         numPeeps++;
 
         if(activateTileEffect)
-            TileEffect(team, id); //since tileWeight is stored per object, don't need to pass anything to this function?
+            TileEffect(team, id);
     }
 
     public bool CheckEmpty()
@@ -104,25 +104,34 @@ public class Tile : MonoBehaviour
                     //regenerating random steps 
                     int steps = Random.Range(-1, -7);
                     Debug.Log("Moving back " + steps + " tiles!");
+                    ObjectHandler.Instance.messageBoxObj.GetComponent<MessageBox>().DisplayMessage(currentCharacter.GetComponent<Character>().GetName() +
+                        " Is moving backwards " + steps + " tiles.", 3f);
                     currentCharacter.GetComponent<Character>().UpdateTile(steps, false);
                     callsEndTurn = true;
                 }break;
 
-            case -2:    //tile that dammages characters that land on it.
+            case -2:    //tile that dammages characters that land on it. Deals 3 damage.
                 {
                     currentCharacter.GetComponent<Character>().Damage(3);
+                    ObjectHandler.Instance.messageBoxObj.GetComponent<MessageBox>().DisplayMessage(currentCharacter.GetComponent<Character>().GetName() +
+                        " suffered 3 damage and now has " + currentCharacter.GetComponent<Character>().GetHealth() + " hp remaining.");
                 }break;
 
-            case 2:     //tile that heals characters that land on it.
+            case 2:     //tile that heals characters that land on it. Heals 2 hp.
                 {
-                    currentCharacter.GetComponent<Character>().Heal(5);
-                }break;
+                    currentCharacter.GetComponent<Character>().Heal(2);
+                    ObjectHandler.Instance.messageBoxObj.GetComponent<MessageBox>().DisplayMessage(currentCharacter.GetComponent<Character>().GetName() +
+                        " healed 2 damage and now has " + currentCharacter.GetComponent<Character>().GetHealth() + " hp.");
+                }
+                break;
 
             case 3:     //tile that moves a character forwards if they land on it. Do NOT proc events on the tile you land on.
                 {
                     //regenerating random steps 
                     int steps = Random.Range(1, 7);
                     Debug.Log("Moving forward " + steps + " tiles!");
+                    ObjectHandler.Instance.messageBoxObj.GetComponent<MessageBox>().DisplayMessage(currentCharacter.GetComponent<Character>().GetName() +
+                        " Is moving forward " + steps + " tiles.", 3f);
                     currentCharacter.GetComponent<Character>().UpdateTile(steps, false);
                     callsEndTurn = true;
                 }
@@ -132,7 +141,7 @@ public class Tile : MonoBehaviour
                 {
                     if (!GameManager.Instance.vsAI || GameManager.Instance.currentPlayer != 2)
                     {
-                        StartCoroutine(EventCardCollectionRoutine(team));
+                        StartCoroutine(EventCardCollectionRoutine(team)); //looks like this displays what card is gained, so no message added.
                         callsEndTurn = true;
                     }
                 }break;
@@ -140,6 +149,8 @@ public class Tile : MonoBehaviour
             case 5:     //portal tile
                 {
                     StartCoroutine(PortalTransitionRoutine(currentCharacter));
+                    ObjectHandler.Instance.messageBoxObj.GetComponent<MessageBox>().DisplayMessage(currentCharacter.GetComponent<Character>().GetName() + 
+                        "has teleported to tile 45!");
                     callsEndTurn = true;
                 }break;
 
@@ -169,7 +180,7 @@ public class Tile : MonoBehaviour
 
     IEnumerator EventCardCollectionRoutine(int team)
     {
-        ObjectHandler.Instance.GetMessageBox().DisplayMessageContinued("Event Cards Wizard has a gift for you...");
+        ObjectHandler.Instance.GetMessageBox().DisplayMessageContinued("Event Card Wizard has a gift for you...");
         yield return new WaitForSeconds(1.75f);
         for(int i=0; i<30; i++)
         {
