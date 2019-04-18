@@ -68,6 +68,7 @@ public class CharacterSelection : MonoBehaviour
     {
         selected = number;
         selectedValueSet = true;
+        SoundManagerScript.PlaySound(SoundManagerScript.Sound.buttonClick);
     }
 
     public void GetCharacter(int player)

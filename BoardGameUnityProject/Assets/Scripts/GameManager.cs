@@ -77,6 +77,7 @@ public class GameManager : MonoBehaviour
     {
         UIManager.Instance.DisableDice(true);
         canActivateEventCard = false;
+        SoundManagerScript.PlaySound(SoundManagerScript.Sound.rollDice);
 
         //to play the dice roll animation
         ObjectHandler.Instance.Dice.GetComponent<Dice>().DiceRollAnimation();
@@ -100,27 +101,14 @@ public class GameManager : MonoBehaviour
     }
 
     //to end a turn
+    public void EndTurn(float waitTime)
+    {
+        StartCoroutine(EndTurnRoutine(waitTime));
+    }
+
     public void EndTurn()
     {
-        if (currentPlayer == 1)
-            currentPlayer = 2;
-        else
-            currentPlayer = 1;
-        
-        //Update the current turn text indicator
-        UIManager.Instance.UpdateCurrentTurnText(currentPlayer, vsAI);
-
-        //if playing against AI
-        if (vsAI && currentPlayer == 2)
-        {
-            UIManager.Instance.DisableDice(true);
-            AI.GetComponent<AI_attempt>().Comp_turn();
-        }
-        else
-        {
-            UIManager.Instance.DisableDice(false);
-            canActivateEventCard = true;
-        }
+        EndTurn(0.25f);
     }
 
     //to send signal to the character n about the diceSum 
@@ -170,6 +158,32 @@ public class GameManager : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         CharacterUpdateTile(CharacterSelection.Instance.selected);
+    }
+
+    //waits for some time before ending the turn
+    IEnumerator EndTurnRoutine(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+
+        if (currentPlayer == 1)
+            currentPlayer = 2;
+        else
+            currentPlayer = 1;
+
+        //Update the current turn text indicator
+        UIManager.Instance.UpdateCurrentTurnText(currentPlayer, vsAI);
+
+        //if playing against AI
+        if (vsAI && currentPlayer == 2)
+        {
+            UIManager.Instance.DisableDice(true);
+            AI.GetComponent<AI_attempt>().Comp_turn();
+        }
+        else
+        {
+            UIManager.Instance.DisableDice(false);
+            canActivateEventCard = true;
+        }
     }
 
     //------------------- IENUMERATOR -----------------------END

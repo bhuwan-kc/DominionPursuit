@@ -21,14 +21,14 @@ public class Menu : MonoBehaviour
 
     public void StartGame()
     {
-        //soundManagerScript.PlaySound("buttonClick");
+        SoundManagerScript.PlaySound(SoundManagerScript.Sound.buttonClick);
         SceneManager.LoadScene(1);
     }
 
     public void PauseGame()
     {
         Time.timeScale = 0f;
-        //soundManagerScript.PlaySound("buttonClick");
+        SoundManagerScript.PlaySound(SoundManagerScript.Sound.buttonClick);
 
         //if pause menu not active, display it
         if (!ObjectHandler.Instance.pauseMenu.activeInHierarchy)
@@ -48,13 +48,13 @@ public class Menu : MonoBehaviour
     public void EndGame()
     {
         Time.timeScale = 1f;
-        //soundManagerScript.PlaySound("buttonClick");
+        SoundManagerScript.PlaySound(SoundManagerScript.Sound.buttonClick);
         SceneManager.LoadScene(0);
     }
 
     public void ExitGame()
     {
-        //soundManagerScript.PlaySound("buttonClick");
+        SoundManagerScript.PlaySound(SoundManagerScript.Sound.buttonClick);
         Application.Quit();
     }
 

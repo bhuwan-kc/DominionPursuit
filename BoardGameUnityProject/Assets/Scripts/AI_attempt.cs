@@ -17,7 +17,7 @@ public class AI_attempt : MonoBehaviour
         //-------- TESTING ---------
         //aggressive always is true for testing... for now.
         aggressive = true;
-        Debug.Log("AI Aggression is " + aggressive);
+        //Debug.Log("AI Aggression is " + aggressive);
     }
 
     //class variable decleration
@@ -41,6 +41,7 @@ public class AI_attempt : MonoBehaviour
 
         //start dice roll
         //generate diceroll for character movement.
+        SoundManagerScript.PlaySound(SoundManagerScript.Sound.rollDice);
         diceRoll1 = ObjectHandler.Instance.Dice.GetComponent<Dice>().RollDice();
         diceRoll2 = ObjectHandler.Instance.Dice.GetComponent<Dice>().RollDice();
         move = diceRoll1 + diceRoll2;
@@ -52,8 +53,8 @@ public class AI_attempt : MonoBehaviour
         }
 
         //output move distance and weights of tiles characters would land on.
-        Debug.Log("AI rolled a total of " + move);
-        Debug.Log("tileWeight[0] is " + tileWeight[0] + " TileWeight[1] is " + tileWeight[1] + " Tileweight[2] is " + tileWeight[2]);
+        //Debug.Log("AI rolled a total of " + move);
+        //Debug.Log("tileWeight[0] is " + tileWeight[0] + " TileWeight[1] is " + tileWeight[1] + " Tileweight[2] is " + tileWeight[2]);
 
         StartCoroutine(DisplayDiceRoll(diceRoll1, diceRoll2)); //displays dice roll, then moves the appropriate character.
 

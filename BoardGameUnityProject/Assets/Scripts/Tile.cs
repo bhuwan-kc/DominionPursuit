@@ -144,17 +144,18 @@ public class Tile : MonoBehaviour
                 }break;
 
             default:
-                Debug.Log("No tile effect on this tile");
+                //Debug.Log("No tile effect on this tile");
                 break;
         }
 
         //tile effects -3, 3, 4, 5 call their own endturn 
         if (!callsEndTurn)
-            GameManager.Instance.EndTurn();
+            GameManager.Instance.EndTurn(0.5f);
     }     
 
     IEnumerator PortalTransitionRoutine(GameObject character)
     {
+        SoundManagerScript.PlaySound(SoundManagerScript.Sound.portal);
         yield return new WaitForSeconds(0.75f);
         character.SetActive(false);
         character.transform.position = ObjectHandler.Instance.tiles[45].transform.position;
@@ -162,7 +163,8 @@ public class Tile : MonoBehaviour
         yield return new WaitForSeconds(1.0f);
         character.SetActive(true);
         yield return new WaitForSeconds(0.75f);
-        GameManager.Instance.EndTurn();
+        character.GetComponent<Character>().StackCharacterOnTile();
+        GameManager.Instance.EndTurn(1.0f);
     }
 
     IEnumerator EventCardCollectionRoutine(int team)

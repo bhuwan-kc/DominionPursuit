@@ -42,6 +42,8 @@ public class EventCards : MonoBehaviour
         GameManager.Instance.canActivateEventCard = false;
         //decrease the event card count for the type
         UpdateEventCardCount(GameManager.Instance.currentPlayer, index, false);
+        //play the sound
+        SoundManagerScript.PlaySound(SoundManagerScript.Sound.powerUp);
 
         switch(index)
         {

@@ -86,6 +86,7 @@ public class Character : MonoBehaviour
 
         if(health <= 0)
         {
+            SoundManagerScript.PlaySound(SoundManagerScript.Sound.death);
             health = 0;
             //move to start if dead and have not reached checkpoint.
             if (currentTile < 38)
@@ -93,12 +94,17 @@ public class Character : MonoBehaviour
             else
                 StartCoroutine(TileTransitionDirectRoutine(38, false));
         }
+        else
+            SoundManagerScript.PlaySound(SoundManagerScript.Sound.damage);
 
         UIManager.Instance.UpdateHealthBar(characterName, health);
     }
 
     public void Heal(int x)
     {
+        if(health != maxHealth)
+            SoundManagerScript.PlaySound(SoundManagerScript.Sound.powerUp);
+
         //check if healing would take over max. If so, set health to max health. Otherwise heal.
         if (health + x > maxHealth)
             health = maxHealth;
@@ -216,13 +222,13 @@ public class Character : MonoBehaviour
         for (int i = 1; i <= Mathf.Abs(steps); i++)
         {
             //to connect tile 53 with 61
-            if(currentTile+i == 54)
+            if(currentTile+i == 54 && steps > 0)
             {
                 currentTile = 61-i;
             }
 
             //division - give player an option to choose the path
-            else if(currentTile+i == 47)
+            else if(currentTile+i == 47 && steps > 0)
             {
                 MessageBox msg = ObjectHandler.Instance.GetMessageBox();
                 msg.DisplayMessage("Which path do you want to move through?");
