@@ -20437,7 +20437,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b57a2651bcf9a9046af3f7f181b12ce4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentTile: 76
+  currentTile: -1
   speed: 1.25
   characterName: Professor C
   maxHealth: 10
@@ -27810,7 +27810,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9159bdf1c1fa1d04d95c889868ec61db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileWeight: 3
+  tileWeight: 4
 --- !u!1 &1768209889
 GameObject:
   m_ObjectHideFlags: 0

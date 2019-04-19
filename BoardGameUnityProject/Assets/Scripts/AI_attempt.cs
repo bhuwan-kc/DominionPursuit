@@ -20,6 +20,11 @@ public class AI_attempt : MonoBehaviour
         Debug.Log("AI Aggression is " + aggressive);
     }
 
+    public bool getAggression()
+    {
+        return aggressive;
+    }
+
     //class variable decleration
     int[] tileWeight = new int[3]; //used to save weights of updated characterLocation tiles.
 
@@ -47,6 +52,9 @@ public class AI_attempt : MonoBehaviour
         //generate diceroll for character movement.
         diceRoll1 = ObjectHandler.Instance.Dice.GetComponent<Dice>().RollDice();
         diceRoll2 = ObjectHandler.Instance.Dice.GetComponent<Dice>().RollDice();
+
+        diceRoll1 = diceRoll2 = 5;
+
         move = diceRoll1 + diceRoll2;
 
         //see what the weight of where each character moves to would be.
@@ -80,7 +88,70 @@ public class AI_attempt : MonoBehaviour
                 if (aggressive) tileWeight += 3;
             }
         }
-        else if (location != -3 && location + move >= 78) tileWeight = 10;
+
+        //if a character will move to the end of the board, do that. 
+        else if (location != -3 && location + move >= 78) tileWeight = 20;
+
+        //else if the move stats before the split and ends after, decide based off both paths.
+        else if (location != -3 && location <= 46 && location + move >= 47)
+        {
+            //------------------------------left path calculation-----------------------------
+            location += move;
+            int leftTileWeight = ObjectHandler.Instance.tiles[location].GetComponent<Tile>().GetTileWeight();
+
+            //if a character would die from landing on the space, heavily discourage the move.
+            if (leftTileWeight == -2 && ObjectHandler.Instance.player2Characters[arrayLocation].GetComponent<Character>().GetHealth() <= 3)
+                leftTileWeight -= 4;
+
+            //if tile is occupied by an enemy, view it as more important to land on if it isn't a trap location.
+            if ((ObjectHandler.Instance.tiles[location].GetComponent<Tile>().CheckFaction() == 1 ||
+                ObjectHandler.Instance.tiles[location].GetComponent<Tile>().CheckFaction() == 3) &&
+                    leftTileWeight > -5)
+            {
+                if (!aggressive) tileWeight += 1;
+                else leftTileWeight += 3;
+            }
+            //if a character is at full hp, a health tile is neutral.
+            if (tileWeight == 2 && ObjectHandler.Instance.player2Characters[arrayLocation].GetComponent<Character>().GetHealth() ==
+                ObjectHandler.Instance.player2Characters[arrayLocation].GetComponent<Character>().GetMaxHealth())
+            {
+                leftTileWeight -= 2;
+            }
+
+            //----------------------------right path calculation--------------------------------
+            location -= move;
+            int movesAfterSplit = 46 - location; //should return # moves left.
+            location = 53 + movesAfterSplit;
+            int rightTileWeight = ObjectHandler.Instance.tiles[location].GetComponent<Tile>().GetTileWeight();
+
+            //if a character would die from landing on the space, heavily discourage the move.
+            if (rightTileWeight == -2 && ObjectHandler.Instance.player2Characters[arrayLocation].GetComponent<Character>().GetHealth() <= 3)
+                rightTileWeight -= 4;
+
+            //if tile is occupied by an enemy, view it as more important to land on if it isn't a trap location.
+            if ((ObjectHandler.Instance.tiles[location].GetComponent<Tile>().CheckFaction() == 1 ||
+                ObjectHandler.Instance.tiles[location].GetComponent<Tile>().CheckFaction() == 3) &&
+                    rightTileWeight > -5)
+            {
+                if (!aggressive) tileWeight += 1;
+                else rightTileWeight += 3;
+            }
+            //if a character is at full hp, a health tile is neutral.
+            if (tileWeight == 2 && ObjectHandler.Instance.player2Characters[arrayLocation].GetComponent<Character>().GetHealth() ==
+                ObjectHandler.Instance.player2Characters[arrayLocation].GetComponent<Character>().GetMaxHealth())
+            {
+                rightTileWeight -= 2;
+            }
+
+            //-------------------------------final decision----------------------------------------
+            Debug.Log("Route Decision: leftWeight is " + leftTileWeight + " and rightWeight is " + rightTileWeight);
+            if (rightTileWeight > leftTileWeight)
+                tileWeight = rightTileWeight;
+            else
+                tileWeight = leftTileWeight;
+        }
+
+        //else find weight
         else if (location != -3)
         {
             location += move;

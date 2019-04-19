@@ -230,14 +230,50 @@ public class Character : MonoBehaviour
             //division - give player an option to choose the path
             else if(currentTile+i == 47 && steps > 0)
             {
-                MessageBox msg = ObjectHandler.Instance.GetMessageBox();
-                msg.DisplayMessage("Which path do you want to move through?");
-                msg.DisplayButtons("47","54");
-                while (!msg.buttonWasClicked)
-                    yield return new WaitForEndOfFrame();
-                //if second route was selected
-                if (msg.buttonClicked == 2)
-                    currentTile = 54-i;
+                //AI decision
+                if (GameManager.Instance.vsAI && GameManager.Instance.currentPlayer == 2)
+                {
+                    //figure out where the character is landing on each path and the weight of that decision.
+                    int movesLeft = steps - i+1;
+                    //Debug.Log("Moves left is " + movesLeft);
+
+                    //right side
+                    int rightWeight = ObjectHandler.Instance.tiles[54 + movesLeft].GetComponent<Tile>().GetTileWeight();
+                    if (rightWeight == -2 && this.health < 3) rightWeight -= 4; //discourage choosing death.
+                    if (ObjectHandler.Instance.tiles[54 + movesLeft].GetComponent<Tile>().CheckFaction() == 1 ||
+                        ObjectHandler.Instance.tiles[54 + movesLeft].GetComponent<Tile>().CheckFaction() == 3)
+                    {
+                        rightWeight += 1;
+                        if (ObjectHandler.Instance.GetComponent<AI_attempt>().getAggression()) rightWeight += 2;
+                    }
+
+                    //left side
+                    int leftWeight = ObjectHandler.Instance.tiles[47 + movesLeft].GetComponent<Tile>().GetTileWeight();
+                    if (leftWeight == -2 && this.health < 3) leftWeight -= 4; //discourage choosing death.
+                    if (ObjectHandler.Instance.tiles[47 + movesLeft].GetComponent<Tile>().CheckFaction() == 1 ||
+                        ObjectHandler.Instance.tiles[47 + movesLeft].GetComponent<Tile>().CheckFaction() == 3)
+                    {
+                        leftWeight += 1;
+                        if (ObjectHandler.Instance.GetComponent<AI_attempt>().getAggression()) rightWeight += 2;
+                    }
+
+                    //if weight of right path is better than left, go right.
+                    if (rightWeight > leftWeight)
+                        currentTile = 54-i;
+                }
+
+                //player decision
+                else
+                {
+                    MessageBox msg = ObjectHandler.Instance.GetMessageBox();
+                    msg.DisplayMessage("Which path do you want to move through?");
+                    msg.DisplayButtons("47", "54");
+                    while (!msg.buttonWasClicked)
+                        yield return new WaitForEndOfFrame();
+                    //if second route was selected
+                    if (msg.buttonClicked == 2)
+                        currentTile = 54 - i;
+                }
             }
 
             //get the position of next tile as a destination 
