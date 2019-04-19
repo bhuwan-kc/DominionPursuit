@@ -80,6 +80,7 @@ public class AI_attempt : MonoBehaviour
                 if (aggressive) tileWeight += 3;
             }
         }
+        else if (location != -3 && location + move >= 78) tileWeight = 10;
         else if (location != -3)
         {
             location += move;
@@ -101,7 +102,7 @@ public class AI_attempt : MonoBehaviour
             if (tileWeight == 2 && ObjectHandler.Instance.player2Characters[arrayLocation].GetComponent<Character>().GetHealth() ==
                 ObjectHandler.Instance.player2Characters[arrayLocation].GetComponent<Character>().GetMaxHealth())
             {
-                tileWeight -=2;
+                tileWeight -= 2;
             }
             //if a character is moving from before the checkpoint to after, weight it higher.
             //have to subtract move from initial location due to move being added in earlier. Easier to read than function call.
