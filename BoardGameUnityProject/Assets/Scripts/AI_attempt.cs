@@ -53,8 +53,6 @@ public class AI_attempt : MonoBehaviour
         diceRoll1 = ObjectHandler.Instance.Dice.GetComponent<Dice>().RollDice();
         diceRoll2 = ObjectHandler.Instance.Dice.GetComponent<Dice>().RollDice();
 
-        diceRoll1 = diceRoll2 = 5;
-
         move = diceRoll1 + diceRoll2;
 
         //see what the weight of where each character moves to would be.

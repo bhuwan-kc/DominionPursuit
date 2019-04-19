@@ -258,7 +258,7 @@ public class Character : MonoBehaviour
                     }
 
                     //if weight of right path is better than left, go right.
-                    if (rightWeight > leftWeight)
+                    if (rightWeight < leftWeight)
                         currentTile = 54-i;
                 }
 
