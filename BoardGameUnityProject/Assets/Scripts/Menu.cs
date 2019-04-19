@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class Menu : MonoBehaviour
 {
     public GameObject creditPanel;
+    public GameObject settingPanel;
 
     // Start is called before the first frame update
     void Start()
@@ -61,6 +62,13 @@ public class Menu : MonoBehaviour
     public void Setting()
     {
         //display settings
+        if (settingPanel != null)
+        {
+            if (settingPanel.activeInHierarchy)
+                settingPanel.SetActive(false);
+            else
+                settingPanel.SetActive(true);
+        }
     }
 
     public void Credits()

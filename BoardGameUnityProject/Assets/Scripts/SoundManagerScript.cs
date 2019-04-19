@@ -16,8 +16,8 @@ public class SoundManagerScript : MonoBehaviour {
     private static AudioSource audioSrcSfx;
     private static AudioSource audioSrcMusic;
 
-    private static float sfxLevel = 0.95f;
-    private static float musicLevel = 0.25f;
+    public Slider sfxVolume;
+    public Slider musicVolume;
 
     private void Start()
     {
@@ -35,8 +35,10 @@ public class SoundManagerScript : MonoBehaviour {
         audioSrcSfx = sources[0];
         audioSrcMusic = sources[1];
 
-        audioSrcSfx.volume = sfxLevel;
-        audioSrcMusic.volume = musicLevel;
+        audioSrcSfx.volume = PlayerPrefs.GetFloat("sfxVolume",0.95f);
+        sfxVolume.value = audioSrcSfx.volume;
+        audioSrcMusic.volume = PlayerPrefs.GetFloat("musicVolume",0.10f);
+        musicVolume.value = audioSrcMusic.volume;
 
         if (SceneManager.GetActiveScene().buildIndex == 0)
             PlaySound(Sound.menu);
@@ -48,14 +50,16 @@ public class SoundManagerScript : MonoBehaviour {
     {
     }
 
-    public static void StopMusic()
+    public void SetMusicLevel()
     {
-        audioSrcMusic.Stop();
+        audioSrcMusic.volume = musicVolume.value;
+        PlayerPrefs.SetFloat("musicVolume", musicVolume.value);
     }
 
-    public static void StopSfx()
+    public void SetSfxLevel()
     {
-        audioSrcSfx.Stop();
+        audioSrcSfx.volume = sfxVolume.value;
+        PlayerPrefs.SetFloat("sfxVolume", sfxVolume.value);
     }
 
     public static void PlaySound(Sound clip)
