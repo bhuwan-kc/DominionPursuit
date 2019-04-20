@@ -32,7 +32,7 @@ public class AI_attempt : MonoBehaviour
     public void Comp_turn()
     {
         //declare to the player it is the AI's turn.
-        ObjectHandler.Instance.messageBoxObj.GetComponent<MessageBox>().DisplayMessageContinued("Computer Turn.");
+        ObjectHandler.Instance.GetMessageBox().DisplayMessageContinued("Computer Turn.");
 
 
         //variable dec.
@@ -231,8 +231,8 @@ public class AI_attempt : MonoBehaviour
 
         //make the move
         ObjectHandler.Instance.player2Characters[charToMove].GetComponent<Character>().UpdateTile(move, true);
-        ObjectHandler.Instance.messageBoxObj.GetComponent<MessageBox>().DisplayMessage("Computer moved " + 
-            ObjectHandler.Instance.player2Characters[charToMove].GetComponent<Character>().GetName() + " " + move + " spaces.", 4.5f);
+        ObjectHandler.Instance.GetMessageBox().DisplayMessageContinued("Computer moved " + 
+            ObjectHandler.Instance.player2Characters[charToMove].GetComponent<Character>().GetName() + " " + move + " spaces.");
 
         return charToMove;
     }

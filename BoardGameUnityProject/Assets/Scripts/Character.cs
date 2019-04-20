@@ -159,7 +159,7 @@ public class Character : MonoBehaviour
             if (this.currentTile == x.GetComponent<Character>().currentTile && this != x.GetComponent<Character>())
             {
                 //deal damage if current character belongs to player1
-                if (GameManager.Instance.currentPlayer == 1)
+                if (GameManager.Instance.currentPlayer == 1 && currentTile != 78)
                     x.GetComponent<Character>().Damage(5);
                 //to determine the layer sorting order so that the current character can be kept at the top
                 if (newSortingOrder <= x.GetComponent<SpriteRenderer>().sortingOrder)
@@ -172,7 +172,7 @@ public class Character : MonoBehaviour
             if (this.currentTile == x.GetComponent<Character>().currentTile && this != x.GetComponent<Character>())
             {
                 //deal damage if current character belongs to player2
-                if (GameManager.Instance.currentPlayer == 2)
+                if (GameManager.Instance.currentPlayer == 2 && currentTile != 78)
                     x.GetComponent<Character>().Damage(5);
                 if (newSortingOrder <= x.GetComponent<SpriteRenderer>().sortingOrder)
                     newSortingOrder = x.GetComponent<SpriteRenderer>().sortingOrder + 1;
@@ -280,8 +280,6 @@ public class Character : MonoBehaviour
             Vector3 targetPosition;
             if (steps >= 0)
             {
-                if (currentTile + i > 78)
-                    break;
                 targetPosition = GameManager.Instance.GetTilePosition(currentTile + i).position;
             }
             else    //if moving backwards 
@@ -298,6 +296,12 @@ public class Character : MonoBehaviour
             }
 
             transform.position = targetPosition;    //to better position the character on the tile
+
+            if (currentTile + i == 79)
+            {
+                steps = i-1;
+                break;
+            }
         }
         SetCurrentTile(currentTile + steps);       //update the currentTile status of the character
 
@@ -311,7 +315,7 @@ public class Character : MonoBehaviour
             ObjectHandler.Instance.tiles[currentTile].GetComponent<Tile>().ArriveOnTile(team, idNum, activateTileEffect); //mark character is on new tile.
 
         //end the player's turn
-        if (!activateTileEffect)
+        if (!activateTileEffect || currentTile == 78)
             GameManager.Instance.EndTurn();
     }
 

@@ -49,6 +49,10 @@ public class CharacterSelection : MonoBehaviour
         {
             if (player == 1)
             {
+                //ignore characters that have reached the end tile
+                if (ObjectHandler.Instance.player1Characters[i].GetComponent<Character>().GetCurrentTile() == 78)
+                    continue;
+
                 //highlighter on the game board
                 ObjectHandler.Instance.player1Characters[i].GetComponent<Character>().Highlighter.SetActive(show);
                 //highlighter on the profile tab
@@ -56,6 +60,10 @@ public class CharacterSelection : MonoBehaviour
             }
             else if (player == 2)
             {
+                //ignore characters that have reached the end tile
+                if (ObjectHandler.Instance.player2Characters[i].GetComponent<Character>().GetCurrentTile() == 78)
+                    continue;
+
                 ObjectHandler.Instance.player2Characters[i].GetComponent<Character>().Highlighter.SetActive(show);
                 UIManager.Instance.selectors2[i].SetActive(show);
             }

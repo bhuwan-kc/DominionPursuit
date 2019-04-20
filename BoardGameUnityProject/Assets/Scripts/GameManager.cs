@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
     //************************* PROPERTIES **************************
     //***************************************************************
 
-    private int totalTiles = 78;                //total number of tiles on the game board
+    private int totalTiles = 80;                //total number of tiles on the game board
     private float diceRollAnimTime = 1.0f;      //time that dice rolls for
     public int currentPlayer = 1;               //indicates turn --> 1 for player1, 2 for player2
     public bool vsAI = true;                    //if game is vs AI or not.
@@ -103,12 +103,38 @@ public class GameManager : MonoBehaviour
     //to end a turn
     public void EndTurn(float waitTime)
     {
-        StartCoroutine(EndTurnRoutine(waitTime));
+        if(!GameOver())
+            StartCoroutine(EndTurnRoutine(waitTime));
     }
 
     public void EndTurn()
     {
         EndTurn(0.5f);
+    }
+
+    //to detect game end
+    public bool GameOver()
+    {
+        bool gameEnd = true;
+        foreach(GameObject x in ObjectHandler.Instance.player1Characters)
+            if(x.GetComponent<Character>().GetCurrentTile() != 78)
+                gameEnd = false;
+        if(gameEnd)
+        {
+            //end game
+            return true;
+        }
+
+        gameEnd = true;
+        foreach (GameObject x in ObjectHandler.Instance.player2Characters)
+            if (x.GetComponent<Character>().GetCurrentTile() != 78)
+                gameEnd = false;
+        if (gameEnd)
+        {
+            //end game
+            return true;
+        }
+        return false;
     }
 
     //to send signal to the character n about the diceSum 
