@@ -121,7 +121,7 @@ public class GameManager : MonoBehaviour
                 gameEnd = false;
         if(gameEnd)
         {
-            //end game
+            GameOverDisplay(1);
             return true;
         }
 
@@ -131,10 +131,26 @@ public class GameManager : MonoBehaviour
                 gameEnd = false;
         if (gameEnd)
         {
-            //end game
+            GameOverDisplay(2);
             return true;
         }
         return false;
+    }
+
+    //to display game end screen
+    public void GameOverDisplay(int player)
+    {
+        //stop the game
+        Time.timeScale = 0f;
+        //set the winner text
+        if (player == 1)
+            UIManager.Instance.winnerText.text = "PLAYER 1";
+        else if (player == 2 && vsAI)
+            UIManager.Instance.winnerText.text = "COMPUTER";
+        else
+            UIManager.Instance.winnerText.text = "PLAYER 2";
+        //display the screen
+        ObjectHandler.Instance.gameEndPanel.SetActive(true);
     }
 
     //to send signal to the character n about the diceSum 

@@ -103,9 +103,8 @@ public class Tile : MonoBehaviour
                 {
                     //regenerating random steps 
                     int steps = Random.Range(-1, -7);
-                    Debug.Log("Moving back " + steps + " tiles!");
                     ObjectHandler.Instance.messageBoxObj.GetComponent<MessageBox>().DisplayMessage(currentCharacter.GetComponent<Character>().GetName() +
-                        " Is moving backwards " + steps + " tiles.", 3f);
+                        " Is moving backwards " + Mathf.Abs(steps) + " tiles.", 3f);
                     currentCharacter.GetComponent<Character>().UpdateTile(steps, false);
                     callsEndTurn = true;
                 }break;
@@ -129,7 +128,6 @@ public class Tile : MonoBehaviour
                 {
                     //regenerating random steps 
                     int steps = Random.Range(1, 7);
-                    Debug.Log("Moving forward " + steps + " tiles!");
                     ObjectHandler.Instance.messageBoxObj.GetComponent<MessageBox>().DisplayMessage(currentCharacter.GetComponent<Character>().GetName() +
                         " Is moving forward " + steps + " tiles.", 3f);
                     currentCharacter.GetComponent<Character>().UpdateTile(steps, false);

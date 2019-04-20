@@ -47,6 +47,7 @@ public class UIManager : MonoBehaviour
     public Text[] player2HealthText = new Text[3];
     public Text[] player1EventCardCounts = new Text[4];
     public Text[] player2EventCardCounts = new Text[4];
+    public Text winnerText;
 
     //***FOR TESTING ONLY***
     public GameObject TdiceSum;

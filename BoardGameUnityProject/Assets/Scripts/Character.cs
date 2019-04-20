@@ -297,10 +297,14 @@ public class Character : MonoBehaviour
 
             transform.position = targetPosition;    //to better position the character on the tile
 
-            if (currentTile + i == 79)
+            //if on final tile and is moving forward
+            if (currentTile + i == 78 && steps > 0)
             {
-                steps = i-1;
-                break;
+                //setting up the steps such that the next loop would take the character to tile 79 and break
+                i = steps - 1;
+                currentTile = 78 - i;
+                ObjectHandler.Instance.GetMessageBox().DisplayMessageContinued(name + " reached the final tile!");
+                yield return new WaitForSeconds(0.25f);
             }
         }
         SetCurrentTile(currentTile + steps);       //update the currentTile status of the character

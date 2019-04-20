@@ -40,6 +40,7 @@ public class ObjectHandler : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject messageBoxObj;
     public GameObject eventCards;
+    public GameObject gameEndPanel;
 
     public MessageBox GetMessageBox()
     {
