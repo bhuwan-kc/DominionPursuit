@@ -17,7 +17,7 @@ public class AI_attempt : MonoBehaviour
         //-------- TESTING ---------
         //aggressive always is true for testing... for now.
         aggressive = true;
-        Debug.Log("AI Aggression is " + aggressive);
+        //Debug.Log("AI Aggression is " + aggressive);
     }
 
     public bool getAggression()
@@ -63,7 +63,7 @@ public class AI_attempt : MonoBehaviour
 
         //output move distance and weights of tiles characters would land on.
         //Debug.Log("AI rolled a total of " + move);
-        Debug.Log("tileWeight[0] is " + tileWeight[0] + " TileWeight[1] is " + tileWeight[1] + " Tileweight[2] is " + tileWeight[2]);
+        //Debug.Log("tileWeight[0] is " + tileWeight[0] + " TileWeight[1] is " + tileWeight[1] + " Tileweight[2] is " + tileWeight[2]);
 
         StartCoroutine(DisplayDiceRoll(diceRoll1, diceRoll2)); //displays dice roll, then moves the appropriate character.
 
@@ -190,7 +190,7 @@ public class AI_attempt : MonoBehaviour
         ObjectHandler.Instance.Dice.GetComponent<Dice>().DiceRollAnimation();
         ObjectHandler.Instance.Dice2.GetComponent<Dice>().DiceRollAnimation();
 
-        float waitTime = GameManager.Instance.getDiceRollAnimTime();
+        float waitTime = GameManager.Instance.GetDiceRollAnimTime();
 
         //set dice face.
         ObjectHandler.Instance.Dice.GetComponent<Dice>().SetDiceFace(roll1);
@@ -230,7 +230,7 @@ public class AI_attempt : MonoBehaviour
         }
 
         //make the move
-        ObjectHandler.Instance.player2Characters[charToMove].GetComponent<Character>().UpdateTile(move, true);
+        ObjectHandler.Instance.player2Characters[charToMove].GetComponent<Character>().UpdateTile(move, true, false);
         ObjectHandler.Instance.GetMessageBox().DisplayMessageContinued("Computer moved " + 
             ObjectHandler.Instance.player2Characters[charToMove].GetComponent<Character>().GetName() + " " + move + " spaces.");
 

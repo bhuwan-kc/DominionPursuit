@@ -7,6 +7,7 @@ public class Menu : MonoBehaviour
 {
     public GameObject creditPanel;
     public GameObject settingPanel;
+    public GameObject setupPanel;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +22,19 @@ public class Menu : MonoBehaviour
     }
 
     public void StartGame()
+    {
+        if(setupPanel==null)
+        {
+            Debug.Log("Setup panel could not displayed!");
+            return;
+        }
+        if (setupPanel.activeInHierarchy)
+            setupPanel.SetActive(false);
+        else
+            setupPanel.SetActive(true);
+    }
+
+    public void LoadGame()
     {
         SoundManagerScript.PlaySound(SoundManagerScript.Sound.buttonClick);
         SceneManager.LoadScene(1);
@@ -50,6 +64,7 @@ public class Menu : MonoBehaviour
     {
         Time.timeScale = 1f;
         SoundManagerScript.PlaySound(SoundManagerScript.Sound.buttonClick);
+        GameSetup.vsAI = true;
         SceneManager.LoadScene(0);
     }
 

@@ -103,23 +103,23 @@ public class Tile : MonoBehaviour
                 {
                     //regenerating random steps 
                     int steps = Random.Range(-1, -7);
-                    ObjectHandler.Instance.messageBoxObj.GetComponent<MessageBox>().DisplayMessage(currentCharacter.GetComponent<Character>().GetName() +
-                        " Is moving backwards " + Mathf.Abs(steps) + " tiles.", 3f);
-                    currentCharacter.GetComponent<Character>().UpdateTile(steps, false);
+                    ObjectHandler.Instance.GetMessageBox().DisplayMessageContinued(currentCharacter.GetComponent<Character>().GetName() +
+                        " Is moving backwards " + Mathf.Abs(steps) + " tiles.");
+                    currentCharacter.GetComponent<Character>().UpdateTile(steps, false, true);
                     callsEndTurn = true;
                 }break;
 
             case -2:    //tile that dammages characters that land on it. Deals 3 damage.
                 {
-                    currentCharacter.GetComponent<Character>().Damage(3);
-                    ObjectHandler.Instance.messageBoxObj.GetComponent<MessageBox>().DisplayMessage(currentCharacter.GetComponent<Character>().GetName() +
+                    currentCharacter.GetComponent<Character>().Damage(GameManager.Instance.GetTileDamage());
+                    ObjectHandler.Instance.GetMessageBox().DisplayMessageContinued(currentCharacter.GetComponent<Character>().GetName() +
                         " suffered 3 damage and now has " + currentCharacter.GetComponent<Character>().GetHealth() + " hp remaining.");
                 }break;
 
             case 2:     //tile that heals characters that land on it. Heals 2 hp.
                 {
-                    currentCharacter.GetComponent<Character>().Heal(2);
-                    ObjectHandler.Instance.messageBoxObj.GetComponent<MessageBox>().DisplayMessage(currentCharacter.GetComponent<Character>().GetName() +
+                    currentCharacter.GetComponent<Character>().Heal(GameManager.Instance.GetTileHeal());
+                    ObjectHandler.Instance.GetMessageBox().DisplayMessageContinued(currentCharacter.GetComponent<Character>().GetName() +
                         " healed 2 damage and now has " + currentCharacter.GetComponent<Character>().GetHealth() + " hp.");
                 }
                 break;
@@ -128,9 +128,9 @@ public class Tile : MonoBehaviour
                 {
                     //regenerating random steps 
                     int steps = Random.Range(1, 7);
-                    ObjectHandler.Instance.messageBoxObj.GetComponent<MessageBox>().DisplayMessage(currentCharacter.GetComponent<Character>().GetName() +
-                        " Is moving forward " + steps + " tiles.", 3f);
-                    currentCharacter.GetComponent<Character>().UpdateTile(steps, false);
+                    ObjectHandler.Instance.GetMessageBox().DisplayMessageContinued(currentCharacter.GetComponent<Character>().GetName() +
+                        " Is moving forward " + steps + " tiles.");
+                    currentCharacter.GetComponent<Character>().UpdateTile(steps, false, true);
                     callsEndTurn = true;
                 }
                 break;
@@ -147,7 +147,7 @@ public class Tile : MonoBehaviour
             case 5:     //portal tile
                 {
                     StartCoroutine(PortalTransitionRoutine(currentCharacter));
-                    ObjectHandler.Instance.messageBoxObj.GetComponent<MessageBox>().DisplayMessage(currentCharacter.GetComponent<Character>().GetName() + 
+                    ObjectHandler.Instance.GetMessageBox().DisplayMessageContinued(currentCharacter.GetComponent<Character>().GetName() + 
                         "has teleported to tile 45!");
                     callsEndTurn = true;
                 }break;

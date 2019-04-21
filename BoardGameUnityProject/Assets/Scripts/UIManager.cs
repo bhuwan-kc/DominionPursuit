@@ -53,6 +53,10 @@ public class UIManager : MonoBehaviour
     public GameObject TdiceSum;
     public Text TdiceSumText;
 
+    public Text[] player1CharacterNames = new Text[3];
+    public Text[] player2CharacterNames = new Text[3];
+    public Image[] player1CharacterProfile = new Image[3];
+    public Image[] player2CharacterProfile = new Image[3];
 
 
 
@@ -61,10 +65,8 @@ public class UIManager : MonoBehaviour
     //***************************************************************
 
     //updates the current tile indicator for the given character
-    public void UpdateCurrentTileText(int tile, int characterNumber)
+    public void UpdateCurrentTileText(int tile, int characterNumber, int playerIndex)
     {
-        int playerIndex = GameManager.Instance.currentPlayer;
-
         if (playerIndex == 1)
             player1CurrentTileText[characterNumber].text = tile + "";
         else if(playerIndex == 2)

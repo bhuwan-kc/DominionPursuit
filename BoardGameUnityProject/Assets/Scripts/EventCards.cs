@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EventCards : MonoBehaviour
-{
+{ 
     // Start is called before the first frame update
     void Start()
     {
@@ -12,6 +12,13 @@ public class EventCards : MonoBehaviour
             player1EventCardCounts[i] = 0;
             player2EventCardCounts[i] = 0;
         }
+        //give two random event cards to both the players
+        UpdateEventCardCount(1, Random.Range(0, 4), true);
+        UpdateEventCardCount(1, Random.Range(0, 4), true);
+        UpdateEventCardCount(2, Random.Range(0, 4), true);
+        UpdateEventCardCount(2, Random.Range(0, 4), true);
+
+        UpdateSlots(GameManager.Instance.currentPlayer);
     }
 
     // Update is called once per frame
@@ -30,7 +37,7 @@ public class EventCards : MonoBehaviour
         if (!GameManager.Instance.canActivateEventCard)
             return;
 
-        if (player1EventCardCounts[index] == 0)
+        if ((GameManager.Instance.currentPlayer==1 && player1EventCardCounts[index] == 0) || (GameManager.Instance.currentPlayer == 2 && player2EventCardCounts[index] == 0))
         {
             ObjectHandler.Instance.GetMessageBox().DisplayMessageContinued(eventCardNames[index] + " has not been collected yet!");
             return;
@@ -79,6 +86,22 @@ public class EventCards : MonoBehaviour
         }
     }
 
+    //Update event card slots according to the current player
+    public void UpdateSlots(int player)
+    {
+        for(int i=0; i<4; i++)
+        {
+            if (player == 1)
+            {
+                UIManager.Instance.player1EventCardCounts[i].text = player1EventCardCounts[i] + "";
+            }
+            else
+            {
+                UIManager.Instance.player2EventCardCounts[i].text = player2EventCardCounts[i] + "";
+            }
+        }
+    }
+
     //Event card - MedKit
     IEnumerator ActivateEventCard1()
     {
@@ -92,13 +115,13 @@ public class EventCards : MonoBehaviour
 
         if (GameManager.Instance.currentPlayer == 1)
         {
-            ObjectHandler.Instance.player1Characters[characterNum].GetComponent<Character>().Heal(3);
+            ObjectHandler.Instance.player1Characters[characterNum].GetComponent<Character>().Heal(GameManager.Instance.GetEventHeal());
             ObjectHandler.Instance.messageBoxObj.GetComponent<MessageBox>().DisplayMessage(ObjectHandler.Instance.player1Characters[characterNum].GetComponent<Character>().GetName() +
                 " heals and now has " + ObjectHandler.Instance.player1Characters[characterNum].GetComponent<Character>().GetHealth() + " hp.");
         }
         else
         {
-            ObjectHandler.Instance.player2Characters[characterNum].GetComponent<Character>().Heal(3);
+            ObjectHandler.Instance.player2Characters[characterNum].GetComponent<Character>().Heal(GameManager.Instance.GetEventHeal());
             ObjectHandler.Instance.messageBoxObj.GetComponent<MessageBox>().DisplayMessage(ObjectHandler.Instance.player2Characters[characterNum].GetComponent<Character>().GetName() +
                 " heals and now has " + ObjectHandler.Instance.player2Characters[characterNum].GetComponent<Character>().GetHealth() + " hp.");
         }
@@ -127,13 +150,13 @@ public class EventCards : MonoBehaviour
 
         if (opponent == 1)
         {
-            ObjectHandler.Instance.player1Characters[characterNum].GetComponent<Character>().Damage(4);
+            ObjectHandler.Instance.player1Characters[characterNum].GetComponent<Character>().Damage(GameManager.Instance.GetEventDamage());
             ObjectHandler.Instance.messageBoxObj.GetComponent<MessageBox>().DisplayMessage(ObjectHandler.Instance.player1Characters[characterNum].GetComponent<Character>().GetName() +
                 " suffers 4 damage and now has " + ObjectHandler.Instance.player1Characters[characterNum].GetComponent<Character>().GetHealth() + " hp.");
         }
         else
         {
-            ObjectHandler.Instance.player2Characters[characterNum].GetComponent<Character>().Damage(4);
+            ObjectHandler.Instance.player2Characters[characterNum].GetComponent<Character>().Damage(GameManager.Instance.GetEventDamage());
             ObjectHandler.Instance.messageBoxObj.GetComponent<MessageBox>().DisplayMessage(ObjectHandler.Instance.player2Characters[characterNum].GetComponent<Character>().GetName() +
                 " suffers 4 damage and now has " + ObjectHandler.Instance.player2Characters[characterNum].GetComponent<Character>().GetHealth() + " hp.");
         }
@@ -145,8 +168,8 @@ public class EventCards : MonoBehaviour
     //Event card - Shortcut
     void ActivateEventCard3()
     {
-        ObjectHandler.Instance.GetMessageBox().DisplayMessage(new string[] {"Taking the shortcut!","5 extra steps will be added to your dice roll..."});
-        GameManager.Instance.bonusSteps = 5;
+        ObjectHandler.Instance.GetMessageBox().DisplayMessage(new string[] {"Taking the shortcut!","4 extra steps will be added to your dice roll..."});
+        GameManager.Instance.bonusSteps = 4;
         UIManager.Instance.DisableDice(false);
     }
 
@@ -170,15 +193,15 @@ public class EventCards : MonoBehaviour
 
         if (opponent == 1)
         {
-            ObjectHandler.Instance.player1Characters[characterNum].GetComponent<Character>().UpdateTile(-5, false);
-            ObjectHandler.Instance.messageBoxObj.GetComponent<MessageBox>().DisplayMessage(ObjectHandler.Instance.player1Characters[characterNum].GetComponent<Character>().GetName() +
-                        " Is moving backwards 5 tiles.", 3f);
+            ObjectHandler.Instance.player1Characters[characterNum].GetComponent<Character>().UpdateTile(-5, false, false);
+            ObjectHandler.Instance.GetMessageBox().DisplayMessageContinued(ObjectHandler.Instance.player1Characters[characterNum].GetComponent<Character>().GetName() +
+                        " Is moving backwards 4 tiles.");
         }
         else
         {
-            ObjectHandler.Instance.player2Characters[characterNum].GetComponent<Character>().UpdateTile(-5, false);
-            ObjectHandler.Instance.messageBoxObj.GetComponent<MessageBox>().DisplayMessage(ObjectHandler.Instance.player2Characters[characterNum].GetComponent<Character>().GetName() +
-                        " Is moving backwards 5 tiles.", 3f);
+            ObjectHandler.Instance.player2Characters[characterNum].GetComponent<Character>().UpdateTile(-5, false, false);
+            ObjectHandler.Instance.GetMessageBox().DisplayMessageContinued(ObjectHandler.Instance.player2Characters[characterNum].GetComponent<Character>().GetName() +
+                        " Is moving backwards 4 tiles.");
         }
 
         yield return new WaitForSeconds(0.75f);

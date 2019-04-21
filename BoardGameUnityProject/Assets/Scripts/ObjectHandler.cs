@@ -41,6 +41,7 @@ public class ObjectHandler : MonoBehaviour
     public GameObject messageBoxObj;
     public GameObject eventCards;
     public GameObject gameEndPanel;
+    public GameObject[] characters = new GameObject[6];
 
     public MessageBox GetMessageBox()
     {

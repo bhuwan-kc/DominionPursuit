@@ -27,6 +27,10 @@ public class GameManager : MonoBehaviour
         _instance = this;
     }
 
+    public void Start()
+    {
+        Init();
+    }
 
 
 
@@ -45,16 +49,84 @@ public class GameManager : MonoBehaviour
 
     public GameObject AI;
 
+    //for tile effects
+    [SerializeField]
+    private int tileDamage = 4;
+    [SerializeField]
+    private int tileHeal = 4;
+
+    //for event cards
+    [SerializeField]
+    private int eventDamage = 4;
+    [SerializeField]
+    private int eventHeal = 4;
+
+    //for player
+    [SerializeField]
+    private int characterDamage = 4;
+
+
 
     //***************************************************************
     //************************* METHODS *****************************
     //***************************************************************
 
+    public void Init()
+    {
+        vsAI = GameSetup.vsAI;
+        int p1 = 0;
+        int p2 = 0;
+        for(int i=0; i<6; i++)
+        {
+            if(GameSetup.charactersForPlayer1[i])
+            {
+                ObjectHandler.Instance.player1Characters[p1] = Instantiate(ObjectHandler.Instance.characters[i]);
+                ObjectHandler.Instance.player1Characters[p1].GetComponent<Character>().SetTeam(1);
+                UIManager.Instance.player1CharacterNames[p1].text = ObjectHandler.Instance.player1Characters[p1].GetComponent<Character>().GetName();
+                UIManager.Instance.player1CharacterProfile[p1].sprite = ObjectHandler.Instance.player1Characters[p1].GetComponent<Character>().GetSprite();
+                p1++;
+            }
+            else
+            {
+                ObjectHandler.Instance.player2Characters[p2] = Instantiate(ObjectHandler.Instance.characters[i]);
+                ObjectHandler.Instance.player2Characters[p2].GetComponent<Character>().SetTeam(2);
+                UIManager.Instance.player2CharacterNames[p2].text = ObjectHandler.Instance.player2Characters[p2].GetComponent<Character>().GetName();
+                UIManager.Instance.player2CharacterProfile[p2].sprite = ObjectHandler.Instance.player2Characters[p2].GetComponent<Character>().GetSprite();
+                p2++;
+            }
+        }
+    }
+
     //------------------- GETTERS AND SETTERS -----------------------START
 
-    public float getDiceRollAnimTime()
+    public float GetDiceRollAnimTime()
     {
         return diceRollAnimTime;
+    }
+
+    public int GetTileDamage()
+    {
+        return tileDamage;
+    }
+
+    public int GetTileHeal()
+    {
+        return tileHeal;
+    }
+
+    public int GetEventDamage()
+    {
+        return eventDamage;
+    }
+
+    public int GetEventHeal()
+    {
+        return eventHeal;
+    }
+
+    public int GetCharacterDamage()
+    {
+        return characterDamage;
     }
 
     //------------------- GETTERS AND SETTERS -----------------------END
@@ -158,9 +230,9 @@ public class GameManager : MonoBehaviour
     public void CharacterUpdateTile(int n)
     {
         if (currentPlayer == 1)
-            ObjectHandler.Instance.player1Characters[n].GetComponent<Character>().UpdateTile(diceSum, true);
+            ObjectHandler.Instance.player1Characters[n].GetComponent<Character>().UpdateTile(diceSum, true, false);
         else if (currentPlayer == 2)
-            ObjectHandler.Instance.player2Characters[n].GetComponent<Character>().UpdateTile(diceSum, true);
+            ObjectHandler.Instance.player2Characters[n].GetComponent<Character>().UpdateTile(diceSum, true, false);
     }
 
     public void SetDiceSum(int sum)
@@ -222,11 +294,14 @@ public class GameManager : MonoBehaviour
             canActivateEventCard = false;
             AI.GetComponent<AI_attempt>().Comp_turn();
         }
+        //if playing PvP
         else
         {
             ObjectHandler.Instance.messageBoxObj.GetComponent<MessageBox>().DisplayMessageContinued("Player " + currentPlayer + "'s turn! Use an event card or roll the dice!");
             UIManager.Instance.DisableDice(false);
             canActivateEventCard = true;
+            //Update the event card slots for the player 
+            ObjectHandler.Instance.eventCards.GetComponent<EventCards>().UpdateSlots(currentPlayer);
         }
     }
 

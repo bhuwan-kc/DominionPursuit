@@ -13,11 +13,13 @@ public class Character : MonoBehaviour
     [SerializeField]
     private string characterName = "Unnamed";
     [SerializeField]
+    private Sprite characterImage = null;
+    [SerializeField]
     private int maxHealth = 10;
     private int health;
     [SerializeField]
-    private int team = 1;               //what team a character is on. Need to make a function to set this later.
-    [SerializeField] private int idNum = 0; //used to uniquely ID a character. Used to ID characters for tile effects, along with team.
+    private int team = 1;                       //what team a character is on. Need to make a function to set this later.
+    [SerializeField] private int idNum = 0;     //used to uniquely ID a character. Used to ID characters for tile effects, along with team.
     //TODO: Make more useful character ID numbers. Maybe using their numbers their images are saved as.
 
     private SpriteRenderer _sprite;
@@ -55,7 +57,7 @@ public class Character : MonoBehaviour
             tile = 78;
 
         currentTile = tile;
-        UIManager.Instance.UpdateCurrentTileText(currentTile, GetCharacterNumber());
+        UIManager.Instance.UpdateCurrentTileText(currentTile, GetCharacterNumber(), team);
     }
 
     //get character team.
@@ -64,8 +66,13 @@ public class Character : MonoBehaviour
         return team;
     }
 
+    public Sprite GetSprite()
+    {
+        return characterImage;
+    }
+
     //to move the character by the given steps 
-    public void UpdateTile(int steps, bool activateTileEffect)
+    public void UpdateTile(int steps, bool activateTileEffect, bool endTurn)
     {
         //taking the character from it's starting position to tile 0
         if(currentTile == -1)
@@ -77,7 +84,7 @@ public class Character : MonoBehaviour
         if (currentTile > 0)
             ObjectHandler.Instance.tiles[currentTile].GetComponent<Tile>().LeaveTile(team, idNum); //updating current tile as the character leaves
 
-        StartCoroutine(TileTransitionStepsRoutine(steps, activateTileEffect));  //!waitForTileEffect == do not end the turn
+        StartCoroutine(TileTransitionStepsRoutine(steps, activateTileEffect, endTurn)); 
     }
 
     public void Damage(int x)
@@ -102,9 +109,11 @@ public class Character : MonoBehaviour
 
     public void Heal(int x)
     {
-        if(health != maxHealth)
+        if (health != maxHealth)
+        {
             SoundManagerScript.PlaySound(SoundManagerScript.Sound.powerUp);
-
+            ObjectHandler.Instance.GetMessageBox().DisplayMessageContinued("HEALING...\n" + name);
+        }
         //check if healing would take over max. If so, set health to max health. Otherwise heal.
         if (health + x > maxHealth)
             health = maxHealth;
@@ -135,6 +144,11 @@ public class Character : MonoBehaviour
         return idNum;
     }
 
+    public void SetTeam(int team)
+    {
+        this.team = team;
+    }
+
     public int GetCharacterNumber()
     {
         for(int i=0; i<3; i++)
@@ -160,7 +174,7 @@ public class Character : MonoBehaviour
             {
                 //deal damage if current character belongs to player1
                 if (GameManager.Instance.currentPlayer == 1 && currentTile != 78)
-                    x.GetComponent<Character>().Damage(5);
+                    x.GetComponent<Character>().Damage(GameManager.Instance.GetCharacterDamage());
                 //to determine the layer sorting order so that the current character can be kept at the top
                 if (newSortingOrder <= x.GetComponent<SpriteRenderer>().sortingOrder)
                     newSortingOrder = x.GetComponent<SpriteRenderer>().sortingOrder + 1;
@@ -173,7 +187,7 @@ public class Character : MonoBehaviour
             {
                 //deal damage if current character belongs to player2
                 if (GameManager.Instance.currentPlayer == 2 && currentTile != 78)
-                    x.GetComponent<Character>().Damage(5);
+                    x.GetComponent<Character>().Damage(GameManager.Instance.GetCharacterDamage());
                 if (newSortingOrder <= x.GetComponent<SpriteRenderer>().sortingOrder)
                     newSortingOrder = x.GetComponent<SpriteRenderer>().sortingOrder + 1;
             }
@@ -213,7 +227,7 @@ public class Character : MonoBehaviour
     }
 
     //moves the character through the tiles by given steps
-    IEnumerator TileTransitionStepsRoutine(int steps, bool activateTileEffect)
+    IEnumerator TileTransitionStepsRoutine(int steps, bool activateTileEffect, bool endTurn)
     {
         //bring the character to the top layer
         _sprite.sortingOrder = 10;
@@ -319,7 +333,7 @@ public class Character : MonoBehaviour
             ObjectHandler.Instance.tiles[currentTile].GetComponent<Tile>().ArriveOnTile(team, idNum, activateTileEffect); //mark character is on new tile.
 
         //end the player's turn
-        if (!activateTileEffect || currentTile == 78)
+        if (endTurn || currentTile == 78)
             GameManager.Instance.EndTurn();
     }
 
