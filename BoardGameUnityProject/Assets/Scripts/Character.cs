@@ -83,8 +83,10 @@ public class Character : MonoBehaviour
             steps++;
         }
 
-        if (currentTile > 0)
+        if (currentTile > 0 && !onAlternatePath)
             ObjectHandler.Instance.tiles[currentTile].GetComponent<Tile>().LeaveTile(team, idNum); //updating current tile as the character leaves
+        else if(onAlternatePath && currentTile > 47 && currentTile < 54)
+            ObjectHandler.Instance.tilesAlternatePath[currentTile-47].GetComponent<Tile>().LeaveTile(team, idNum);
 
         StartCoroutine(TileTransitionStepsRoutine(steps, activateTileEffect, endTurn)); 
     }

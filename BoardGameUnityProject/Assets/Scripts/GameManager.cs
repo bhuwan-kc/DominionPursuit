@@ -240,6 +240,8 @@ public class GameManager : MonoBehaviour
             UIManager.Instance.winnerText.text = "PLAYER 2";
         //display the screen
         ObjectHandler.Instance.gameEndPanel.SetActive(true);
+        //play game end sound
+        SoundManagerScript.PlaySound(SoundManagerScript.Sound.gameWinner);
     }
 
     //to send signal to the character n about the diceSum 
