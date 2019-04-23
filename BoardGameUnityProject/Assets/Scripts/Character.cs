@@ -25,6 +25,8 @@ public class Character : MonoBehaviour
     private SpriteRenderer _sprite;
     public GameObject Highlighter;
 
+    private bool onAlternatePath = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -173,7 +175,7 @@ public class Character : MonoBehaviour
             if (this.currentTile == x.GetComponent<Character>().currentTile && this != x.GetComponent<Character>())
             {
                 //deal damage if current character belongs to player1
-                if (GameManager.Instance.currentPlayer == 1 && currentTile != 78)
+                if (GameManager.Instance.currentPlayer == 1 && currentTile != GameManager.Instance.finalTileNumber+1)
                     x.GetComponent<Character>().Damage(GameManager.Instance.GetCharacterDamage());
                 //to determine the layer sorting order so that the current character can be kept at the top
                 if (newSortingOrder <= x.GetComponent<SpriteRenderer>().sortingOrder)
@@ -186,7 +188,7 @@ public class Character : MonoBehaviour
             if (this.currentTile == x.GetComponent<Character>().currentTile && this != x.GetComponent<Character>())
             {
                 //deal damage if current character belongs to player2
-                if (GameManager.Instance.currentPlayer == 2 && currentTile != 78)
+                if (GameManager.Instance.currentPlayer == 2 && currentTile != GameManager.Instance.finalTileNumber + 1)
                     x.GetComponent<Character>().Damage(GameManager.Instance.GetCharacterDamage());
                 if (newSortingOrder <= x.GetComponent<SpriteRenderer>().sortingOrder)
                     newSortingOrder = x.GetComponent<SpriteRenderer>().sortingOrder + 1;
@@ -194,6 +196,38 @@ public class Character : MonoBehaviour
         }
         //move the character to the top of the stack
         _sprite.sortingOrder = newSortingOrder;
+    }
+
+    public void AIPathDecision(int steps)
+    {
+        int targetTile = steps + currentTile;
+        if (targetTile > 53 && targetTile < 47)
+            return;
+
+        //right side
+        int rightWeight = ObjectHandler.Instance.tilesAlternatePath[targetTile-47].GetComponent<Tile>().GetTileWeight();
+        if (rightWeight == -2 && this.health < 3)
+            rightWeight -= 4; //discourage choosing death.
+        if (ObjectHandler.Instance.tilesAlternatePath[targetTile-47].GetComponent<Tile>().CheckFaction() == 1 ||
+            ObjectHandler.Instance.tilesAlternatePath[targetTile-47].GetComponent<Tile>().CheckFaction() == 3)
+        {
+            rightWeight += 1;
+            if (ObjectHandler.Instance.AI.GetComponent<AI_attempt>().getAggression()) rightWeight += 2;
+        }
+
+        //left side
+        int leftWeight = ObjectHandler.Instance.tiles[targetTile].GetComponent<Tile>().GetTileWeight();
+        if (leftWeight == -2 && this.health < 3) leftWeight -= 4; //discourage choosing death.
+        if (ObjectHandler.Instance.tiles[targetTile].GetComponent<Tile>().CheckFaction() == 1 ||
+            ObjectHandler.Instance.tiles[targetTile].GetComponent<Tile>().CheckFaction() == 3)
+        {
+            leftWeight += 1;
+            if (ObjectHandler.Instance.AI.GetComponent<AI_attempt>().getAggression()) leftWeight += 2;
+        }
+
+        //if weight of right path is better than left, go right.
+        if (rightWeight < leftWeight)
+            onAlternatePath = true;
     }
 
     //moves the character to the target tile directly
@@ -219,7 +253,7 @@ public class Character : MonoBehaviour
         StackCharacterOnTile();
 
         if (currentTile > 0)
-            ObjectHandler.Instance.tiles[currentTile].GetComponent<Tile>().ArriveOnTile(team, idNum, !endTurn); //mark character is on new tile.
+            ObjectHandler.Instance.tiles[currentTile].GetComponent<Tile>().ArriveOnTile(team, idNum, false); //mark character is on new tile.
 
         //end the player's turn
         if (endTurn)
@@ -235,58 +269,25 @@ public class Character : MonoBehaviour
         //move one tile at a time 
         for (int i = 1; i <= Mathf.Abs(steps); i++)
         {
-            //to connect tile 53 with 61
-            if(currentTile+i == 54 && steps > 0)
-            {
-                currentTile = 61-i;
-            }
-
             //division - give player an option to choose the path
-            else if(currentTile+i == 47 && steps > 0)
+            if(currentTile+i == 47 && steps > 0 && (currentTile+steps) < 54)
             {
                 //AI decision
                 if (GameManager.Instance.vsAI && GameManager.Instance.currentPlayer == 2)
                 {
-                    //figure out where the character is landing on each path and the weight of that decision.
-                    int movesLeft = steps - i+1;
-                    //Debug.Log("Moves left is " + movesLeft);
-
-                    //right side
-                    int rightWeight = ObjectHandler.Instance.tiles[54 + movesLeft].GetComponent<Tile>().GetTileWeight();
-                    if (rightWeight == -2 && this.health < 3) rightWeight -= 4; //discourage choosing death.
-                    if (ObjectHandler.Instance.tiles[54 + movesLeft].GetComponent<Tile>().CheckFaction() == 1 ||
-                        ObjectHandler.Instance.tiles[54 + movesLeft].GetComponent<Tile>().CheckFaction() == 3)
-                    {
-                        rightWeight += 1;
-                        if (ObjectHandler.Instance.GetComponent<AI_attempt>().getAggression()) rightWeight += 2;
-                    }
-
-                    //left side
-                    int leftWeight = ObjectHandler.Instance.tiles[47 + movesLeft].GetComponent<Tile>().GetTileWeight();
-                    if (leftWeight == -2 && this.health < 3) leftWeight -= 4; //discourage choosing death.
-                    if (ObjectHandler.Instance.tiles[47 + movesLeft].GetComponent<Tile>().CheckFaction() == 1 ||
-                        ObjectHandler.Instance.tiles[47 + movesLeft].GetComponent<Tile>().CheckFaction() == 3)
-                    {
-                        leftWeight += 1;
-                        if (ObjectHandler.Instance.GetComponent<AI_attempt>().getAggression()) rightWeight += 2;
-                    }
-
-                    //if weight of right path is better than left, go right.
-                    if (rightWeight < leftWeight)
-                        currentTile = 54-i;
+                    AIPathDecision(steps);
                 }
-
                 //player decision
                 else
                 {
                     MessageBox msg = ObjectHandler.Instance.GetMessageBox();
-                    msg.DisplayMessage("Which path do you want to move through?");
-                    msg.DisplayButtons("47", "54");
+                    msg.DisplayMessageContinued("Which path do you want to move through?");
+                    msg.DisplayButtons("Left", "Right");
                     while (!msg.buttonWasClicked)
                         yield return new WaitForEndOfFrame();
                     //if second route was selected
                     if (msg.buttonClicked == 2)
-                        currentTile = 54 - i;
+                        onAlternatePath = true;
                 }
             }
 
@@ -294,14 +295,29 @@ public class Character : MonoBehaviour
             Vector3 targetPosition;
             if (steps >= 0)
             {
-                targetPosition = GameManager.Instance.GetTilePosition(currentTile + i).position;
+                if(onAlternatePath && currentTile+i >= 47 && currentTile+i <= 53)
+                    targetPosition = GameManager.Instance.GetAlternatePathTilePosition(currentTile + i).position;
+                else
+                    targetPosition = GameManager.Instance.GetTilePosition(currentTile + i).position;
+
+                //reset onAlternatePath indicator
+                if (onAlternatePath && (currentTile + i > 53 || currentTile + i < 47))
+                    onAlternatePath = false;
             }
             else    //if moving backwards 
             {
                 if (currentTile - i < 1)
                     break;
-                targetPosition = GameManager.Instance.GetTilePosition(currentTile - i).position;
+                if (onAlternatePath && currentTile-i >= 47)
+                    targetPosition = GameManager.Instance.GetAlternatePathTilePosition(currentTile - i).position;
+                else 
+                    targetPosition = GameManager.Instance.GetTilePosition(currentTile - i).position;
+
+                //reset onAlternatePath indicator
+                if (onAlternatePath && (currentTile - i > 53 || currentTile - i < 47))
+                    onAlternatePath = false;
             }
+
             //move the character towards the targetPosition
             while (Vector3.Distance(transform.position, targetPosition) > 0.01f)
             {
@@ -312,12 +328,12 @@ public class Character : MonoBehaviour
             transform.position = targetPosition;    //to better position the character on the tile
 
             //if on final tile and is moving forward
-            if (currentTile + i == 78 && steps > 0)
+            if (currentTile + i == GameManager.Instance.finalTileNumber && steps > 0)
             {
-                //setting up the steps such that the next loop would take the character to tile 79 and break
+                //setting up the steps such that the next loop would take the character to tile 72 and break
                 i = steps - 1;
-                currentTile = 78 - i;
-                ObjectHandler.Instance.GetMessageBox().DisplayMessageContinued(name + " reached the final tile!");
+                currentTile = GameManager.Instance.finalTileNumber - i;
+                ObjectHandler.Instance.GetMessageBox().DisplayMessageContinued(characterName + " reached the final tile!");
                 yield return new WaitForSeconds(0.25f);
             }
         }
@@ -329,11 +345,15 @@ public class Character : MonoBehaviour
         //wait before the tile effect and end turn
         yield return new WaitForSeconds(0.5f);
 
-        if (currentTile > 0 && currentTile < 78)
-            ObjectHandler.Instance.tiles[currentTile].GetComponent<Tile>().ArriveOnTile(team, idNum, activateTileEffect); //mark character is on new tile.
-
+        if (currentTile > 0 && currentTile < GameManager.Instance.finalTileNumber)
+        {
+            if(onAlternatePath)
+                ObjectHandler.Instance.tilesAlternatePath[currentTile-47].GetComponent<Tile>().ArriveOnTile(team, idNum, activateTileEffect);
+            else
+                ObjectHandler.Instance.tiles[currentTile].GetComponent<Tile>().ArriveOnTile(team, idNum, activateTileEffect); //mark character is on new tile.
+        }
         //end the player's turn
-        if (endTurn || currentTile == 78)
+        if (endTurn || currentTile == GameManager.Instance.finalTileNumber+1)
             GameManager.Instance.EndTurn();
     }
 

@@ -36,12 +36,14 @@ public class ObjectHandler : MonoBehaviour
     public GameObject Dice2;
     public GameObject[] player1Characters = new GameObject[3];
     public GameObject[] player2Characters = new GameObject[3];
-    public GameObject[] tiles = new GameObject[80];     //an array of all the tiles on the board
+    public GameObject[] tiles = new GameObject[73];     //an array of all the tiles on the board
+    public GameObject[] tilesAlternatePath = new GameObject[7];
     public GameObject pauseMenu;
     public GameObject messageBoxObj;
     public GameObject eventCards;
     public GameObject gameEndPanel;
     public GameObject[] characters = new GameObject[6];
+    public GameObject AI;
 
     public MessageBox GetMessageBox()
     {

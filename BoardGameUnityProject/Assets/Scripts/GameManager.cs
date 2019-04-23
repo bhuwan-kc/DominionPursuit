@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
     //************************* PROPERTIES **************************
     //***************************************************************
 
-    private int totalTiles = 80;                //total number of tiles on the game board
+    public int finalTileNumber = 71;                //total number of tiles on the game board
     private float diceRollAnimTime = 1.0f;      //time that dice rolls for
     public int currentPlayer = 1;               //indicates turn --> 1 for player1, 2 for player2
     public bool vsAI = true;                    //if game is vs AI or not.
@@ -95,6 +95,10 @@ public class GameManager : MonoBehaviour
                 p2++;
             }
         }
+        if (vsAI)
+            UIManager.Instance.player2Text.text = "PLAYER 2";
+        else
+            UIManager.Instance.player2Text.text = "COMPUTER";
     }
 
     //------------------- GETTERS AND SETTERS -----------------------START
@@ -134,7 +138,7 @@ public class GameManager : MonoBehaviour
     //returns the transform property of the index tile 
     public Transform GetTilePosition(int index)
     {
-        if(index >= 0 && index < totalTiles)
+        if(index >= 0 && index <= ObjectHandler.Instance.tiles.Length-1)
         {
             return ObjectHandler.Instance.tiles[index].transform;
         }
@@ -142,6 +146,19 @@ public class GameManager : MonoBehaviour
         //if index out of range 
         Debug.Log("Tile index "+index+" out of range - GetTilePosition - GameManager");
         return ObjectHandler.Instance.tiles[0].transform;
+    }
+
+    public Transform GetAlternatePathTilePosition(int index)
+    {
+        index = index - 47;
+        if (index >= 0 && index <= 6)
+            return ObjectHandler.Instance.tilesAlternatePath[index].transform;
+        //out of range
+        Debug.Log("Tile index " + index + " out of range - GetAlternatePathTilePosition - GameManager");
+        if (index < 0)
+            return ObjectHandler.Instance.tiles[46].transform;
+        else
+            return ObjectHandler.Instance.tiles[54].transform;
     }
 
     //to roll the dice when player clicks on the dice
@@ -189,7 +206,7 @@ public class GameManager : MonoBehaviour
     {
         bool gameEnd = true;
         foreach(GameObject x in ObjectHandler.Instance.player1Characters)
-            if(x.GetComponent<Character>().GetCurrentTile() != 78)
+            if(x.GetComponent<Character>().GetCurrentTile() != finalTileNumber)
                 gameEnd = false;
         if(gameEnd)
         {
@@ -199,7 +216,7 @@ public class GameManager : MonoBehaviour
 
         gameEnd = true;
         foreach (GameObject x in ObjectHandler.Instance.player2Characters)
-            if (x.GetComponent<Character>().GetCurrentTile() != 78)
+            if (x.GetComponent<Character>().GetCurrentTile() != finalTileNumber)
                 gameEnd = false;
         if (gameEnd)
         {

@@ -109,7 +109,7 @@ public class Tile : MonoBehaviour
                     callsEndTurn = true;
                 }break;
 
-            case -2:    //tile that dammages characters that land on it. Deals 3 damage.
+            case -2:    //tile that damages characters that land on it. Deals 3 damage.
                 {
                     currentCharacter.GetComponent<Character>().Damage(GameManager.Instance.GetTileDamage());
                     ObjectHandler.Instance.GetMessageBox().DisplayMessageContinued(currentCharacter.GetComponent<Character>().GetName() +

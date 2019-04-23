@@ -43,7 +43,7 @@ public class AI_attempt : MonoBehaviour
         //grab character current location.
         for (int i = 0; i < 3; i++) {
             characterLocations[i] = ObjectHandler.Instance.player2Characters[i].GetComponent<Character>().GetCurrentTile();
-            if (characterLocations[i] >= 78) characterLocations[i] = -3; //-3 means never pick it.
+            if (characterLocations[i] >= GameManager.Instance.finalTileNumber) characterLocations[i] = -3; //-3 means never pick it.
             //-1 is off the board, but isn't really a space. So the AI will look at the space it will actually land on.
             else if (characterLocations[i] == -1) characterLocations[i] = 0;
         }
@@ -88,7 +88,7 @@ public class AI_attempt : MonoBehaviour
         }
 
         //if a character will move to the end of the board, do that. 
-        else if (location != -3 && location + move >= 78) tileWeight = 20;
+        else if (location != -3 && location + move >= GameManager.Instance.finalTileNumber) tileWeight = 20;
 
         //else if the move stats before the split and ends after, decide based off both paths.
         else if (location != -3 && location <= 46 && location + move >= 47)
@@ -142,7 +142,7 @@ public class AI_attempt : MonoBehaviour
             }
 
             //-------------------------------final decision----------------------------------------
-            Debug.Log("Route Decision: leftWeight is " + leftTileWeight + " and rightWeight is " + rightTileWeight);
+            //Debug.Log("Route Decision: leftWeight is " + leftTileWeight + " and rightWeight is " + rightTileWeight);
             if (rightTileWeight > leftTileWeight)
                 tileWeight = rightTileWeight;
             else

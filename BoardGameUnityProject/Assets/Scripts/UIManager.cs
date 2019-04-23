@@ -37,6 +37,7 @@ public class UIManager : MonoBehaviour
     public Text[] player1CurrentTileText = new Text[3];    //the UI text for currentTile
     public Text[] player2CurrentTileText = new Text[3];
     public Text currentTurnText;
+    public Text player2Text;
 
     public GameObject diceButton;
     public GameObject[] selectors1 = new GameObject[3];
