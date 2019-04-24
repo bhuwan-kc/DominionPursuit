@@ -137,11 +137,8 @@ public class Tile : MonoBehaviour
 
             case 4:     //tile that gives a player an event card.
                 {
-                    if (!GameManager.Instance.vsAI || GameManager.Instance.currentPlayer != 2)
-                    {
-                        StartCoroutine(EventCardCollectionRoutine(team)); //looks like this displays what card is gained, so no message added.
-                        callsEndTurn = true;
-                    }
+                    StartCoroutine(EventCardCollectionRoutine(team)); //looks like this displays what card is gained, so no message added.
+                    callsEndTurn = true;
                 }break;
 
             case 5:     //portal tile

@@ -31,6 +31,12 @@ public class EventCards : MonoBehaviour
     private int[] player2EventCardCounts = new int[4];
     public string[] eventCardNames = new string[4];
 
+    //grabbing player 2 event cards for the AI.
+    public int getPlayer2EventCardCounts(int i)
+    {
+        return player2EventCardCounts[i];
+    }
+
     public void ActivateEventCard(int index)
     {
         //prevent activating event card when its not allowed (only allowed before the dice roll on the turn)

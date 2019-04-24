@@ -25,9 +25,18 @@ public class AI_attempt : MonoBehaviour
         return aggressive;
     }
 
+    private IEnumerator holdYourHorses()
+    {
+        Time.timeScale = .01f;
+        yield return new WaitForSeconds(.02f);
+        Time.timeScale = 1f;
+    }
+
     //class variable decleration
     int[] tileWeight = new int[3]; //used to save weights of updated characterLocation tiles.
 
+
+    //================================= main computer turn =======================================
     //computer's turn
     public void Comp_turn()
     {
@@ -38,7 +47,8 @@ public class AI_attempt : MonoBehaviour
         //variable dec.
         int[] characterLocations = new int[3]; //used only to check where characters will go. does NOT store current location.
         int diceRoll1, diceRoll2; //store dice rolls for rolling animation.
-        int move = 0; 
+        int move = 0;
+        int cardDecision = -1; //used to mark what event card was used, in case later decisions need it.
 
         //grab character current location.
         for (int i = 0; i < 3; i++) {
@@ -48,12 +58,16 @@ public class AI_attempt : MonoBehaviour
             else if (characterLocations[i] == -1) characterLocations[i] = 0;
         }
 
-        //start dice roll
+        //decide to use/not use event cards
+        cardDecision = DecideEventCard();
+        if (cardDecision > -1) StartCoroutine(holdYourHorses());
+
+
         //generate diceroll for character movement.
         diceRoll1 = ObjectHandler.Instance.Dice.GetComponent<Dice>().RollDice();
         diceRoll2 = ObjectHandler.Instance.Dice.GetComponent<Dice>().RollDice();
-
         move = diceRoll1 + diceRoll2;
+        if (cardDecision == 3) move += 4;
 
         //see what the weight of where each character moves to would be.
         for (int i = 0; i < 3; i++)
@@ -65,11 +79,188 @@ public class AI_attempt : MonoBehaviour
         //Debug.Log("AI rolled a total of " + move);
         //Debug.Log("tileWeight[0] is " + tileWeight[0] + " TileWeight[1] is " + tileWeight[1] + " Tileweight[2] is " + tileWeight[2]);
 
-        StartCoroutine(DisplayDiceRoll(diceRoll1, diceRoll2)); //displays dice roll, then moves the appropriate character.
+        StartCoroutine(DisplayDiceRoll(diceRoll1, diceRoll2, move)); //displays dice roll, then moves the appropriate character.
 
         return;
     }
 
+
+    //------------------------------------------AI event card stuff---------------------------------------------
+    //AI deciding to use/not use event cards
+    public int DecideEventCard()
+    {
+        int decision = -1; //-1: use no event card. x: use card type x (0-3)
+        int target = -1; //-1: no target. Otherwise 0-2 indicate target character in array.
+        bool cantDecide = false; //if conditions exist but aren't ideal, mark for AI to think about it later.
+
+        //print ai event cards
+        Debug.Log("AI Hand:\n " +
+            "Medkits: " + ObjectHandler.Instance.eventCards.GetComponent<EventCards>().getPlayer2EventCardCounts(0) +
+            " Sabotage: " + ObjectHandler.Instance.eventCards.GetComponent<EventCards>().getPlayer2EventCardCounts(1) +
+            " Shortcut: " + ObjectHandler.Instance.eventCards.GetComponent<EventCards>().getPlayer2EventCardCounts(2) +
+            " Detour: " + ObjectHandler.Instance.eventCards.GetComponent<EventCards>().getPlayer2EventCardCounts(3));
+
+        //If AI has a healing card, search for anyone at (tile damage) or less. If true, heal them.
+        if (ObjectHandler.Instance.eventCards.GetComponent<EventCards>().getPlayer2EventCardCounts(0) > 0)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                if ((double)ObjectHandler.Instance.player2Characters[i].GetComponent<Character>().GetHealth() <=
+                    (double)ObjectHandler.Instance.player2Characters[i].GetComponent<Character>().GetMaxHealth() * GameManager.Instance.GetTileDamage() * .1)
+                {
+                    //if already decided to heal someone, check if new person has less hp than other character.
+                    //if so, heal them instead.
+                    //TODO: Consider location of characters in healing
+                    if (decision == 1 && ObjectHandler.Instance.player2Characters[target].GetComponent<Character>().GetHealth()
+                        > ObjectHandler.Instance.player2Characters[i].GetComponent<Character>().GetHealth())
+                    {
+                        target = i;
+                    }
+                    else
+                    {
+                        decision = 0;
+                        target = i;
+                    }
+
+                }
+            }
+        }
+
+        //if AI has detour card, use it on the furthermost enemy character.
+        if (ObjectHandler.Instance.eventCards.GetComponent<EventCards>().getPlayer2EventCardCounts(3) > 0)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                int furthest = 1;
+                if (ObjectHandler.Instance.player1Characters[i].GetComponent<Character>().GetCurrentTile() > furthest)
+                {
+                    furthest = ObjectHandler.Instance.player1Characters[i].GetComponent<Character>().GetCurrentTile();
+                    decision = 3;
+                    target = i;
+                }
+            }
+        }
+
+        //if AI has a damage card, search for anyone at less than max hp.
+        //TODO: consider character location in decision
+        if (ObjectHandler.Instance.eventCards.GetComponent<EventCards>().getPlayer2EventCardCounts(1) > 0)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                if (ObjectHandler.Instance.player1Characters[i].GetComponent<Character>().GetHealth() <
+                    ObjectHandler.Instance.player1Characters[i].GetComponent<Character>().GetMaxHealth())
+                {
+                    //if (event damage) or less hp, KILL THEM
+                    if ((double)ObjectHandler.Instance.player1Characters[i].GetComponent<Character>().GetHealth() <=
+                        (double)ObjectHandler.Instance.player1Characters[i].GetComponent<Character>().GetMaxHealth() * GameManager.Instance.GetEventDamage() * .1)
+                    {
+                        decision = 1;
+                        target = i;
+                    }
+                    //if >(event damage) hp, consider damaging them.
+                    else
+                    {
+                        decision = 1;
+                        target = i;
+                        cantDecide = true;
+                    }
+                }
+            }
+        }
+
+        //if AI has a shortcut card, use it
+        if (ObjectHandler.Instance.eventCards.GetComponent<EventCards>().getPlayer2EventCardCounts(2) > 0)
+        {
+            decision = 2;
+            target = -1; //no target needed for this function. 
+        }
+
+        //if needed to think on it, do so here.
+        //for now, just randomly determines (50% chance of yes/no)
+        //TODO: More complicated thought processes.
+        if (cantDecide)
+        {
+            if (Random.Range(0, 2) == 0)
+            {
+                decision = -1;
+            }
+        }
+
+        Debug.Log("decision within eventCardDecision is " + decision);
+
+        //events listed in order they're checked above
+        if (decision == -1) return decision; //here just to make computer not do the following checks if it doesn't want to use an event card
+        else if (decision == 0) StartCoroutine(useMedkit(target));
+        else if (decision == 3) StartCoroutine(useDetour(target));
+        else if (decision == 1) StartCoroutine(useSabotage(target));
+        else if (decision == 2) StartCoroutine(useShortcut());
+
+
+        return decision;
+    }
+
+    //====================================AI version of using event cards======================================
+    //healing card
+    private IEnumerator useMedkit(int target)
+    {
+        SoundManagerScript.PlaySound(SoundManagerScript.Sound.powerUp);
+        ObjectHandler.Instance.eventCards.GetComponent<EventCards>().UpdateEventCardCount(GameManager.Instance.currentPlayer, 0, false);
+        if (target < 0 || target > 2)
+        {
+            Debug.Log("invalid target passed to useCard0 by AI. Defaulting to 0.");
+            target = 0;
+        }
+        ObjectHandler.Instance.player2Characters[target].GetComponent<Character>().Heal(GameManager.Instance.GetEventHeal());
+        ObjectHandler.Instance.messageBoxObj.GetComponent<MessageBox>().DisplayMessage(ObjectHandler.Instance.player2Characters[target].GetComponent<Character>().GetName() +
+            " heals from a medkit and now has " + ObjectHandler.Instance.player2Characters[target].GetComponent<Character>().GetHealth() + " hp.");
+        yield return new WaitForSeconds(2f);
+    }
+
+    //damaging card
+    private IEnumerator useSabotage(int target)
+    {
+        SoundManagerScript.PlaySound(SoundManagerScript.Sound.powerUp);
+        ObjectHandler.Instance.eventCards.GetComponent<EventCards>().UpdateEventCardCount(GameManager.Instance.currentPlayer, 1, false);
+        if (target < 0 || target > 2)
+        {
+            Debug.Log("invalid target passed to useCard1 by AI. Defaulting to 0.");
+            target = 0;
+        }
+        ObjectHandler.Instance.player1Characters[target].GetComponent<Character>().Damage(GameManager.Instance.GetEventDamage());
+        ObjectHandler.Instance.messageBoxObj.GetComponent<MessageBox>().DisplayMessage(ObjectHandler.Instance.player1Characters[target].GetComponent<Character>().GetName() +
+            " suffers 4 damage from a Sabotage!");
+        yield return new WaitForSeconds(2f);
+    }
+
+    //movement card
+    private IEnumerator useShortcut()
+    {
+        SoundManagerScript.PlaySound(SoundManagerScript.Sound.powerUp);
+        ObjectHandler.Instance.eventCards.GetComponent<EventCards>().UpdateEventCardCount(GameManager.Instance.currentPlayer, 2, false);
+        //NOTE Ai doesn't do anything here, as it doesn't use the same diceroll functions as a player does.
+        //merely marking it used this card is enough (the return on the DecideEventCard function).
+        ObjectHandler.Instance.GetMessageBox().DisplayMessage("Taking the shortcut! 4 extra steps will be added to the AI's dice roll", 4f);
+        yield return new WaitForSeconds(2f);
+    }
+
+    //backwards movement card
+    private IEnumerator useDetour(int target)
+    {
+        SoundManagerScript.PlaySound(SoundManagerScript.Sound.powerUp);
+        ObjectHandler.Instance.player1Characters[target].GetComponent<Character>().UpdateTile(-5, false, false);
+        ObjectHandler.Instance.eventCards.GetComponent<EventCards>().UpdateEventCardCount(GameManager.Instance.currentPlayer, 3, false);
+        if (target < 0 || target > 2)
+        {
+            Debug.Log("invalid target passed to useCard3 by AI. Defaulting to 0.");
+            target = 0;
+        }
+        ObjectHandler.Instance.GetMessageBox().DisplayMessage(ObjectHandler.Instance.player1Characters[target].GetComponent<Character>().GetName() +
+                    " is confronted with a detour and forced backwards 4 tiles.", 4f);
+        yield return new WaitForSeconds(2f);
+    }
+
+
+    //-----------------------------------------AI movement stuff------------------------------------------------
     //find weight of next move. All movement related decision making goes here.
     private int FindMoveWeight(int location, int move, int arrayLocation)
     {
@@ -93,7 +284,9 @@ public class AI_attempt : MonoBehaviour
         //else if the move stats before the split and ends after, decide based off both paths.
         else if (location != -3 && location <= 46 && location + move >= 47)
         {
-            //------------------------------left path calculation-----------------------------
+            //int rightTileWeight, leftTileWeight;
+            
+            //=============================left path calculation==================================
             location += move;
             int leftTileWeight = ObjectHandler.Instance.tiles[location].GetComponent<Tile>().GetTileWeight();
 
@@ -116,7 +309,7 @@ public class AI_attempt : MonoBehaviour
                 leftTileWeight -= 2;
             }
 
-            //----------------------------right path calculation--------------------------------
+            //================================right path calculation===================================
             location -= move;
             int movesAfterSplit = 46 - location; //should return # moves left.
             location = 53 + movesAfterSplit;
@@ -140,8 +333,8 @@ public class AI_attempt : MonoBehaviour
             {
                 rightTileWeight -= 2;
             }
-
-            //-------------------------------final decision----------------------------------------
+            
+            //=================================final decision==========================================
             //Debug.Log("Route Decision: leftWeight is " + leftTileWeight + " and rightWeight is " + rightTileWeight);
             if (rightTileWeight > leftTileWeight)
                 tileWeight = rightTileWeight;
@@ -180,8 +373,9 @@ public class AI_attempt : MonoBehaviour
         return tileWeight;
     }
 
+    //=========================dice roll animation==============================
     //wait for dice roll and then move best character choice.
-    private IEnumerator DisplayDiceRoll(int roll1, int roll2)
+    private IEnumerator DisplayDiceRoll(int roll1, int roll2, int move)
     {
         //this function plays the animation to roll the dice.
 
@@ -196,10 +390,11 @@ public class AI_attempt : MonoBehaviour
         ObjectHandler.Instance.Dice.GetComponent<Dice>().SetDiceFace(roll1);
         ObjectHandler.Instance.Dice2.GetComponent<Dice>().SetDiceFace(roll2);
         yield return new WaitForSeconds(waitTime);
-        MakeBestMove(roll1 + roll2);
+        MakeBestMove(move);
 
     }
 
+    //===============================actually make the move===============================
     //find the best move in the array. Returns what character moved, though it's unused.
     private int MakeBestMove(int move)
     {
