@@ -208,7 +208,7 @@ public class Character : MonoBehaviour
 
         //right side
         int rightWeight = ObjectHandler.Instance.tilesAlternatePath[targetTile-47].GetComponent<Tile>().GetTileWeight();
-        if (rightWeight == -2 && this.health < 3)
+        if (rightWeight == -2 && this.health < GameManager.Instance.GetEventDamage())
             rightWeight -= 4; //discourage choosing death.
         if (ObjectHandler.Instance.tilesAlternatePath[targetTile-47].GetComponent<Tile>().CheckFaction() == 1 ||
             ObjectHandler.Instance.tilesAlternatePath[targetTile-47].GetComponent<Tile>().CheckFaction() == 3)
@@ -219,7 +219,8 @@ public class Character : MonoBehaviour
 
         //left side
         int leftWeight = ObjectHandler.Instance.tiles[targetTile].GetComponent<Tile>().GetTileWeight();
-        if (leftWeight == -2 && this.health < 3) leftWeight -= 4; //discourage choosing death.
+        if (leftWeight == -2 && this.health < GameManager.Instance.GetEventDamage())
+            leftWeight -= 4; //discourage choosing death.
         if (ObjectHandler.Instance.tiles[targetTile].GetComponent<Tile>().CheckFaction() == 1 ||
             ObjectHandler.Instance.tiles[targetTile].GetComponent<Tile>().CheckFaction() == 3)
         {

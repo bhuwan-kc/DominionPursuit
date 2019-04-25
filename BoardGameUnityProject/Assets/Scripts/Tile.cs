@@ -9,7 +9,8 @@ public class Tile : MonoBehaviour
     [SerializeField]
     private int tileWeight = 0;
     private bool occupied = false;  //by default, a tile has no one on it.
-    private int numPeeps = 0;       //by default, a tile has no one on it.
+    private int numPeeps1 = 0;       //number of team 1 people on this tile.
+    private int numPeeps2 = 0;      //number of team 2 people on this tile.
     private int faction = 0;        //0: no one. 1: team 1. 2: team 2. 3: both teams present.
     
     public int GetTileWeight()
@@ -30,7 +31,8 @@ public class Tile : MonoBehaviour
             faction = 3;
         }
 
-        numPeeps++;
+        if (team == 1) numPeeps1++;
+        else numPeeps2++;
 
         if(activateTileEffect)
             TileEffect(team, id);
@@ -48,14 +50,16 @@ public class Tile : MonoBehaviour
 
     public void LeaveTile(int team, int id)
     {
-        numPeeps--;
-        if (numPeeps == 0)
+        if (team == 1) numPeeps1--;
+        else numPeeps2--;
+        if (numPeeps1 + numPeeps2 == 0)
         {
             occupied = false;
             faction = 0;
         }
-        //BUG: currently no way to change faction from 3 to the correct team #.
-        //will need to figure out a fix, leaving as-is for now (4/6/19). Niche bug that only affects AI competence.
+        //if person leaving is last of team present and there is still someone on the tile, mark change in ownership.
+        else if (team == 1 && numPeeps2 > 0 && numPeeps1 == 0) faction = 2;
+        else if (team == 2 && numPeeps1 > 0 && numPeeps2 == 0) faction = 1;
     }
 
     //tile effects. Weight is used as an ID for what happens.

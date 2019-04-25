@@ -259,6 +259,25 @@ public class GameManager : MonoBehaviour
         TpresetdiceSum = sum;
     }
 
+    //find what character is at a given location, returns array position
+    //used by AI to make niche decisions
+    public int findCharacterAtLocation(int location)
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            if (ObjectHandler.Instance.player1Characters[i].GetComponent<Character>().GetCurrentTile() == location)
+            {
+                return i;
+            }
+            else if (ObjectHandler.Instance.player2Characters[i].GetComponent<Character>().GetCurrentTile() == location)
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+
     //------------------- IENUMERATOR -----------------------START
 
     //to set the dice face and send signal to allow choosing character for the movement
@@ -311,6 +330,7 @@ public class GameManager : MonoBehaviour
         {
             UIManager.Instance.DisableDice(true);
             canActivateEventCard = false;
+            ObjectHandler.Instance.eventCards.GetComponent<EventCards>().UpdateSlots(currentPlayer);
             AI.GetComponent<AI_attempt>().Comp_turn();
         }
         //if playing PvP

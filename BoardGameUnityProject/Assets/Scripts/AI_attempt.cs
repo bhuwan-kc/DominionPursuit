@@ -67,7 +67,7 @@ public class AI_attempt : MonoBehaviour
         diceRoll1 = ObjectHandler.Instance.Dice.GetComponent<Dice>().RollDice();
         diceRoll2 = ObjectHandler.Instance.Dice.GetComponent<Dice>().RollDice();
         move = diceRoll1 + diceRoll2;
-        if (cardDecision == 3) move += 4;
+        if (cardDecision == 2) move += 4;
 
         //see what the weight of where each character moves to would be.
         for (int i = 0; i < 3; i++)
@@ -85,7 +85,7 @@ public class AI_attempt : MonoBehaviour
     }
 
 
-    //------------------------------------------AI event card stuff---------------------------------------------
+    //========================================== AI event card stuff ============================================
     //AI deciding to use/not use event cards
     public int DecideEventCard()
     {
@@ -94,11 +94,13 @@ public class AI_attempt : MonoBehaviour
         bool cantDecide = false; //if conditions exist but aren't ideal, mark for AI to think about it later.
 
         //print ai event cards
+        /*
         Debug.Log("AI Hand:\n " +
             "Medkits: " + ObjectHandler.Instance.eventCards.GetComponent<EventCards>().getPlayer2EventCardCounts(0) +
             " Sabotage: " + ObjectHandler.Instance.eventCards.GetComponent<EventCards>().getPlayer2EventCardCounts(1) +
             " Shortcut: " + ObjectHandler.Instance.eventCards.GetComponent<EventCards>().getPlayer2EventCardCounts(2) +
             " Detour: " + ObjectHandler.Instance.eventCards.GetComponent<EventCards>().getPlayer2EventCardCounts(3));
+        */
 
         //If AI has a healing card, search for anyone at (tile damage) or less. If true, heal them.
         if (ObjectHandler.Instance.eventCards.GetComponent<EventCards>().getPlayer2EventCardCounts(0) > 0)
@@ -129,9 +131,9 @@ public class AI_attempt : MonoBehaviour
         //if AI has detour card, use it on the furthermost enemy character.
         if (ObjectHandler.Instance.eventCards.GetComponent<EventCards>().getPlayer2EventCardCounts(3) > 0)
         {
+            int furthest = 1;
             for (int i = 0; i < 3; i++)
             {
-                int furthest = 1;
                 if (ObjectHandler.Instance.player1Characters[i].GetComponent<Character>().GetCurrentTile() > furthest)
                 {
                     furthest = ObjectHandler.Instance.player1Characters[i].GetComponent<Character>().GetCurrentTile();
@@ -186,7 +188,7 @@ public class AI_attempt : MonoBehaviour
             }
         }
 
-        Debug.Log("decision within eventCardDecision is " + decision);
+        //Debug.Log("decision within eventCardDecision is " + decision);
 
         //events listed in order they're checked above
         if (decision == -1) return decision; //here just to make computer not do the following checks if it doesn't want to use an event card
@@ -199,7 +201,7 @@ public class AI_attempt : MonoBehaviour
         return decision;
     }
 
-    //====================================AI version of using event cards======================================
+    //==================================== AI version of using event cards ======================================
     //healing card
     private IEnumerator useMedkit(int target)
     {
@@ -260,7 +262,7 @@ public class AI_attempt : MonoBehaviour
     }
 
 
-    //-----------------------------------------AI movement stuff------------------------------------------------
+    //===================================== AI movement stuff =========================================
     //find weight of next move. All movement related decision making goes here.
     private int FindMoveWeight(int location, int move, int arrayLocation)
     {
@@ -284,57 +286,33 @@ public class AI_attempt : MonoBehaviour
         //else if the move stats before the split and ends after, decide based off both paths.
         else if (location != -3 && location <= 46 && location + move >= 47)
         {
-            //int rightTileWeight, leftTileWeight;
-            
-            //=============================left path calculation==================================
-            location += move;
-            int leftTileWeight = ObjectHandler.Instance.tiles[location].GetComponent<Tile>().GetTileWeight();
+            int targetTile = location + move;
 
-            //if a character would die from landing on the space, heavily discourage the move.
-            if (leftTileWeight == -2 && ObjectHandler.Instance.player2Characters[arrayLocation].GetComponent<Character>().GetHealth() <= 3)
-                leftTileWeight -= 4;
-
-            //if tile is occupied by an enemy, view it as more important to land on if it isn't a trap location.
-            if ((ObjectHandler.Instance.tiles[location].GetComponent<Tile>().CheckFaction() == 1 ||
-                ObjectHandler.Instance.tiles[location].GetComponent<Tile>().CheckFaction() == 3) &&
-                    leftTileWeight > -5)
+            //right side
+            int rightTileWeight = ObjectHandler.Instance.tilesAlternatePath[targetTile - 47].GetComponent<Tile>().GetTileWeight();
+            if (rightTileWeight == -2 && ObjectHandler.Instance.player2Characters[arrayLocation].GetComponent<Character>().GetHealth() 
+                < GameManager.Instance.GetEventDamage())
+                rightTileWeight -= 4; //discourage choosing death.
+            if (ObjectHandler.Instance.tilesAlternatePath[targetTile - 47].GetComponent<Tile>().CheckFaction() == 1 ||
+                ObjectHandler.Instance.tilesAlternatePath[targetTile - 47].GetComponent<Tile>().CheckFaction() == 3)
             {
-                if (!aggressive) tileWeight += 1;
-                else leftTileWeight += 3;
-            }
-            //if a character is at full hp, a health tile is neutral.
-            if (tileWeight == 2 && ObjectHandler.Instance.player2Characters[arrayLocation].GetComponent<Character>().GetHealth() ==
-                ObjectHandler.Instance.player2Characters[arrayLocation].GetComponent<Character>().GetMaxHealth())
-            {
-                leftTileWeight -= 2;
+                rightTileWeight += 1;
+                if (ObjectHandler.Instance.AI.GetComponent<AI_attempt>().getAggression()) rightTileWeight += 2;
             }
 
-            //================================right path calculation===================================
-            location -= move;
-            int movesAfterSplit = 46 - location; //should return # moves left.
-            location = 53 + movesAfterSplit;
-            int rightTileWeight = ObjectHandler.Instance.tiles[location].GetComponent<Tile>().GetTileWeight();
-
-            //if a character would die from landing on the space, heavily discourage the move.
-            if (rightTileWeight == -2 && ObjectHandler.Instance.player2Characters[arrayLocation].GetComponent<Character>().GetHealth() <= 3)
-                rightTileWeight -= 4;
-
-            //if tile is occupied by an enemy, view it as more important to land on if it isn't a trap location.
-            if ((ObjectHandler.Instance.tiles[location].GetComponent<Tile>().CheckFaction() == 1 ||
-                ObjectHandler.Instance.tiles[location].GetComponent<Tile>().CheckFaction() == 3) &&
-                    rightTileWeight > -5)
+            //left side
+            int leftTileWeight = ObjectHandler.Instance.tiles[targetTile].GetComponent<Tile>().GetTileWeight();
+            if (leftTileWeight == -2 && ObjectHandler.Instance.player2Characters[arrayLocation].GetComponent<Character>().GetHealth() 
+                < GameManager.Instance.GetEventDamage())
+                leftTileWeight -= 4; //discourage choosing death.
+            if (ObjectHandler.Instance.tiles[targetTile].GetComponent<Tile>().CheckFaction() == 1 ||
+                ObjectHandler.Instance.tiles[targetTile].GetComponent<Tile>().CheckFaction() == 3)
             {
-                if (!aggressive) tileWeight += 1;
-                else rightTileWeight += 3;
-            }
-            //if a character is at full hp, a health tile is neutral.
-            if (tileWeight == 2 && ObjectHandler.Instance.player2Characters[arrayLocation].GetComponent<Character>().GetHealth() ==
-                ObjectHandler.Instance.player2Characters[arrayLocation].GetComponent<Character>().GetMaxHealth())
-            {
-                rightTileWeight -= 2;
+                leftTileWeight += 1;
+                if (ObjectHandler.Instance.AI.GetComponent<AI_attempt>().getAggression()) leftTileWeight += 2;
             }
             
-            //=================================final decision==========================================
+            //--------------------------------------final decision------------------------------------------
             //Debug.Log("Route Decision: leftWeight is " + leftTileWeight + " and rightWeight is " + rightTileWeight);
             if (rightTileWeight > leftTileWeight)
                 tileWeight = rightTileWeight;
@@ -349,7 +327,7 @@ public class AI_attempt : MonoBehaviour
             tileWeight = ObjectHandler.Instance.tiles[location].GetComponent<Tile>().GetTileWeight();
 
             //if a character would die from landing on the space, heavily discourage the move.
-            if (tileWeight == -2 && ObjectHandler.Instance.player2Characters[arrayLocation].GetComponent<Character>().GetHealth() <= 3)
+            if (tileWeight == -2 && ObjectHandler.Instance.player2Characters[arrayLocation].GetComponent<Character>().GetHealth() <= GameManager.Instance.GetEventDamage())
                 tileWeight -= 4;
 
             //if tile is occupied by an enemy, view it as more important to land on if it isn't a trap location.
@@ -357,8 +335,18 @@ public class AI_attempt : MonoBehaviour
                 ObjectHandler.Instance.tiles[location].GetComponent<Tile>().CheckFaction() == 3) &&
                     tileWeight > -5)
             {
-                if (!aggressive) tileWeight += 1;
-                else tileWeight += 3;
+                //if a character is at max HP, don't bother landing on them on a damage tile.
+                //will crash if no character from player 1 is at the required tile. Should be ok due to faction check above.
+                if (ObjectHandler.Instance.player1Characters[GameManager.Instance.findCharacterAtLocation(location)].GetComponent<Character>().GetHealth() == ObjectHandler.Instance.GetComponent<Character>().GetMaxHealth() && tileWeight == -2)
+                {
+                        //don't do anything if it's a damage tile and they have full hp
+                        //likely a better way to do this, but I'm too tired to figure it out atm.
+                        //TODO: Make this better.
+                }
+                else { 
+                    if (!aggressive) tileWeight += 1;
+                    else tileWeight += 3;
+                }
             }
             //if a character is at full hp, a health tile is neutral.
             if (tileWeight == 2 && ObjectHandler.Instance.player2Characters[arrayLocation].GetComponent<Character>().GetHealth() ==
@@ -373,7 +361,7 @@ public class AI_attempt : MonoBehaviour
         return tileWeight;
     }
 
-    //=========================dice roll animation==============================
+    //========================= dice roll animation ==============================
     //wait for dice roll and then move best character choice.
     private IEnumerator DisplayDiceRoll(int roll1, int roll2, int move)
     {
@@ -394,7 +382,7 @@ public class AI_attempt : MonoBehaviour
 
     }
 
-    //===============================actually make the move===============================
+    //=============================== actually make the move ===============================
     //find the best move in the array. Returns what character moved, though it's unused.
     private int MakeBestMove(int move)
     {
