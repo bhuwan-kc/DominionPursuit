@@ -106,21 +106,21 @@ public class Tile : MonoBehaviour
             case -3:    //tile that moves a character backwards if they land on it. Do NOT proc events on the tile you land on. 
                 {
                     //regenerating random steps 
-                    int steps = Random.Range(-1, -7);
+                    int steps = Random.Range(-1, -6);
                     ObjectHandler.Instance.GetMessageBox().DisplayMessageContinued(currentCharacter.GetComponent<Character>().GetName() +
                         " Is moving backwards " + Mathf.Abs(steps) + " tiles.");
                     currentCharacter.GetComponent<Character>().UpdateTile(steps, false, true);
                     callsEndTurn = true;
                 }break;
 
-            case -2:    //tile that damages characters that land on it. Deals 3 damage.
+            case -2:    //tile that damages characters that land on it. Deals damage.
                 {
                     currentCharacter.GetComponent<Character>().Damage(GameManager.Instance.GetTileDamage());
                     ObjectHandler.Instance.GetMessageBox().DisplayMessageContinued(currentCharacter.GetComponent<Character>().GetName() +
                         " suffered 3 damage and now has " + currentCharacter.GetComponent<Character>().GetHealth() + " hp remaining.");
                 }break;
 
-            case 2:     //tile that heals characters that land on it. Heals 2 hp.
+            case 2:     //tile that heals characters that land on it. Heals hp.
                 {
                     currentCharacter.GetComponent<Character>().Heal(GameManager.Instance.GetTileHeal());
                     ObjectHandler.Instance.GetMessageBox().DisplayMessageContinued(currentCharacter.GetComponent<Character>().GetName() +
@@ -131,7 +131,7 @@ public class Tile : MonoBehaviour
             case 3:     //tile that moves a character forwards if they land on it. Do NOT proc events on the tile you land on.
                 {
                     //regenerating random steps 
-                    int steps = Random.Range(1, 7);
+                    int steps = Random.Range(1, 6);
                     ObjectHandler.Instance.GetMessageBox().DisplayMessageContinued(currentCharacter.GetComponent<Character>().GetName() +
                         " Is moving forward " + steps + " tiles.");
                     currentCharacter.GetComponent<Character>().UpdateTile(steps, false, true);
@@ -149,7 +149,7 @@ public class Tile : MonoBehaviour
                 {
                     StartCoroutine(PortalTransitionRoutine(currentCharacter));
                     ObjectHandler.Instance.GetMessageBox().DisplayMessageContinued(currentCharacter.GetComponent<Character>().GetName() + 
-                        "has teleported to tile 45!");
+                        " teleporting to tile 45!");
                     callsEndTurn = true;
                 }break;
 
@@ -190,7 +190,7 @@ public class Tile : MonoBehaviour
                 yield return new WaitForSeconds(0.25f);
         }
         int eventCard = Random.Range(0, 4);
-        ObjectHandler.Instance.GetMessageBox().DisplayMessageContinued(ObjectHandler.Instance.eventCards.GetComponent<EventCards>().eventCardNames[eventCard]);
+        ObjectHandler.Instance.GetMessageBox().DisplayMessageContinued("---------\n"+ObjectHandler.Instance.eventCards.GetComponent<EventCards>().eventCardNames[eventCard]+ "\n---------");
         yield return new WaitForSeconds(1f);
         ObjectHandler.Instance.eventCards.GetComponent<EventCards>().UpdateEventCardCount(team, eventCard, true);
         GameManager.Instance.EndTurn();

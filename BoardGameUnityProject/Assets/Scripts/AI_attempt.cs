@@ -284,7 +284,7 @@ public class AI_attempt : MonoBehaviour
         else if (location != -3 && location + move >= GameManager.Instance.finalTileNumber) tileWeight = 20;
 
         //else if the move stats before the split and ends after, decide based off both paths.
-        else if (location != -3 && location <= 46 && location + move >= 47)
+        else if (location != -3 && location <= 46 && location + move >= 47 && location + move <=53)
         {
             int targetTile = location + move;
 
@@ -337,7 +337,8 @@ public class AI_attempt : MonoBehaviour
             {
                 //if a character is at max HP, don't bother landing on them on a damage tile.
                 //will crash if no character from player 1 is at the required tile. Should be ok due to faction check above.
-                if (ObjectHandler.Instance.player1Characters[GameManager.Instance.findCharacterAtLocation(location)].GetComponent<Character>().GetHealth() == ObjectHandler.Instance.GetComponent<Character>().GetMaxHealth() && tileWeight == -2)
+                int characterNum = GameManager.Instance.findCharacterAtLocation(location);
+                if (characterNum != -1 && ObjectHandler.Instance.player1Characters[characterNum].GetComponent<Character>().GetHealth() == ObjectHandler.Instance.GetComponent<Character>().GetMaxHealth() && tileWeight == -2)
                 {
                         //don't do anything if it's a damage tile and they have full hp
                         //likely a better way to do this, but I'm too tired to figure it out atm.

@@ -88,6 +88,7 @@ public class Character : MonoBehaviour
         else if(onAlternatePath && currentTile > 47 && currentTile < 54)
             ObjectHandler.Instance.tilesAlternatePath[currentTile-47].GetComponent<Tile>().LeaveTile(team, idNum);
 
+        GameManager.Instance.waitForCharacterMovement = true;
         StartCoroutine(TileTransitionStepsRoutine(steps, activateTileEffect, endTurn)); 
     }
 
@@ -99,6 +100,8 @@ public class Character : MonoBehaviour
         {
             SoundManagerScript.PlaySound(SoundManagerScript.Sound.death);
             health = 0;
+            //make game wait for character movement to complete
+            GameManager.Instance.waitForCharacterMovement = true;
             //move to start if dead and have not reached checkpoint.
             if (currentTile < 38)
                 StartCoroutine(TileTransitionDirectRoutine(0, false));
@@ -245,7 +248,7 @@ public class Character : MonoBehaviour
         //move the character towards the targetPosition
         while (Vector3.Distance(transform.position, targetPosition) > 0.01f)
         {
-            transform.position = Vector3.MoveTowards(transform.position, targetPosition, (speed+2.5f) * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, (speed+2.0f) * Time.deltaTime);
             yield return new WaitForEndOfFrame();
         }
 
@@ -261,6 +264,7 @@ public class Character : MonoBehaviour
         //end the player's turn
         if (endTurn)
             GameManager.Instance.EndTurn();
+        GameManager.Instance.waitForCharacterMovement = false;
     }
 
     //moves the character through the tiles by given steps
@@ -310,7 +314,10 @@ public class Character : MonoBehaviour
             else    //if moving backwards 
             {
                 if (currentTile - i < 1)
+                {
+                    currentTile = 1 - steps;
                     break;
+                }
                 if (onAlternatePath && currentTile-i >= 47)
                     targetPosition = GameManager.Instance.GetAlternatePathTilePosition(currentTile - i).position;
                 else 
@@ -358,6 +365,7 @@ public class Character : MonoBehaviour
         //end the player's turn
         if (endTurn || currentTile == GameManager.Instance.finalTileNumber+1)
             GameManager.Instance.EndTurn();
+        GameManager.Instance.waitForCharacterMovement = false;
     }
 
 }

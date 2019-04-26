@@ -48,6 +48,7 @@ public class GameManager : MonoBehaviour
     public int bonusSteps = 0;                  //Used for shortcut event card
 
     public GameObject AI;
+    public bool waitForCharacterMovement = false;
 
     //for tile effects
     [SerializeField]
@@ -95,7 +96,7 @@ public class GameManager : MonoBehaviour
                 p2++;
             }
         }
-        if (vsAI)
+        if (!vsAI)
             UIManager.Instance.player2Text.text = "PLAYER 2";
         else
             UIManager.Instance.player2Text.text = "COMPUTER";
@@ -316,6 +317,9 @@ public class GameManager : MonoBehaviour
     IEnumerator EndTurnRoutine(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
+
+        while (waitForCharacterMovement)
+            yield return new WaitForEndOfFrame();
 
         if (currentPlayer == 1)
             currentPlayer = 2;
