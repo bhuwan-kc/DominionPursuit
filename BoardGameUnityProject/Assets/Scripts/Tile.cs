@@ -107,8 +107,7 @@ public class Tile : MonoBehaviour
                 {
                     //regenerating random steps 
                     int steps = Random.Range(-1, -6);
-                    ObjectHandler.Instance.GetMessageBox().DisplayMessageContinued(currentCharacter.GetComponent<Character>().GetName() +
-                        " Is moving backwards " + Mathf.Abs(steps) + " tiles.");
+                    ObjectHandler.Instance.GetMessageBox().DisplayMessageContinued("Moving backwards " + Mathf.Abs(steps) + " tiles.");
                     currentCharacter.GetComponent<Character>().UpdateTile(steps, false, true);
                     callsEndTurn = true;
                 }break;
@@ -117,14 +116,14 @@ public class Tile : MonoBehaviour
                 {
                     currentCharacter.GetComponent<Character>().Damage(GameManager.Instance.GetTileDamage());
                     ObjectHandler.Instance.GetMessageBox().DisplayMessageContinued(currentCharacter.GetComponent<Character>().GetName() +
-                        " suffered 3 damage and now has " + currentCharacter.GetComponent<Character>().GetHealth() + " hp remaining.");
+                        " suffered "+GameManager.Instance.GetTileDamage()+" damage.");
                 }break;
 
             case 2:     //tile that heals characters that land on it. Heals hp.
                 {
                     currentCharacter.GetComponent<Character>().Heal(GameManager.Instance.GetTileHeal());
                     ObjectHandler.Instance.GetMessageBox().DisplayMessageContinued(currentCharacter.GetComponent<Character>().GetName() +
-                        " healed 2 damage and now has " + currentCharacter.GetComponent<Character>().GetHealth() + " hp.");
+                        " healed "+GameManager.Instance.GetTileHeal()+" hp.");
                 }
                 break;
 
@@ -132,8 +131,7 @@ public class Tile : MonoBehaviour
                 {
                     //regenerating random steps 
                     int steps = Random.Range(1, 6);
-                    ObjectHandler.Instance.GetMessageBox().DisplayMessageContinued(currentCharacter.GetComponent<Character>().GetName() +
-                        " Is moving forward " + steps + " tiles.");
+                    ObjectHandler.Instance.GetMessageBox().DisplayMessageContinued("Moving forward " + steps + " tiles.");
                     currentCharacter.GetComponent<Character>().UpdateTile(steps, false, true);
                     callsEndTurn = true;
                 }
@@ -141,7 +139,7 @@ public class Tile : MonoBehaviour
 
             case 4:     //tile that gives a player an event card.
                 {
-                    StartCoroutine(EventCardCollectionRoutine(team)); //looks like this displays what card is gained, so no message added.
+                    StartCoroutine(EventCardCollectionRoutine(team));
                     callsEndTurn = true;
                 }break;
 

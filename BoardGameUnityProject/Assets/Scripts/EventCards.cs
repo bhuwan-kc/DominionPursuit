@@ -45,7 +45,7 @@ public class EventCards : MonoBehaviour
 
         if ((GameManager.Instance.currentPlayer==1 && player1EventCardCounts[index] == 0) || (GameManager.Instance.currentPlayer == 2 && player2EventCardCounts[index] == 0))
         {
-            ObjectHandler.Instance.GetMessageBox().DisplayMessageContinued(eventCardNames[index] + " has not been collected yet!");
+            ObjectHandler.Instance.GetMessageBox().DisplayMessageContinued(eventCardNames[index] + " has not been collected!");
             return;
         }
 
@@ -123,13 +123,13 @@ public class EventCards : MonoBehaviour
         {
             ObjectHandler.Instance.player1Characters[characterNum].GetComponent<Character>().Heal(GameManager.Instance.GetEventHeal());
             ObjectHandler.Instance.messageBoxObj.GetComponent<MessageBox>().DisplayMessage(ObjectHandler.Instance.player1Characters[characterNum].GetComponent<Character>().GetName() +
-                " heals and now has " + ObjectHandler.Instance.player1Characters[characterNum].GetComponent<Character>().GetHealth() + " hp.");
+                " heals");
         }
         else
         {
             ObjectHandler.Instance.player2Characters[characterNum].GetComponent<Character>().Heal(GameManager.Instance.GetEventHeal());
             ObjectHandler.Instance.messageBoxObj.GetComponent<MessageBox>().DisplayMessage(ObjectHandler.Instance.player2Characters[characterNum].GetComponent<Character>().GetName() +
-                " heals and now has " + ObjectHandler.Instance.player2Characters[characterNum].GetComponent<Character>().GetHealth() + " hp.");
+                " heals");
         }
 
         yield return new WaitForSeconds(0.75f);
@@ -174,7 +174,7 @@ public class EventCards : MonoBehaviour
     //Event card - Shortcut
     void ActivateEventCard3()
     {
-        ObjectHandler.Instance.GetMessageBox().DisplayMessage(new string[] {"Taking the shortcut!","4 extra steps will be added to your dice roll..."});
+        ObjectHandler.Instance.GetMessageBox().DisplayMessage("Taking the shortcut...");
         GameManager.Instance.bonusSteps = 4;
         UIManager.Instance.DisableDice(false);
     }

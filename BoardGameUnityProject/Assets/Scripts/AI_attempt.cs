@@ -213,8 +213,8 @@ public class AI_attempt : MonoBehaviour
             target = 0;
         }
         ObjectHandler.Instance.player2Characters[target].GetComponent<Character>().Heal(GameManager.Instance.GetEventHeal());
-        ObjectHandler.Instance.messageBoxObj.GetComponent<MessageBox>().DisplayMessage(ObjectHandler.Instance.player2Characters[target].GetComponent<Character>().GetName() +
-            " heals from a medkit and now has " + ObjectHandler.Instance.player2Characters[target].GetComponent<Character>().GetHealth() + " hp.");
+        ObjectHandler.Instance.messageBoxObj.GetComponent<MessageBox>().DisplayMessageContinued(ObjectHandler.Instance.player2Characters[target].GetComponent<Character>().GetName() +
+            " heals from a Medkit.");
         yield return new WaitForSeconds(2f);
     }
 
@@ -229,8 +229,8 @@ public class AI_attempt : MonoBehaviour
             target = 0;
         }
         ObjectHandler.Instance.player1Characters[target].GetComponent<Character>().Damage(GameManager.Instance.GetEventDamage());
-        ObjectHandler.Instance.messageBoxObj.GetComponent<MessageBox>().DisplayMessage(ObjectHandler.Instance.player1Characters[target].GetComponent<Character>().GetName() +
-            " suffers 4 damage from a Sabotage!");
+        ObjectHandler.Instance.messageBoxObj.GetComponent<MessageBox>().DisplayMessageContinued(ObjectHandler.Instance.player1Characters[target].GetComponent<Character>().GetName() +
+            " suffers "+GameManager.Instance.GetEventDamage()+" damage from a Sabotage!");
         yield return new WaitForSeconds(2f);
     }
 
@@ -241,7 +241,7 @@ public class AI_attempt : MonoBehaviour
         ObjectHandler.Instance.eventCards.GetComponent<EventCards>().UpdateEventCardCount(GameManager.Instance.currentPlayer, 2, false);
         //NOTE Ai doesn't do anything here, as it doesn't use the same diceroll functions as a player does.
         //merely marking it used this card is enough (the return on the DecideEventCard function).
-        ObjectHandler.Instance.GetMessageBox().DisplayMessage("Taking the shortcut! 4 extra steps will be added to the AI's dice roll", 4f);
+        ObjectHandler.Instance.GetMessageBox().DisplayMessageContinued("Taking the shortcut!");
         yield return new WaitForSeconds(2f);
     }
 
@@ -249,15 +249,15 @@ public class AI_attempt : MonoBehaviour
     private IEnumerator useDetour(int target)
     {
         SoundManagerScript.PlaySound(SoundManagerScript.Sound.powerUp);
-        ObjectHandler.Instance.player1Characters[target].GetComponent<Character>().UpdateTile(-5, false, false);
+        ObjectHandler.Instance.player1Characters[target].GetComponent<Character>().UpdateTile(GameManager.Instance.GetEventForwardAndBackwardMoves()*(-1), false, false);
         ObjectHandler.Instance.eventCards.GetComponent<EventCards>().UpdateEventCardCount(GameManager.Instance.currentPlayer, 3, false);
         if (target < 0 || target > 2)
         {
             Debug.Log("invalid target passed to useCard3 by AI. Defaulting to 0.");
             target = 0;
         }
-        ObjectHandler.Instance.GetMessageBox().DisplayMessage(ObjectHandler.Instance.player1Characters[target].GetComponent<Character>().GetName() +
-                    " is confronted with a detour and forced backwards 4 tiles.", 4f);
+        ObjectHandler.Instance.GetMessageBox().DisplayMessageContinued(ObjectHandler.Instance.player1Characters[target].GetComponent<Character>().GetName() +
+                    " is forced backwards "+GameManager.Instance.GetEventForwardAndBackwardMoves()+" tiles.");
         yield return new WaitForSeconds(2f);
     }
 

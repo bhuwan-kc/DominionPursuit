@@ -61,6 +61,8 @@ public class GameManager : MonoBehaviour
     private int eventDamage = 4;
     [SerializeField]
     private int eventHeal = 4;
+    [SerializeField]
+    private int eventForwardAndBackwardMoves = 4;
 
     //for player
     [SerializeField]
@@ -127,6 +129,11 @@ public class GameManager : MonoBehaviour
     public int GetEventHeal()
     {
         return eventHeal;
+    }
+
+    public int GetEventForwardAndBackwardMoves()
+    {
+        return eventForwardAndBackwardMoves;
     }
 
     public int GetCharacterDamage()
@@ -199,7 +206,7 @@ public class GameManager : MonoBehaviour
 
     public void EndTurn()
     {
-        EndTurn(0.5f);
+        EndTurn(0.75f);
     }
 
     //to detect game end
