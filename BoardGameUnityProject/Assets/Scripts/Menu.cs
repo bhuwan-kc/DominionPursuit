@@ -8,6 +8,7 @@ public class Menu : MonoBehaviour
     public GameObject creditPanel;
     public GameObject settingPanel;
     public GameObject setupPanel;
+    public GameObject manualPanel;
 
     // Start is called before the first frame update
     void Start()
@@ -95,6 +96,18 @@ public class Menu : MonoBehaviour
                 creditPanel.SetActive(false);
             else
                 creditPanel.SetActive(true);
+        }
+    }
+
+    public void Manual()
+    {
+        //display manual
+        if(manualPanel != null)
+        {
+            if (manualPanel.activeInHierarchy)
+                manualPanel.SetActive(false);
+            else
+                manualPanel.SetActive(true);
         }
     }
 }

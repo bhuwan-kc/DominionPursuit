@@ -8,9 +8,9 @@ public class MessageBox : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        leftPanelBg.SetActive(true);        /*** TEMP ***/
+        leftPanelBg.SetActive(true);  
         DisplayButtons(false);
-        DisplayMessage(new string[] { "WELCOME!", "Please roll the dice to start the game..." });
+        DisplayMessage("WELCOME!\nPlease roll the dice to start the game...");
     }
 
     // Update is called once per frame
