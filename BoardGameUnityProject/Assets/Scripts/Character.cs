@@ -88,7 +88,6 @@ public class Character : MonoBehaviour
         else if(onAlternatePath && currentTile > 47 && currentTile < 54)
             ObjectHandler.Instance.tilesAlternatePath[currentTile-47].GetComponent<Tile>().LeaveTile(team, idNum);
 
-        GameManager.Instance.waitForCharacterMovement = true;
         StartCoroutine(TileTransitionStepsRoutine(steps, activateTileEffect, endTurn)); 
     }
 
@@ -365,7 +364,6 @@ public class Character : MonoBehaviour
         //end the player's turn
         if (endTurn || currentTile == GameManager.Instance.finalTileNumber+1)
             GameManager.Instance.EndTurn();
-        GameManager.Instance.waitForCharacterMovement = false;
     }
 
 }

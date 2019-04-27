@@ -214,7 +214,7 @@ public class GameManager : MonoBehaviour
     {
         bool gameEnd = true;
         foreach(GameObject x in ObjectHandler.Instance.player1Characters)
-            if(x.GetComponent<Character>().GetCurrentTile() != finalTileNumber)
+            if(x.GetComponent<Character>().GetCurrentTile() != finalTileNumber+1)
                 gameEnd = false;
         if(gameEnd)
         {
@@ -224,7 +224,7 @@ public class GameManager : MonoBehaviour
 
         gameEnd = true;
         foreach (GameObject x in ObjectHandler.Instance.player2Characters)
-            if (x.GetComponent<Character>().GetCurrentTile() != finalTileNumber)
+            if (x.GetComponent<Character>().GetCurrentTile() != finalTileNumber+1)
                 gameEnd = false;
         if (gameEnd)
         {

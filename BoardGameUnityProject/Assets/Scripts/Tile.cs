@@ -188,7 +188,7 @@ public class Tile : MonoBehaviour
                 yield return new WaitForSeconds(0.25f);
         }
         int eventCard = Random.Range(0, 4);
-        ObjectHandler.Instance.GetMessageBox().DisplayMessageContinued("---------\n"+ObjectHandler.Instance.eventCards.GetComponent<EventCards>().eventCardNames[eventCard]+ "\n---------");
+        ObjectHandler.Instance.GetMessageBox().DisplayMessageContinued("--------------\n"+ObjectHandler.Instance.eventCards.GetComponent<EventCards>().eventCardNames[eventCard]+ "\n--------------");
         yield return new WaitForSeconds(1f);
         ObjectHandler.Instance.eventCards.GetComponent<EventCards>().UpdateEventCardCount(team, eventCard, true);
         GameManager.Instance.EndTurn();

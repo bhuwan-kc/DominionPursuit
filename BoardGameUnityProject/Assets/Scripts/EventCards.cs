@@ -9,14 +9,12 @@ public class EventCards : MonoBehaviour
     {
         for (int i = 0; i < 4; i++)
         {
-            player1EventCardCounts[i] = 0;
-            player2EventCardCounts[i] = 0;
+            player1EventCardCounts[i] = 1;
+            player2EventCardCounts[i] = 1;
         }
         //give two random event cards to both the players
-        UpdateEventCardCount(1, Random.Range(0, 4), true);
-        UpdateEventCardCount(1, Random.Range(0, 4), true);
-        UpdateEventCardCount(2, Random.Range(0, 4), true);
-        UpdateEventCardCount(2, Random.Range(0, 4), true);
+        UpdateEventCardCount(1, Random.Range(0, 4), false);
+        UpdateEventCardCount(2, Random.Range(0, 4), false);
 
         UpdateSlots(GameManager.Instance.currentPlayer);
     }
