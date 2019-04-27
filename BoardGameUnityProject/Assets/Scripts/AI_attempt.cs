@@ -98,68 +98,13 @@ public class AI_attempt : MonoBehaviour
             " Detour: " + ObjectHandler.Instance.eventCards.GetComponent<EventCards>().getPlayer2EventCardCounts(3));
         */
 
-        //If AI has a healing card, search for anyone at (tile damage) or less beyond tile 12. If true, heal them.
-        if (ObjectHandler.Instance.eventCards.GetComponent<EventCards>().getPlayer2EventCardCounts(0) > 0)
-        {
-            for (int i = 0; i < 3; i++)
-            {
-                if ((double)ObjectHandler.Instance.player2Characters[i].GetComponent<Character>().GetHealth() <=
-                    (double)ObjectHandler.Instance.player2Characters[i].GetComponent<Character>().GetMaxHealth() * GameManager.Instance.GetTileDamage() * .1 &&
-                    ObjectHandler.Instance.player2Characters[i].GetComponent<Character>().GetCurrentTile() > tileMin)
-                {
-                    //if already decided to heal someone, check if new person has less hp than other character.
-                    //if so, heal them instead.
-                    //TODO: Consider location of characters in healing
-                    if (decision == 1 && ObjectHandler.Instance.player2Characters[target].GetComponent<Character>().GetHealth()
-                        > ObjectHandler.Instance.player2Characters[i].GetComponent<Character>().GetHealth())
-                    {
-                        target = i;
-                    }
-                    else
-                    {
-                        decision = 0;
-                        target = i;
-                    }
-
-                }
-            }
-        }
-
-        //if AI has a damage card, search for anyone at less than max hp at or beyond tile 12.
-        //TODO: consider character location in decision
-        if (ObjectHandler.Instance.eventCards.GetComponent<EventCards>().getPlayer2EventCardCounts(1) > 0)
-        {
-            for (int i = 0; i < 3; i++)
-            {
-                if (ObjectHandler.Instance.player1Characters[i].GetComponent<Character>().GetHealth() <
-                    ObjectHandler.Instance.player1Characters[i].GetComponent<Character>().GetMaxHealth() &&
-                    ObjectHandler.Instance.player1Characters[i].GetComponent<Character>().GetCurrentTile() > tileMin)
-                {
-                    //if (event damage) or less hp, KILL THEM
-                    if ((double)ObjectHandler.Instance.player1Characters[i].GetComponent<Character>().GetHealth() <=
-                        (double)ObjectHandler.Instance.player1Characters[i].GetComponent<Character>().GetMaxHealth() * GameManager.Instance.GetEventDamage() * .1)
-                    {
-                        decision = 1;
-                        target = i;
-                    }
-                    //if >(event damage) hp, consider damaging them.
-                    else
-                    {
-                        decision = 1;
-                        target = i;
-                        cantDecide = true;
-                    }
-                }
-            }
-        }
-
         //if AI has detour card, use it on the furthermost enemy character.
         if (ObjectHandler.Instance.eventCards.GetComponent<EventCards>().getPlayer2EventCardCounts(3) > 0)
         {
             int furthest = 1;
             for (int i = 0; i < 3; i++)
             {
-                if (ObjectHandler.Instance.player1Characters[i].GetComponent<Character>().GetCurrentTile() > furthest && 
+                if (ObjectHandler.Instance.player1Characters[i].GetComponent<Character>().GetCurrentTile() > furthest &&
                     ObjectHandler.Instance.player1Characters[i].GetComponent<Character>().GetCurrentTile() > tileMin)
                 {
                     furthest = ObjectHandler.Instance.player1Characters[i].GetComponent<Character>().GetCurrentTile();
@@ -179,12 +124,72 @@ public class AI_attempt : MonoBehaviour
             target = -1; //no target needed for this function. 
         }
 
+        //if AI has a damage card, search for anyone at less than max hp at or beyond tile 12.
+        //TODO: consider character location in decision
+        if (ObjectHandler.Instance.eventCards.GetComponent<EventCards>().getPlayer2EventCardCounts(1) > 0)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                if (ObjectHandler.Instance.player1Characters[i].GetComponent<Character>().GetCurrentTile() > tileMin)
+                {
+                    //if (event damage) or less hp, KILL THEM
+                    if (ObjectHandler.Instance.player1Characters[i].GetComponent<Character>().GetHealth() <= GameManager.Instance.GetEventDamage())
+                    {
+                        decision = 1;
+                        target = i;
+                        break;
+                    }
+                    //if >(event damage) hp, consider damaging them.
+                    else if(ObjectHandler.Instance.eventCards.GetComponent<EventCards>().getPlayer2EventCardCounts(1) > 1)
+                    {
+                        decision = 1;
+                        target = i;
+                        cantDecide = true;
+                    }
+                }
+            }
+            //if none of the opponent's character have less hp and AI has more than 1 damage card, then use at randome
+            if(decision != 1 && ObjectHandler.Instance.eventCards.GetComponent<EventCards>().getPlayer2EventCardCounts(1) > 1)
+            {
+                decision = 1;
+                target = Random.Range(0, 3);
+                cantDecide = true;
+            }
+        }
+
+        //If AI has a healing card, search for anyone at (tile damage) or less beyond tile 12. If true, heal them.
+        if (ObjectHandler.Instance.eventCards.GetComponent<EventCards>().getPlayer2EventCardCounts(0) > 0)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                if ((ObjectHandler.Instance.player2Characters[i].GetComponent<Character>().GetHealth() <=
+                    ObjectHandler.Instance.player2Characters[i].GetComponent<Character>().GetMaxHealth() - GameManager.Instance.GetEventHeal()) &&
+                    ObjectHandler.Instance.player2Characters[i].GetComponent<Character>().GetCurrentTile() > tileMin)
+                {
+                    //if already decided to heal someone, check if new person has less hp than other character.
+                    //if so, heal them instead.
+                    //TODO: Consider location of characters in healing
+                    if (decision == 0 && ObjectHandler.Instance.player2Characters[target].GetComponent<Character>().GetHealth()
+                        > ObjectHandler.Instance.player2Characters[i].GetComponent<Character>().GetHealth())
+                    {
+                        target = i;
+                    }
+                    else
+                    {
+                        decision = 0;
+                        target = i;
+                    }
+
+                }
+            }
+        }
+
         //if needed to think on it, do so here.
-        //for now, just randomly determines (50% chance of yes/no)
+        //for now, just randomly determines (25-75% chance of yes/no)
         //TODO: More complicated thought processes.
         if (cantDecide)
         {
-            if (Random.Range(0, 2) == 0)
+            if (Random.Range(0f, 1f) <= 0.75f)
             {
                 decision = -1;
             }
@@ -251,7 +256,7 @@ public class AI_attempt : MonoBehaviour
     private IEnumerator useDetour(int target)
     {
         SoundManagerScript.PlaySound(SoundManagerScript.Sound.powerUp);
-        ObjectHandler.Instance.player1Characters[target].GetComponent<Character>().UpdateTile(GameManager.Instance.GetEventForwardAndBackwardMoves()*(-1), false, false);
+        ObjectHandler.Instance.player1Characters[target].GetComponent<Character>().UpdateTile(GameManager.Instance.GetEventBackwardMoves()*(-1), false, false);
         ObjectHandler.Instance.eventCards.GetComponent<EventCards>().UpdateEventCardCount(GameManager.Instance.currentPlayer, 3, false);
         if (target < 0 || target > 2)
         {
@@ -418,8 +423,8 @@ public class AI_attempt : MonoBehaviour
         //make the move
         ObjectHandler.Instance.player2Characters[charToMove].GetComponent<Character>().UpdateTile(move, true, false);
         ObjectHandler.Instance.GetMessageBox().DisplayMessageContinued("Moving " + 
-            ObjectHandler.Instance.player2Characters[charToMove].GetComponent<Character>().GetName() + " to " + move +
-                ObjectHandler.Instance.player2Characters[charToMove].GetComponent<Character>().GetCurrentTile());
+            ObjectHandler.Instance.player2Characters[charToMove].GetComponent<Character>().GetName() + " to " + (move +
+                ObjectHandler.Instance.player2Characters[charToMove].GetComponent<Character>().GetCurrentTile()));
 
         return charToMove;
     }

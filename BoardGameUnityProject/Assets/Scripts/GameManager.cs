@@ -62,7 +62,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private int eventHeal = 4;
     [SerializeField]
-    private int eventForwardAndBackwardMoves = 4;
+    private int eventForwardMoves = 4;
+    [SerializeField]
+    private int eventBackwardMoves = 5;
 
     //for player
     [SerializeField]
@@ -131,9 +133,14 @@ public class GameManager : MonoBehaviour
         return eventHeal;
     }
 
-    public int GetEventForwardAndBackwardMoves()
+    public int GetEventForwardMoves()
     {
-        return eventForwardAndBackwardMoves;
+        return eventForwardMoves;
+    }
+
+    public int GetEventBackwardMoves()
+    {
+        return eventBackwardMoves;
     }
 
     public int GetCharacterDamage()
@@ -256,6 +263,8 @@ public class GameManager : MonoBehaviour
     //n is the character number selected by the player for movement
     public void CharacterUpdateTile(int n)
     {
+        ObjectHandler.Instance.GetMessageBox().DisplayMessageContinued("Moving " + ObjectHandler.Instance.player1Characters[n].GetComponent<Character>().GetName()
+                + " to " + (diceSum + ObjectHandler.Instance.player1Characters[n].GetComponent<Character>().GetCurrentTile()));
         if (currentPlayer == 1)
             ObjectHandler.Instance.player1Characters[n].GetComponent<Character>().UpdateTile(diceSum, true, false);
         else if (currentPlayer == 2)

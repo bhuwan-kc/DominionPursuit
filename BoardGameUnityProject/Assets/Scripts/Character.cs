@@ -178,6 +178,10 @@ public class Character : MonoBehaviour
         {
             if (this.currentTile == x.GetComponent<Character>().currentTile && this != x.GetComponent<Character>())
             {
+                //if on different paths 
+                if (this.currentTile > 46 && this.currentTile < 54 && (this.onAlternatePath != x.GetComponent<Character>().onAlternatePath))
+                    continue;
+
                 //deal damage if current character belongs to player1
                 if (GameManager.Instance.currentPlayer == 1 && currentTile != GameManager.Instance.finalTileNumber+1)
                     x.GetComponent<Character>().Damage(GameManager.Instance.GetCharacterDamage());
@@ -191,6 +195,10 @@ public class Character : MonoBehaviour
         {
             if (this.currentTile == x.GetComponent<Character>().currentTile && this != x.GetComponent<Character>())
             {
+                //if on different paths 
+                if (this.currentTile > 46 && this.currentTile < 54 && (this.onAlternatePath != x.GetComponent<Character>().onAlternatePath))
+                    continue;
+
                 //deal damage if current character belongs to player2
                 if (GameManager.Instance.currentPlayer == 2 && currentTile != GameManager.Instance.finalTileNumber + 1)
                     x.GetComponent<Character>().Damage(GameManager.Instance.GetCharacterDamage());

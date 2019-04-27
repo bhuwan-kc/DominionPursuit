@@ -48,6 +48,14 @@ public class SoundManagerScript : MonoBehaviour {
 
     public void Update()
     {
+        if(!audioSrcMusic.isPlaying)
+        {
+            if (SceneManager.GetActiveScene().buildIndex == 0)
+                PlaySound(Sound.menu);
+            else
+                PlaySound(Sound.gamePlay);
+        }
+           
     }
 
     public void SetMusicLevel()
