@@ -258,8 +258,7 @@ public class AI_attempt : MonoBehaviour
             Debug.Log("invalid target passed to useCard3 by AI. Defaulting to 0.");
             target = 0;
         }
-        ObjectHandler.Instance.GetMessageBox().DisplayMessageContinued("AI uses Detour! " + ObjectHandler.Instance.player1Characters[target].GetComponent<Character>().GetName() +
-                    " is forced backwards "+GameManager.Instance.GetEventForwardAndBackwardMoves()+" tiles.");
+        ObjectHandler.Instance.GetMessageBox().DisplayMessageContinued("AI uses Detour on " + ObjectHandler.Instance.player1Characters[target].GetComponent<Character>().GetName());
         yield return new WaitForSeconds(2f);
     }
 
@@ -418,8 +417,9 @@ public class AI_attempt : MonoBehaviour
 
         //make the move
         ObjectHandler.Instance.player2Characters[charToMove].GetComponent<Character>().UpdateTile(move, true, false);
-        ObjectHandler.Instance.GetMessageBox().DisplayMessageContinued("Computer moved " + 
-            ObjectHandler.Instance.player2Characters[charToMove].GetComponent<Character>().GetName() + " " + move + " spaces.");
+        ObjectHandler.Instance.GetMessageBox().DisplayMessageContinued("Moving " + 
+            ObjectHandler.Instance.player2Characters[charToMove].GetComponent<Character>().GetName() + " to " + move +
+                ObjectHandler.Instance.player2Characters[charToMove].GetComponent<Character>().GetCurrentTile());
 
         return charToMove;
     }
