@@ -224,7 +224,8 @@ public class Character : MonoBehaviour
             ObjectHandler.Instance.tilesAlternatePath[targetTile-47].GetComponent<Tile>().CheckFaction() == 3)
         {
             rightWeight += 1;
-            if (ObjectHandler.Instance.AI.GetComponent<AI_attempt>().getAggression()) rightWeight += 2;
+            if (ObjectHandler.Instance.AI.GetComponent<AI_attempt>().getAggression())
+                rightWeight += 1;
         }
 
         //left side
@@ -235,11 +236,12 @@ public class Character : MonoBehaviour
             ObjectHandler.Instance.tiles[targetTile].GetComponent<Tile>().CheckFaction() == 3)
         {
             leftWeight += 1;
-            if (ObjectHandler.Instance.AI.GetComponent<AI_attempt>().getAggression()) leftWeight += 2;
+            if (ObjectHandler.Instance.AI.GetComponent<AI_attempt>().getAggression())
+                leftWeight += 1;
         }
 
         //if weight of right path is better than left, go right.
-        if (rightWeight < leftWeight)
+        if (rightWeight > leftWeight)
             onAlternatePath = true;
     }
 
@@ -350,6 +352,7 @@ public class Character : MonoBehaviour
                 //setting up the steps such that the next loop would take the character to tile 72 and break
                 i = steps - 1;
                 currentTile = GameManager.Instance.finalTileNumber - i;
+                health = 10;
                 ObjectHandler.Instance.GetMessageBox().DisplayMessageContinued(characterName + " reached the final tile!");
                 yield return new WaitForSeconds(0.25f);
             }

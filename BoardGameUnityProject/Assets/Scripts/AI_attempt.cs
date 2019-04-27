@@ -104,6 +104,8 @@ public class AI_attempt : MonoBehaviour
             int furthest = 1;
             for (int i = 0; i < 3; i++)
             {
+                if (ObjectHandler.Instance.player1Characters[i].GetComponent<Character>().GetCurrentTile() == 72)
+                    continue;
                 if (ObjectHandler.Instance.player1Characters[i].GetComponent<Character>().GetCurrentTile() > furthest &&
                     ObjectHandler.Instance.player1Characters[i].GetComponent<Character>().GetCurrentTile() > tileMin)
                 {
@@ -130,6 +132,8 @@ public class AI_attempt : MonoBehaviour
         {
             for (int i = 0; i < 3; i++)
             {
+                if (ObjectHandler.Instance.player1Characters[i].GetComponent<Character>().GetCurrentTile() == 72)
+                    continue;
                 if (ObjectHandler.Instance.player1Characters[i].GetComponent<Character>().GetCurrentTile() > tileMin)
                 {
                     //if (event damage) or less hp, KILL THEM
@@ -162,6 +166,8 @@ public class AI_attempt : MonoBehaviour
         {
             for (int i = 0; i < 3; i++)
             {
+                if (ObjectHandler.Instance.player2Characters[i].GetComponent<Character>().GetCurrentTile() == 72)
+                    continue;
                 if ((ObjectHandler.Instance.player2Characters[i].GetComponent<Character>().GetHealth() <=
                     ObjectHandler.Instance.player2Characters[i].GetComponent<Character>().GetMaxHealth() - GameManager.Instance.GetEventHeal()) &&
                     ObjectHandler.Instance.player2Characters[i].GetComponent<Character>().GetCurrentTile() > tileMin)
@@ -303,7 +309,8 @@ public class AI_attempt : MonoBehaviour
                 ObjectHandler.Instance.tilesAlternatePath[targetTile - 47].GetComponent<Tile>().CheckFaction() == 3)
             {
                 rightTileWeight += 1;
-                if (ObjectHandler.Instance.AI.GetComponent<AI_attempt>().getAggression()) rightTileWeight += 2;
+                if (ObjectHandler.Instance.AI.GetComponent<AI_attempt>().getAggression())
+                    rightTileWeight += 1;
             }
 
             //left side
@@ -315,7 +322,8 @@ public class AI_attempt : MonoBehaviour
                 ObjectHandler.Instance.tiles[targetTile].GetComponent<Tile>().CheckFaction() == 3)
             {
                 leftTileWeight += 1;
-                if (ObjectHandler.Instance.AI.GetComponent<AI_attempt>().getAggression()) leftTileWeight += 2;
+                if (ObjectHandler.Instance.AI.GetComponent<AI_attempt>().getAggression())
+                    leftTileWeight += 1;
             }
             
             //--------------------------------------final decision------------------------------------------

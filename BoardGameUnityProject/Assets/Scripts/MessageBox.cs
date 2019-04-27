@@ -10,7 +10,7 @@ public class MessageBox : MonoBehaviour
     {
         leftPanelBg.SetActive(true);  
         DisplayButtons(false);
-        DisplayMessage("WELCOME!\nPlease roll the dice to start the game...");
+        DisplayMessageContinued("WELCOME!\nPlease roll the dice to start the game...");
     }
 
     // Update is called once per frame
