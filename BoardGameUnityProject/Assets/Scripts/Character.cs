@@ -36,7 +36,7 @@ public class Character : MonoBehaviour
 
     void Update()
     {
-        if (health == 0 && (currentTile == 0 || currentTile == 38))
+        if (health == 0 && (currentTile <= 0 || currentTile == 38))
         {
             health = maxHealth;
             UIManager.Instance.UpdateHealthBar(characterName, health);
@@ -353,6 +353,7 @@ public class Character : MonoBehaviour
                 i = steps - 1;
                 currentTile = GameManager.Instance.finalTileNumber - i;
                 health = 10;
+                UIManager.Instance.UpdateHealthBar(characterName, health);
                 ObjectHandler.Instance.GetMessageBox().DisplayMessageContinued(characterName + " reached the final tile!");
                 yield return new WaitForSeconds(0.25f);
             }

@@ -19,14 +19,6 @@ public class AI_attempt : MonoBehaviour
         return aggressive;
     }
 
-    private IEnumerator holdYourHorses()
-    {
-        //makes the game 'pause' to let players read messages before something happens.
-        Time.timeScale = .01f;
-        yield return new WaitForSeconds(.02f);
-        Time.timeScale = 1f;
-    }
-
     //class variable decleration
     int[] tileWeight = new int[3]; //used to save weights of updated characterLocation tiles.
 
@@ -55,8 +47,6 @@ public class AI_attempt : MonoBehaviour
 
         //decide to use/not use event cards
         cardDecision = DecideEventCard();
-        if (cardDecision > -1) StartCoroutine(holdYourHorses());
-
 
         //generate diceroll for character movement.
         diceRoll1 = ObjectHandler.Instance.Dice.GetComponent<Dice>().RollDice();
@@ -210,7 +200,7 @@ public class AI_attempt : MonoBehaviour
         else if (decision == 1) StartCoroutine(useSabotage(target));
         else if (decision == 2) StartCoroutine(useShortcut());
 
-
+        GameManager.Instance.waitForCharacterMovement = true;
         return decision;
     }
 
@@ -228,7 +218,8 @@ public class AI_attempt : MonoBehaviour
         ObjectHandler.Instance.player2Characters[target].GetComponent<Character>().Heal(GameManager.Instance.GetEventHeal());
         ObjectHandler.Instance.messageBoxObj.GetComponent<MessageBox>().DisplayMessageContinued(ObjectHandler.Instance.player2Characters[target].GetComponent<Character>().GetName() +
             " heals from a Medkit.");
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(2.0f);
+        GameManager.Instance.waitForCharacterMovement = false;
     }
 
     //damaging card
@@ -244,7 +235,8 @@ public class AI_attempt : MonoBehaviour
         ObjectHandler.Instance.player1Characters[target].GetComponent<Character>().Damage(GameManager.Instance.GetEventDamage());
         ObjectHandler.Instance.messageBoxObj.GetComponent<MessageBox>().DisplayMessageContinued(ObjectHandler.Instance.player1Characters[target].GetComponent<Character>().GetName() +
             " suffers "+GameManager.Instance.GetEventDamage()+" damage from a Sabotage!");
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(2.0f);
+        GameManager.Instance.waitForCharacterMovement = false;
     }
 
     //movement card
@@ -255,7 +247,8 @@ public class AI_attempt : MonoBehaviour
         //NOTE Ai doesn't do anything here, as it doesn't use the same diceroll functions as a player does.
         //merely marking it used this card is enough (the return on the DecideEventCard function).
         ObjectHandler.Instance.GetMessageBox().DisplayMessageContinued("AI is taking a shortcut!");
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.5f);
+        GameManager.Instance.waitForCharacterMovement = false;
     }
 
     //backwards movement card
@@ -270,7 +263,8 @@ public class AI_attempt : MonoBehaviour
             target = 0;
         }
         ObjectHandler.Instance.GetMessageBox().DisplayMessageContinued("AI uses Detour on " + ObjectHandler.Instance.player1Characters[target].GetComponent<Character>().GetName());
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(3.0f);
+        GameManager.Instance.waitForCharacterMovement = false;
     }
 
 
@@ -382,6 +376,8 @@ public class AI_attempt : MonoBehaviour
     private IEnumerator DisplayDiceRoll(int roll1, int roll2, int move)
     {
         //this function plays the animation to roll the dice.
+        while (GameManager.Instance.waitForCharacterMovement)
+            yield return new WaitForEndOfFrame();
 
         //to play the dice roll animation + sound
         SoundManagerScript.PlaySound(SoundManagerScript.Sound.rollDice);
