@@ -121,13 +121,13 @@ public class EventCards : MonoBehaviour
         {
             ObjectHandler.Instance.player1Characters[characterNum].GetComponent<Character>().Heal(GameManager.Instance.GetEventHeal());
             ObjectHandler.Instance.messageBoxObj.GetComponent<MessageBox>().DisplayMessageContinued(ObjectHandler.Instance.player1Characters[characterNum].GetComponent<Character>().GetName() +
-                " heals");
+                " heals "+GameManager.Instance.GetEventHeal()+" HP");
         }
         else
         {
             ObjectHandler.Instance.player2Characters[characterNum].GetComponent<Character>().Heal(GameManager.Instance.GetEventHeal());
             ObjectHandler.Instance.messageBoxObj.GetComponent<MessageBox>().DisplayMessageContinued(ObjectHandler.Instance.player2Characters[characterNum].GetComponent<Character>().GetName() +
-                " heals");
+                " heals " + GameManager.Instance.GetEventHeal() + " HP");
         }
 
         yield return new WaitForSeconds(0.75f);

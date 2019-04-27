@@ -41,8 +41,8 @@
      showborder="false"
      inkscape:lockguides="true"
      inkscape:zoom="0.47883706"
-     inkscape:cx="810.49652"
-     inkscape:cy="-375.88404"
+     inkscape:cx="1349.0719"
+     inkscape:cy="-361.11197"
      inkscape:window-x="1591"
      inkscape:window-y="-9"
      inkscape:window-maximized="1"
@@ -309,7 +309,7 @@
          id="tspan913"
          y="231.52072"
          x="1375.3817"
-         sodipodi:role="line">Character takes 5 damages on landing</tspan></text>
+         sodipodi:role="line">Character deals 5 damage</tspan></text>
     <text
        transform="scale(1.0027815,0.99722623)"
        id="text917"
@@ -321,7 +321,7 @@
          id="tspan919"
          y="336.53693"
          x="1375.3817"
-         sodipodi:role="line">Character heals by 5 on  landing</tspan></text>
+         sodipodi:role="line">Character heals by 4 health points </tspan></text>
     <text
        transform="scale(1.0027815,0.99722623)"
        id="text923"

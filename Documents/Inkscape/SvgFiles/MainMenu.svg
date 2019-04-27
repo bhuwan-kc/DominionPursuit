@@ -57,8 +57,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.49497475"
-     inkscape:cx="1052.1637"
-     inkscape:cy="741.29448"
+     inkscape:cx="1304.2875"
+     inkscape:cy="434.34272"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -130,45 +130,45 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.2248888px;line-height:1.25;font-family:'Franklin Gothic Heavy';-inkscape-font-specification:'Franklin Gothic Heavy, ';letter-spacing:0px;word-spacing:0px;fill:#0000ff;fill-opacity:1;stroke:none;stroke-width:0.50800002;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.1875"
-       x="54.962749"
-       y="-12.775341"
+       x="52.846081"
+       y="-11.717009"
        id="text4545"><tspan
          sodipodi:role="line"
          id="tspan4543"
-         x="54.962749"
-         y="-12.775341"
+         x="52.846081"
+         y="-11.717009"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25.28711128px;font-family:'AR DARLING';-inkscape-font-specification:'AR DARLING';fill:#0000ff;stroke:none;stroke-width:0.50800002;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.1875">NEW GAME</tspan></text>
     <text
        id="text4549"
-       y="23.16412"
-       x="55.165047"
+       y="24.222454"
+       x="53.048378"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.2248888px;line-height:1.25;font-family:'Franklin Gothic Heavy';-inkscape-font-specification:'Franklin Gothic Heavy, ';letter-spacing:0px;word-spacing:0px;fill:#0000ff;fill-opacity:1;stroke:none;stroke-width:0.6773333"
        xml:space="preserve"><tspan
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25.28711128px;font-family:'AR DARLING';-inkscape-font-specification:'AR DARLING';fill:#0000ff;stroke-width:0.6773333"
-         y="23.16412"
-         x="55.165047"
+         y="24.222454"
+         x="53.048378"
          id="tspan4547"
          sodipodi:role="line">SETTINGS</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.2248888px;line-height:1.25;font-family:'Franklin Gothic Heavy';-inkscape-font-specification:'Franklin Gothic Heavy, ';letter-spacing:0px;word-spacing:0px;fill:#0000ff;fill-opacity:1;stroke:none;stroke-width:0.6773333"
-       x="55.670788"
-       y="131.286"
+       x="53.554119"
+       y="132.34431"
        id="text4553"><tspan
          sodipodi:role="line"
          id="tspan4551"
-         x="55.670788"
-         y="131.286"
+         x="53.554119"
+         y="132.34431"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25.28711128px;font-family:'AR DARLING';-inkscape-font-specification:'AR DARLING';fill:#0000ff;stroke-width:0.6773333">EXIT GAME</tspan></text>
     <text
        id="text4557"
-       y="59.040356"
-       x="55.240906"
+       y="60.09869"
+       x="53.124237"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.2248888px;line-height:1.25;font-family:'Franklin Gothic Heavy';-inkscape-font-specification:'Franklin Gothic Heavy, ';letter-spacing:0px;word-spacing:0px;fill:#0000ff;fill-opacity:1;stroke:none;stroke-width:0.6773333"
        xml:space="preserve"><tspan
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25.28711128px;font-family:'AR DARLING';-inkscape-font-specification:'AR DARLING';fill:#0000ff;stroke-width:0.6773333"
-         y="59.040356"
-         x="55.240906"
+         y="60.09869"
+         x="53.124237"
          id="tspan4555"
          sodipodi:role="line">CREDITS</tspan></text>
     <text
@@ -1337,13 +1337,13 @@
     </g>
     <text
        id="text1058"
-       y="95.194756"
-       x="54.861599"
+       y="96.25309"
+       x="52.74493"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.2248888px;line-height:1.25;font-family:'Franklin Gothic Heavy';-inkscape-font-specification:'Franklin Gothic Heavy, ';letter-spacing:0px;word-spacing:0px;fill:#0000ff;fill-opacity:1;stroke:none;stroke-width:0.50800002;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.1875"
        xml:space="preserve"><tspan
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25.28711128px;font-family:'AR DARLING';-inkscape-font-specification:'AR DARLING';fill:#0000ff;stroke:none;stroke-width:0.50800002;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.1875"
-         y="95.194756"
-         x="54.861599"
+         y="96.25309"
+         x="52.74493"
          id="tspan1056"
          sodipodi:role="line">MANUAL</tspan></text>
   </g>
