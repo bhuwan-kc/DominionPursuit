@@ -15,7 +15,6 @@ public class EventCards : MonoBehaviour
         //give two random event cards to both the players
         UpdateEventCardCount(1, Random.Range(0, 4), false);
         UpdateEventCardCount(2, Random.Range(0, 4), false);
-
         UpdateSlots(GameManager.Instance.currentPlayer);
     }
 

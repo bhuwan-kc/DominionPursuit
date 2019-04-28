@@ -79,19 +79,10 @@ public class AI_attempt : MonoBehaviour
         bool cantDecide = false; //if conditions exist but aren't ideal, mark for AI to think about it later
         int tileMin = 12; //minimum location to use event cards on a character. Exclusive.
 
-        //print ai event cards
-        /*
-        Debug.Log("AI Hand:\n " +
-            "Medkits: " + ObjectHandler.Instance.eventCards.GetComponent<EventCards>().getPlayer2EventCardCounts(0) +
-            " Sabotage: " + ObjectHandler.Instance.eventCards.GetComponent<EventCards>().getPlayer2EventCardCounts(1) +
-            " Shortcut: " + ObjectHandler.Instance.eventCards.GetComponent<EventCards>().getPlayer2EventCardCounts(2) +
-            " Detour: " + ObjectHandler.Instance.eventCards.GetComponent<EventCards>().getPlayer2EventCardCounts(3));
-        */
-
         //if AI has detour card, use it on the furthermost enemy character.
         if (ObjectHandler.Instance.eventCards.GetComponent<EventCards>().getPlayer2EventCardCounts(3) > 0)
         {
-            int furthest = 1;
+            int furthest = tileMin;
             for (int i = 0; i < 3; i++)
             {
                 if (ObjectHandler.Instance.player1Characters[i].GetComponent<Character>().GetCurrentTile() == 72)
@@ -122,7 +113,8 @@ public class AI_attempt : MonoBehaviour
         {
             for (int i = 0; i < 3; i++)
             {
-                if (ObjectHandler.Instance.player1Characters[i].GetComponent<Character>().GetCurrentTile() == 72)
+                if (ObjectHandler.Instance.player1Characters[i].GetComponent<Character>().GetCurrentTile() == 72 ||
+                        ObjectHandler.Instance.player1Characters[i].GetComponent<Character>().GetCurrentTile() == 38)
                     continue;
                 if (ObjectHandler.Instance.player1Characters[i].GetComponent<Character>().GetCurrentTile() > tileMin)
                 {
@@ -134,20 +126,21 @@ public class AI_attempt : MonoBehaviour
                         break;
                     }
                     //if >(event damage) hp, consider damaging them.
-                    else if(ObjectHandler.Instance.eventCards.GetComponent<EventCards>().getPlayer2EventCardCounts(1) > 1)
+                    else if(ObjectHandler.Instance.player1Characters[i].GetComponent<Character>().GetHealth() < ObjectHandler.Instance.player1Characters[i].GetComponent<Character>().GetMaxHealth())
                     {
                         decision = 1;
                         target = i;
-                        cantDecide = true;
                     }
                 }
             }
             //if none of the opponent's character have less hp and AI has more than 1 damage card, then use at randome
             if(decision != 1 && ObjectHandler.Instance.eventCards.GetComponent<EventCards>().getPlayer2EventCardCounts(1) > 1)
             {
-                decision = 1;
                 target = Random.Range(0, 3);
-                cantDecide = true;
+                if(ObjectHandler.Instance.eventCards.GetComponent<EventCards>().getPlayer2EventCardCounts(1) == 1)
+                    cantDecide = true;
+                if(ObjectHandler.Instance.player1Characters[target].GetComponent<Character>().GetCurrentTile() > tileMin)
+                    decision = 1;
             }
         }
 
@@ -181,17 +174,15 @@ public class AI_attempt : MonoBehaviour
         }
 
         //if needed to think on it, do so here.
-        //for now, just randomly determines (25-75% chance of yes/no)
+        //for now, just randomly determines (30% chance of using it)
         //TODO: More complicated thought processes.
         if (cantDecide)
         {
-            if (Random.Range(0f, 1f) <= 0.75f)
+            if (Random.Range(0f, 1f) < 0.7f)
             {
                 decision = -1;
             }
         }
-
-        //Debug.Log("decision within eventCardDecision is " + decision);
 
         //events listed in order they're checked above
         if (decision == -1) return decision; //here just to make computer not do the following checks if it doesn't want to use an event card
@@ -235,7 +226,7 @@ public class AI_attempt : MonoBehaviour
         ObjectHandler.Instance.player1Characters[target].GetComponent<Character>().Damage(GameManager.Instance.GetEventDamage());
         ObjectHandler.Instance.messageBoxObj.GetComponent<MessageBox>().DisplayMessageContinued(ObjectHandler.Instance.player1Characters[target].GetComponent<Character>().GetName() +
             " suffers "+GameManager.Instance.GetEventDamage()+" damage from a Sabotage!");
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(2.5f);
         GameManager.Instance.waitForCharacterMovement = false;
     }
 
