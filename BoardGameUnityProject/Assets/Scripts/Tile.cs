@@ -171,7 +171,7 @@ public class Tile : MonoBehaviour
         yield return new WaitForSeconds(1.0f);
         character.SetActive(true);
         yield return new WaitForSeconds(0.75f);
-        character.GetComponent<Character>().StackCharacterOnTile();
+        character.GetComponent<Character>().StackCharacterOnTileAndAttack();
         GameManager.Instance.EndTurn(1.0f);
     }
 

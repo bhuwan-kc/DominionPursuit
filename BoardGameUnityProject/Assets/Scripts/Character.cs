@@ -168,11 +168,11 @@ public class Character : MonoBehaviour
         return 1;
     }
 
-    public void StackCharacterOnTile()
+    public void StackCharacterOnTile(bool attack)
     {
         //bring the character back to the ground level
         int newSortingOrder = 6;
-        
+
         //Check if there are any characters from player2 on the new tile 
         foreach (GameObject x in ObjectHandler.Instance.player2Characters)
         {
@@ -183,7 +183,7 @@ public class Character : MonoBehaviour
                     continue;
 
                 //deal damage if current character belongs to player1
-                if (GameManager.Instance.currentPlayer == 1 && currentTile != GameManager.Instance.finalTileNumber+1)
+                if (attack && this.team != x.GetComponent<Character>().GetTeam() && this.currentTile != GameManager.Instance.finalTileNumber + 1)
                     x.GetComponent<Character>().Damage(GameManager.Instance.GetCharacterDamage());
                 //to determine the layer sorting order so that the current character can be kept at the top
                 if (newSortingOrder <= x.GetComponent<SpriteRenderer>().sortingOrder)
@@ -200,7 +200,7 @@ public class Character : MonoBehaviour
                     continue;
 
                 //deal damage if current character belongs to player2
-                if (GameManager.Instance.currentPlayer == 2 && currentTile != GameManager.Instance.finalTileNumber + 1)
+                if (attack && this.team != x.GetComponent<Character>().GetTeam() && currentTile != GameManager.Instance.finalTileNumber + 1)
                     x.GetComponent<Character>().Damage(GameManager.Instance.GetCharacterDamage());
                 if (newSortingOrder <= x.GetComponent<SpriteRenderer>().sortingOrder)
                     newSortingOrder = x.GetComponent<SpriteRenderer>().sortingOrder + 1;
@@ -208,6 +208,11 @@ public class Character : MonoBehaviour
         }
         //move the character to the top of the stack
         _sprite.sortingOrder = newSortingOrder;
+    }
+
+    public void StackCharacterOnTileAndAttack()
+    {
+        StackCharacterOnTile(true);
     }
 
     public void AIPathDecision(int steps)
@@ -265,7 +270,7 @@ public class Character : MonoBehaviour
         SetCurrentTile(targetTile);             //update the currentTile counter of the character
 
         //position the character properly on the new tile
-        StackCharacterOnTile();
+        StackCharacterOnTileAndAttack();
 
         if (currentTile > 0)
             ObjectHandler.Instance.tiles[currentTile].GetComponent<Tile>().ArriveOnTile(team, idNum, false); //mark character is on new tile.
@@ -361,7 +366,7 @@ public class Character : MonoBehaviour
         SetCurrentTile(currentTile + steps);       //update the currentTile status of the character
 
         //position the character properly on the new tile
-        StackCharacterOnTile();
+        StackCharacterOnTileAndAttack();
 
         //wait before the tile effect and end turn
         yield return new WaitForSeconds(0.5f);

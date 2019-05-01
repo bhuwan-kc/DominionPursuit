@@ -78,6 +78,7 @@ public class AI_attempt : MonoBehaviour
         int target = -1; //-1: no target. Otherwise 0-2 indicate target character in array.
         bool cantDecide = false; //if conditions exist but aren't ideal, mark for AI to think about it later
         int tileMin = 12; //minimum location to use event cards on a character. Exclusive.
+        float probability = 0.5f;
 
         //if AI has detour card, use it on the furthermost enemy character.
         if (ObjectHandler.Instance.eventCards.GetComponent<EventCards>().getPlayer2EventCardCounts(3) > 0)
@@ -93,7 +94,8 @@ public class AI_attempt : MonoBehaviour
                     furthest = ObjectHandler.Instance.player1Characters[i].GetComponent<Character>().GetCurrentTile();
                     decision = 3;
                     target = i;
-                    cantDecide = true;
+                    if(ObjectHandler.Instance.player1Characters[i].GetComponent<Character>().GetCurrentTile() < 46)
+                        cantDecide = true;
                 }
             }
         }
@@ -105,10 +107,10 @@ public class AI_attempt : MonoBehaviour
         {
             decision = 2;
             target = -1; //no target needed for this function. 
+            cantDecide = false;
         }
 
         //if AI has a damage card, search for anyone at less than max hp at or beyond tile 12.
-        //TODO: consider character location in decision
         if (ObjectHandler.Instance.eventCards.GetComponent<EventCards>().getPlayer2EventCardCounts(1) > 0)
         {
             for (int i = 0; i < 3; i++)
@@ -119,28 +121,29 @@ public class AI_attempt : MonoBehaviour
                 if (ObjectHandler.Instance.player1Characters[i].GetComponent<Character>().GetCurrentTile() > tileMin)
                 {
                     //if (event damage) or less hp, KILL THEM
-                    if (ObjectHandler.Instance.player1Characters[i].GetComponent<Character>().GetHealth() <= GameManager.Instance.GetEventDamage())
+                    if (ObjectHandler.Instance.player1Characters[i].GetComponent<Character>().GetHealth() < ObjectHandler.Instance.player1Characters[i].GetComponent<Character>().GetMaxHealth())
                     {
                         decision = 1;
                         target = i;
-                        break;
-                    }
-                    //if >(event damage) hp, consider damaging them.
-                    else if(ObjectHandler.Instance.player1Characters[i].GetComponent<Character>().GetHealth() < ObjectHandler.Instance.player1Characters[i].GetComponent<Character>().GetMaxHealth())
-                    {
-                        decision = 1;
-                        target = i;
+                        cantDecide = false;
+                        if (ObjectHandler.Instance.player1Characters[i].GetComponent<Character>().GetHealth() <= GameManager.Instance.GetEventDamage())
+                            break;
                     }
                 }
             }
             //if none of the opponent's character have less hp and AI has more than 1 damage card, then use at randome
-            if(decision != 1 && ObjectHandler.Instance.eventCards.GetComponent<EventCards>().getPlayer2EventCardCounts(1) > 1)
+            if (decision == -1 && ObjectHandler.Instance.eventCards.GetComponent<EventCards>().getPlayer2EventCardCounts(1) > 1)
             {
                 target = Random.Range(0, 3);
-                if(ObjectHandler.Instance.eventCards.GetComponent<EventCards>().getPlayer2EventCardCounts(1) == 1)
-                    cantDecide = true;
-                if(ObjectHandler.Instance.player1Characters[target].GetComponent<Character>().GetCurrentTile() > tileMin)
+                if (ObjectHandler.Instance.player1Characters[target].GetComponent<Character>().GetCurrentTile() > tileMin)
+                {
+                    if (ObjectHandler.Instance.eventCards.GetComponent<EventCards>().getPlayer2EventCardCounts(1) == 1)
+                        cantDecide = true;
+                    else
+                        cantDecide = false;
+                    probability = 0.75f;
                     decision = 1;
+                }
             }
         }
 
@@ -168,7 +171,7 @@ public class AI_attempt : MonoBehaviour
                         decision = 0;
                         target = i;
                     }
-
+                    cantDecide = false;
                 }
             }
         }
@@ -178,7 +181,7 @@ public class AI_attempt : MonoBehaviour
         //TODO: More complicated thought processes.
         if (cantDecide)
         {
-            if (Random.Range(0f, 1f) < 0.7f)
+            if (Random.Range(0f, 1f) > probability)
             {
                 decision = -1;
             }

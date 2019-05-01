@@ -19,6 +19,8 @@ public class SoundManagerScript : MonoBehaviour {
     public Slider sfxVolume;
     public Slider musicVolume;
 
+    private static int limiter = 0;
+
     private void Start()
     {
         sounds.Add(Resources.Load<AudioClip>("buttonClick"));
@@ -72,6 +74,7 @@ public class SoundManagerScript : MonoBehaviour {
 
     public static void PlaySound(Sound clip)
     {
+        limiter++;
         foreach(AudioClip a in sounds)
         {
             if(clip.ToString().Equals(a.name))
@@ -79,9 +82,12 @@ public class SoundManagerScript : MonoBehaviour {
                 if (a.name == "gamePlay" || a.name == "menu")
                     audioSrcMusic.PlayOneShot(a);
                 else
-                    audioSrcSfx.PlayOneShot(a);
+                    if(limiter<2)
+                        audioSrcSfx.PlayOneShot(a);
+                limiter--;
                 return;
             }
         }
+        limiter--;
     }
 }
