@@ -10,7 +10,7 @@
 
 First publication - 05.01.2019
 
-**Download link for Windows -** https://drive.google.com/file/d/1jJgX3K2ZmZJ1srGlHnUrRy89z6fTvaVt/view?usp=sharing 
+**Download link for Windows -** https://github.com/ablaze007/DominionPursuit/raw/master/DominionPursuit.zip
 
 Platform - Windows <br/>
 Game Engine - Unity <br/>
