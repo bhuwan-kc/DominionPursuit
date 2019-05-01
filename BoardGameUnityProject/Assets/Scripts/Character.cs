@@ -256,6 +256,10 @@ public class Character : MonoBehaviour
         //bring the character to the top layer
         _sprite.sortingOrder = 10;
 
+        //update the currentTile counter of the character
+        //this is done before the while loop to indicate any event happenning during the loop execution that the character's tile is targetTile
+        SetCurrentTile(targetTile);             
+
         //get the position of the target Tile
         Vector3 targetPosition = GameManager.Instance.GetTilePosition(targetTile).position;
 
@@ -267,10 +271,9 @@ public class Character : MonoBehaviour
         }
 
         transform.position = targetPosition;    //for better alignment
-        SetCurrentTile(targetTile);             //update the currentTile counter of the character
 
         //position the character properly on the new tile
-        StackCharacterOnTileAndAttack();
+        StackCharacterOnTile(false);
 
         if (currentTile > 0)
             ObjectHandler.Instance.tiles[currentTile].GetComponent<Tile>().ArriveOnTile(team, idNum, false); //mark character is on new tile.

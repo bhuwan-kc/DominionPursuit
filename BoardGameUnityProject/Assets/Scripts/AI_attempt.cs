@@ -152,7 +152,8 @@ public class AI_attempt : MonoBehaviour
         {
             for (int i = 0; i < 3; i++)
             {
-                if (ObjectHandler.Instance.player2Characters[i].GetComponent<Character>().GetCurrentTile() == 72)
+                if (ObjectHandler.Instance.player2Characters[i].GetComponent<Character>().GetCurrentTile() == 72 ||
+                        ObjectHandler.Instance.player2Characters[i].GetComponent<Character>().GetCurrentTile() == 38)
                     continue;
                 if ((ObjectHandler.Instance.player2Characters[i].GetComponent<Character>().GetHealth() <=
                     ObjectHandler.Instance.player2Characters[i].GetComponent<Character>().GetMaxHealth() - GameManager.Instance.GetEventHeal()) &&
